@@ -1,0 +1,15 @@
+{
+  "version": "1.0.2",
+  "name": "@super-abp/bootstrap-fileinput",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/super-abp/npm.git",
+    "directory": "packs/bootstrap-fileinput"
+  },
+  "dependencies": {
+    "bootstrap-fileinput": "^5.5.2"
+  },
+  "publishConfig": {
+    "registry": "http://121.196.122.107:8881"
+  }
+}

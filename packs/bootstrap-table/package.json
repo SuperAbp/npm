@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "name": "@super-abp/bootstrap-table",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/super-abp/npm.git",
+    "directory": "packs/bootstrap-table"
+  },
+  "dependencies": {
+    "bootstrap-table": "^1.21.1"
+  },
+  "publishConfig": {
+    "registry": "http://121.196.122.107:8881"
+  }
+}

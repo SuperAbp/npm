@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "name": "@super-abp/select2-theme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/super-abp/npm.git",
+    "directory": "packs/select2-theme"
+  },
+  "dependencies": {
+    "select2-bootstrap-5-theme": "^1.2.0"
+  },
+  "publishConfig": {
+    "registry": "http://121.196.122.107:8881"
+  }
+}
