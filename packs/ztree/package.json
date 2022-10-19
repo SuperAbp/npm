@@ -1,15 +1,16 @@
 {
-  "version": "1.0.3",
   "name": "@super-abp/ztree",
+  "version": "0.1.0",
+  "keywords": [
+    "abp",
+    "ztree"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/super-abp/npm.git",
+    "url": "https://github.com/super-abp/npm",
     "directory": "packs/ztree"
   },
   "dependencies": {
     "@ztree/ztree_v3": "^3.5.48"
-  },
-  "publishConfig": {
-    "registry": "http://121.196.122.107:8881"
   }
 }

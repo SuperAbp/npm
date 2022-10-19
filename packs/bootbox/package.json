@@ -1,18 +1,19 @@
 {
-  "name": "@super-abp/select2-theme",
+  "name": "@super-abp/bootbox",
   "version": "0.1.0",
   "keywords": [
     "abp",
     "bootstrap",
-    "select2",
-    "select2-theme"
+    "bootbox"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/super-abp/npm",
-    "directory": "packs/select2-theme"
+    "directory": "packs/bootbox"
   },
+  "homepage": "http://superabp.com/",
+  "license": "MIT",
   "dependencies": {
-    "select2-bootstrap-5-theme": "^1.2.0"
+    "bootbox": "^5.5.3"
   }
 }
