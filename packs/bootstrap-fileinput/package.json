@@ -14,7 +14,7 @@
   "homepage": "http://superabp.com/",
   "license": "MIT",
   "dependencies": {
-    "@super-abp/bootstrap-icons": "^1.0.1",
+    "@super-abp/bootstrap-icons": "^0.1.0",
     "bootstrap-fileinput": "^5.5.2"
   }
 }
