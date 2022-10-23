@@ -1,6 +1,6 @@
 {
   "name": "@super-abp/bootstrap-fileinput",
-  "version": "1.0.4",
+  "version": "0.1.0",
   "keywords": [
     "abp",
     "bootstrap",
@@ -14,7 +14,7 @@
   "homepage": "http://superabp.com/",
   "license": "MIT",
   "dependencies": {
-    "bootstrap-fileinput": "^5.5.2",
-    "@super-abp/bootstrap-icons": "^1.0.1"
+    "@super-abp/bootstrap-icons": "^1.0.1",
+    "bootstrap-fileinput": "^5.5.2"
   }
 }
