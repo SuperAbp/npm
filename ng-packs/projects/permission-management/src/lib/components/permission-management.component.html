@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <div class="modal-title">
+    {{ "AbpPermissionManagement::Permissions" | abpLocalization }}
+  </div>
+</div>
+<div class="modal-body">
+  <ng-template #loaderRef>
+    <nz-spin class="modal-spin"></nz-spin>
+  </ng-template>
+  <nz-tree
+    *ngIf="permissions; else loaderRef"
+    nzCheckStrictly
+    (nzCheckBoxChange)="nzCheck($event)"
+    #nzTreeComponent
+    [nzData]="permissions"
+    [nzCheckedKeys]="defaultCheckedKeys"
+    nzCheckable
+  >
+  </nz-tree>
+</div>
+<div class="modal-footer">
+  <button nz-button nzType="default" (click)="close()">
+    {{ "AbpPermissionManagement::Cancel" | abpLocalization }}
+  </button>
+  <button
+    nz-button
+    nzType="primary"
+    [nzLoading]="isConfirmLoading"
+    (click)="save()"
+  >
+    {{ "AbpPermissionManagement::Submit" | abpLocalization }}
+  </button>
+</div>
