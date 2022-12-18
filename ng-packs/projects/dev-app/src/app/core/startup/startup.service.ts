@@ -102,6 +102,11 @@ export class StartupService {
                 icon: { type: 'icon', value: 'appstore' },
                 link: '/identity/role',
               },
+              {
+                text: '菜单管理',
+                icon: { type: 'icon', value: 'appstore' },
+                link: '/menu-management/menu',
+              },
             ],
           },
         ],

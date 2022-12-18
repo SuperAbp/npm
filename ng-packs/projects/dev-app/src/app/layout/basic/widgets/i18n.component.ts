@@ -1,3 +1,4 @@
+import { COOKIE_LANGUAGE_KEY } from '@abp/ng.core';
 import { DOCUMENT } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -79,10 +80,14 @@ export class HeaderI18nComponent {
     spinEl.innerHTML = `<span class="ant-spin-dot ant-spin-dot-spin"><i></i><i></i><i></i><i></i></span>`;
     this.doc.body.appendChild(spinEl);
 
-    this.i18n.loadLangData(lang).subscribe((res) => {
-      this.i18n.use(lang, res);
-      this.settings.setLayout('lang', lang);
-      setTimeout(() => this.doc.location.reload());
-    });
+    this.i18n.use(lang, {});
+    this.settings.setLayout('lang', lang);
+    setTimeout(() => this.doc.location.reload());
+    // this.i18n.loadLangData(lang).subscribe((res) => {
+    //   debugger;
+    //   this.i18n.use(lang, res);
+    //   this.settings.setLayout('lang', lang);
+    //   setTimeout(() => this.doc.location.reload());
+    // });
   }
 }
