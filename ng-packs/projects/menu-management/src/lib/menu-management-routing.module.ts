@@ -5,18 +5,18 @@ import { JWTGuard } from '@delon/auth';
 import { MenuManagementComponent } from './components/menu-management.component';
 
 const routes: Routes = [
-    {
-      path: 'menu', component: MenuManagementComponent,
-      canActivate: [JWTGuard, PermissionGuard],
-      data: {
-        requiredPolicy: 'SnowMenuManagement.Menu.Management',
-      },
-    }
+  {
+    path: 'menu',
+    component: MenuManagementComponent,
+    canActivate: [JWTGuard, PermissionGuard],
+    data: {
+      requiredPolicy: 'SuperAbpMenuManagement.Menu.Management',
+    },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
-export class MenuManagementRoutingModule { }
+export class MenuManagementRoutingModule {}

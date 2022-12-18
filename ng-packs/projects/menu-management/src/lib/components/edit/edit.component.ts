@@ -1,7 +1,6 @@
 import { LocalizationService } from '@abp/ng.core';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PermissionsService } from '@snow/ng.permission-management';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import {
@@ -42,7 +41,6 @@ export class MenuManagementEditComponent implements OnInit {
     private modal: NzModalRef,
     private messageService: NzMessageService,
     private localizationService: LocalizationService,
-    private readonly permissionsService: PermissionsService,
     private fb: FormBuilder,
     private menuService: MenuService
   ) {}
@@ -76,8 +74,6 @@ export class MenuManagementEditComponent implements OnInit {
   }
 
   buildForm() {
-    this.permissionsService.get(this.providerName, this.providerKey);
-
     this.menuService
       .getAllList()
       .pipe(map((res: any) => res.items))
