@@ -7,24 +7,25 @@ import { JWTGuard } from '@delon/auth';
 
 const routes: Routes = [
   {
-    path: 'user', component: IdentityUserComponent,
+    path: 'user',
+    component: IdentityUserComponent,
     canActivate: [JWTGuard, PermissionGuard],
     data: {
       requiredPolicy: 'AbpIdentity.Users',
     },
   },
   {
-    path: 'role', component: IdentityRoleComponent,
+    path: 'role',
+    component: IdentityRoleComponent,
     canActivate: [PermissionGuard],
     data: {
       requiredPolicy: 'AbpIdentity.Roles',
     },
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-
-export class IdentityRoutingModule { }
+export class IdentityRoutingModule {}

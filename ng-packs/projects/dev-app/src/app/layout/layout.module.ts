@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AlainThemeModule } from '@delon/theme';
 import { GlobalFooterModule } from '@delon/abc/global-footer';
 import { NoticeIconModule } from '@delon/abc/notice-icon';
 import { LayoutDefaultModule } from '@delon/theme/layout-default';
@@ -25,10 +26,11 @@ import { CoreModule as AbpCoreModule } from '@abp/ng.core';
 
 const COMPONENTS = [LayoutBasicComponent, LayoutBlankComponent];
 
-const HEADERCOMPONENTS = [HeaderUserComponent];
+const HEADERCOMPONENTS = [HeaderI18nComponent, HeaderUserComponent];
 
 // passport
 import { LayoutPassportComponent } from './passport/passport.component';
+import { HeaderI18nComponent } from './basic/widgets/i18n.component';
 const PASSPORT = [LayoutPassportComponent];
 
 @NgModule({
@@ -37,6 +39,7 @@ const PASSPORT = [LayoutPassportComponent];
     CommonModule,
     FormsModule,
     RouterModule,
+    AlainThemeModule.forChild(),
     ThemeBtnModule,
     SettingDrawerModule,
     LayoutDefaultModule,
@@ -50,9 +53,9 @@ const PASSPORT = [LayoutPassportComponent];
     NzSpinModule,
     NzBadgeModule,
     NzAvatarModule,
-    NzIconModule
+    NzIconModule,
   ],
   declarations: [...COMPONENTS, ...HEADERCOMPONENTS, ...PASSPORT],
-  exports: [...COMPONENTS, ...PASSPORT]
+  exports: [...COMPONENTS, ...PASSPORT],
 })
 export class LayoutModule {}

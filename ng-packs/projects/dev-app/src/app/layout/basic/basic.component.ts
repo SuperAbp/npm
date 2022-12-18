@@ -6,9 +6,18 @@ import { environment } from '@env/environment';
 @Component({
   selector: 'layout-basic',
   template: `
-    <layout-default [options]="options" [asideUser]="asideUserTpl" [content]="contentTpl" [customError]="null">
+    <layout-default
+      [options]="options"
+      [asideUser]="asideUserTpl"
+      [content]="contentTpl"
+      [customError]="null"
+    >
       <layout-default-header-item direction="left">
-        <a layout-default-header-item-trigger href="//github.com/ng-alain/ng-alain" target="_blank">
+        <a
+          layout-default-header-item-trigger
+          href="//github.com/ng-alain/ng-alain"
+          target="_blank"
+        >
           <i nz-icon nzType="github"></i>
         </a>
       </layout-default-header-item>
@@ -18,16 +27,45 @@ import { environment } from '@env/environment';
         </a>
       </layout-default-header-item>
       <layout-default-header-item direction="left" hidden="pc">
-        <div layout-default-header-item-trigger (click)="searchToggleStatus = !searchToggleStatus">
+        <div
+          layout-default-header-item-trigger
+          (click)="searchToggleStatus = !searchToggleStatus"
+        >
           <i nz-icon nzType="search"></i>
         </div>
+      </layout-default-header-item>
+      <layout-default-header-item direction="right" hidden="mobile">
+        <div
+          layout-default-header-item-trigger
+          nz-dropdown
+          [nzDropdownMenu]="settingsMenu"
+          nzTrigger="click"
+          nzPlacement="bottomRight"
+        >
+          <i nz-icon nzType="setting"></i>
+        </div>
+        <nz-dropdown-menu #settingsMenu="nzDropdownMenu">
+          <div nz-menu style="width: 200px;">
+            <div nz-menu-item>
+              <header-i18n></header-i18n>
+            </div>
+          </div>
+        </nz-dropdown-menu>
       </layout-default-header-item>
       <layout-default-header-item direction="right">
         <header-user></header-user>
       </layout-default-header-item>
       <ng-template #asideUserTpl>
-        <div nz-dropdown nzTrigger="click" [nzDropdownMenu]="userMenu" class="alain-default__aside-user">
-          <nz-avatar class="alain-default__aside-user-avatar" [nzSrc]="user.avatar"></nz-avatar>
+        <div
+          nz-dropdown
+          nzTrigger="click"
+          [nzDropdownMenu]="userMenu"
+          class="alain-default__aside-user"
+        >
+          <nz-avatar
+            class="alain-default__aside-user-avatar"
+            [nzSrc]="user.avatar"
+          ></nz-avatar>
           <div class="alain-default__aside-user-info">
             <strong>{{ user.name }}</strong>
             <p class="mb0">{{ user.email }}</p>

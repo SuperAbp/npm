@@ -1,5 +1,10 @@
 /* eslint-disable import/order */
-import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
+import {
+  ModuleWithProviders,
+  NgModule,
+  Optional,
+  SkipSelf,
+} from '@angular/core';
 import { DelonACLModule } from '@delon/acl';
 import { AlainThemeModule } from '@delon/theme';
 import { AlainConfig, ALAIN_CONFIG } from '@delon/util/config';
@@ -15,23 +20,31 @@ const alainConfig: AlainConfig = {
   st: { modal: { size: 'lg' } },
   utilCurrency: {
     precision: 2,
-    ingoreZeroPrecision: false
+    ingoreZeroPrecision: false,
   },
   pageHeader: { homeI18n: '' },
   lodop: {
     license: `A59B099A586B3851E0F0D7FDBF37B603`,
-    licenseA: `C94CEE276DB2187AE6B65D56B3FC2848`
+    licenseA: `C94CEE276DB2187AE6B65D56B3FC2848`,
   },
   auth: {
     login_url: '/passport/login',
-    ignores: [/\/connect/, /.well-known\/openid-configuration/, /.well-known\/jwks/]
+    ignores: [
+      /\/connect/,
+      /.well-known\/openid-configuration/,
+      /.well-known\/jwks/,
+      /application-configuration/,
+    ],
   },
   acl: {
-    guard_url: 'exception/403'
-  }
+    guard_url: 'exception/403',
+  },
 };
 
-const alainModules: any[] = [AlainThemeModule.forRoot(), DelonACLModule.forRoot()];
+const alainModules: any[] = [
+  AlainThemeModule.forRoot(),
+  DelonACLModule.forRoot(),
+];
 const alainProvides = [{ provide: ALAIN_CONFIG, useValue: alainConfig }];
 
 // #region reuse-tab
@@ -71,7 +84,7 @@ const zorroProvides = [{ provide: NZ_CONFIG, useValue: ngZorroConfig }];
 // #endregion
 
 @NgModule({
-  imports: [...alainModules, ...(environment.modules || [])]
+  imports: [...alainModules, ...(environment.modules || [])],
 })
 export class GlobalConfigModule {
   constructor(@Optional() @SkipSelf() parentModule: GlobalConfigModule) {
@@ -81,7 +94,7 @@ export class GlobalConfigModule {
   static forRoot(): ModuleWithProviders<GlobalConfigModule> {
     return {
       ngModule: GlobalConfigModule,
-      providers: [...alainProvides, ...zorroProvides]
+      providers: [...alainProvides, ...zorroProvides],
     };
   }
 }
