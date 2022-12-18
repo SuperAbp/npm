@@ -6,11 +6,21 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build_lib:identity": "ng build identity --configuration production",
+    "npm_pack:identity": "cd dist/identity && npm pack",
+    "package:identity": "npm run build_lib:identity && npm run npm_pack:identity",
+    "build_lib:permission-management": "ng build permission-management --configuration production",
+    "npm_pack:permission-management": "cd dist/permission-management && npm pack",
+    "package:permission-management": "npm run build_lib:permission-management && npm run npm_pack:permission-management",
+    "build_lib:menu-management": "ng build menu-management --configuration production",
+    "npm_pack:menu-management": "cd dist/menu-management && npm pack",
+    "package:menu-management": "npm run build_lib:menu-management && npm run npm_pack:menu-management"
   },
   "private": true,
   "dependencies": {
     "@abp/ng.core": "^6.0.0",
+    "@super-abp/ng.permission-management": "^0.0.1",
     "@angular/animations": "^14.2.0",
     "@angular/common": "^14.2.0",
     "@angular/compiler": "^14.2.0",

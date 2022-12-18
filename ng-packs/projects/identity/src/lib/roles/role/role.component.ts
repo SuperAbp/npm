@@ -9,8 +9,8 @@ import { SFSchema } from '@delon/form';
 import { ModalHelper, _HttpClient } from '@delon/theme';
 import { tap } from 'rxjs/operators';
 import { IdentityRoleEditComponent } from './edit/edit.component';
-import { PermissionManagementComponent } from '@snow/ng.permission-management';
 import { IdentityRoleDto, IdentityRoleService } from '../../proxy';
+import { PermissionManagementComponent } from '@super-abp/ng.permission-management';
 @Component({
   selector: 'snow-roles',
   templateUrl: './role.component.html',

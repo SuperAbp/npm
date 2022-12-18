@@ -1,5 +1,5 @@
 {
-  "name": "@super-abp/identity",
+  "name": "@super-abp/ng.identity",
   "version": "0.0.1",
   "peerDependencies": {
     "@abp/ng.core": "^6.0.0",
@@ -15,7 +15,7 @@
     "@delon/mock": "^14.3.0",
     "@delon/theme": "^14.3.0",
     "@delon/util": "^14.3.0",
-    "@super-abp/permission-management": "^0.0.1"
+    "@super-abp/ng.permission-management": "^0.0.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"

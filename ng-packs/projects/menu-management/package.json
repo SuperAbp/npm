@@ -1,5 +1,5 @@
 {
-  "name": "menu-management",
+  "name": "@super-abp/ng.menu-management",
   "version": "0.0.1",
   "peerDependencies": {
     "@abp/ng.core": "^6.0.0",
