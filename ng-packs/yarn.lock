@@ -1861,13 +1861,6 @@
   resolved "https://registry.npmmirror.com/@socket.io/component-emitter/-/component-emitter-3.1.0.tgz#96116f2a912e0c02817345b3c10751069920d553"
   integrity sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==
 
-"@super-abp/ng.permission-management@^0.0.1":
-  version "0.0.1"
-  resolved "http://121.196.122.107:8881/@super-abp%2fng.permission-management/-/ng.permission-management-0.0.1.tgz#d56109c2302203a26324f7749a07299cd37be1ce"
-  integrity sha512-26Wu6S+ce2j8wKM2ATyDUivfrPCkr9RE9g1clcBzN49adZh75LxT+ChSMDsREQ8sFRRaLXSNJyJ9TzHmNeuG7A==
-  dependencies:
-    tslib "^2.3.0"
-
 "@tootallnate/once@2":
   version "2.0.0"
   resolved "https://registry.npmmirror.com/@tootallnate/once/-/once-2.0.0.tgz#f544a148d3ab35801c1f633a7441fd87c2e484bf"

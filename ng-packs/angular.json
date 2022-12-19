@@ -9,7 +9,7 @@
       "sourceRoot": "projects/identity/src",
       "prefix": "lib",
       "architect": {
-        "build": {
+        "build": {          
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "project": "projects/identity/ng-package.json"

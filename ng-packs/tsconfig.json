@@ -24,14 +24,8 @@
     ],
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "identity": [
-        "dist/identity"
-      ],
-      "menu-management": [
-        "dist/menu-management"
-      ],
-      "permission-management": [
-        "dist/permission-management"
+      "@super-abp/*":[
+        "dist/*"
       ],
       "@shared": [
         "projects/dev-app/src/app/shared/index"
