@@ -38,6 +38,9 @@
       ],
       "@env/*": [
         "projects/dev-app/src/environments/*"
+      ],
+      "email-setting": [
+        "dist/email-setting"
       ]
     }
   },

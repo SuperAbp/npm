@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { finalize, tap } from 'rxjs/operators';
-import { IdentityRoleDto, IdentityRoleService } from '../../../proxy';
+import { IdentityRoleDto, IdentityRoleService } from '../../../../proxy';
 
 @Component({
   selector: 'snow-roles-edit',

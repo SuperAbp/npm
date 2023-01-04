@@ -14,7 +14,7 @@ import {
   IdentityRoleService,
   IdentityUserDto,
   IdentityUserService,
-} from '../../../proxy';
+} from '../../../../proxy';
 
 @Component({
   selector: 'snow-users-edit',

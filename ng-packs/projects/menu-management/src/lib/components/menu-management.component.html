@@ -1,59 +1,30 @@
 <page-header [action]="phActionTpl">
   <ng-template #phActionTpl>
-    <button
-      (click)="add()"
-      nz-button
-      nzType="primary"
-      *abpPermission="'SnowMenuManagement.Menu.Create'"
-    >
-      {{ "SnowMenuManagement::NewMenu" | abpLocalization }}
+    <button (click)="add()" nz-button nzType="primary" *abpPermission="'SuperAbpMenuManagement.Menu.Create'">
+      {{ "SuperAbpMenuManagement::NewMenu" | abpLocalization }}
     </button>
   </ng-template>
 </page-header>
 <nz-card>
   <div class="mb-md">
-    <input
-      nz-input
-      [(ngModel)]="params.name"
-      name="name"
-      [placeholder]="
-        'SnowMenuManagement::PlaceHolder'
-          | abpLocalization: ('SnowMenuManagement::Name' | abpLocalization)
-      "
-      style="width: 160px"
-      class="mr-sm"
-    />
-    <nz-tree-select
-      nzAllowClear
-      [(ngModel)]="params.parentId"
-      [nzPlaceHolder]="
-        'SnowMenuManagement::ChoosePlaceHolder'
-          | abpLocalization: ('SnowMenuManagement::Parent' | abpLocalization)
-      "
-      [nzDropdownMatchSelectWidth]="false"
-      class="mr-sm"
-      [nzNodes]="parents"
-      [nzAsyncData]="true"
-      (nzExpandChange)="onExpandChange($event)"
-    >
+    <input nz-input [(ngModel)]="params.name" name="name" [placeholder]="
+        'SuperAbpMenuManagement::PlaceHolder'
+          | abpLocalization: ('SuperAbpMenuManagement::Name' | abpLocalization)
+      " style="width: 160px" class="mr-sm" />
+    <nz-tree-select nzAllowClear [(ngModel)]="params.parentId" [nzPlaceHolder]="
+        'SuperAbpMenuManagement::ChoosePlaceHolder'
+          | abpLocalization: ('SuperAbpMenuManagement::Parent' | abpLocalization)
+      " [nzDropdownMatchSelectWidth]="false" class="mr-sm" [nzNodes]="parents" [nzAsyncData]="true"
+      (nzExpandChange)="onExpandChange($event)">
     </nz-tree-select>
     <button nz-button (click)="st.load(1)" [nzType]="'primary'">
-      {{ "SnowMenuManagement::Search" | abpLocalization }}
+      {{ "SuperAbpMenuManagement::Search" | abpLocalization }}
     </button>
     <button nz-button (click)="reset()">
-      {{ "SnowMenuManagement::Reset" | abpLocalization }}
+      {{ "SuperAbpMenuManagement::Reset" | abpLocalization }}
     </button>
   </div>
-  <st
-    #st
-    [data]="menus"
-    [columns]="columns"
-    [loading]="loading"
-    [page]="page"
-    [total]="total"
-    (change)="change($event)"
-    [header]="'SnowMenuManagement::DataStart' | abpLocalization"
-    [footer]="'SnowMenuManagement::DataEnd' | abpLocalization"
-    responsiveHideHeaderFooter
-  ></st>
+  <st #st [data]="menus" [columns]="columns" [loading]="loading" [page]="page" [total]="total" (change)="change($event)"
+    [header]="'SuperAbpMenuManagement::DataStart' | abpLocalization"
+    [footer]="'SuperAbpMenuManagement::DataEnd' | abpLocalization" responsiveHideHeaderFooter></st>
 </nz-card>

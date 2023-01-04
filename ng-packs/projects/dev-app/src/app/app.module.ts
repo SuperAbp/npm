@@ -105,6 +105,7 @@ import { RoutesModule } from './routes/routes.module';
 import { SharedModule } from './shared/shared.module';
 import { STWidgetModule } from './shared/st-widget/st-widget.module';
 import { NgAbpErrorHandler } from './core/error.handler';
+import { EmailSettingModule } from 'projects/email-setting/src/public-api';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -117,6 +118,7 @@ import { NgAbpErrorHandler } from './core/error.handler';
       environment,
       registerLocaleFn: registerLocale(),
     }),
+    EmailSettingModule.forRoot(),
     SharedModule,
     LayoutModule,
     RoutesModule,

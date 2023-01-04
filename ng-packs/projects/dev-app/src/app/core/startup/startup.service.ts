@@ -109,6 +109,11 @@ export class StartupService {
               },
             ],
           },
+          {
+            text: '设置管理',
+            icon: { type: 'icon', value: 'appstore' },
+            link: '/setting-management/setting',
+          },
         ],
       },
     ]);

@@ -38,52 +38,60 @@ export class MenuManagementComponent implements OnInit {
   @ViewChild('st', { static: false }) st: STComponent;
   columns: STColumn[] = [
     {
-      title: this.localizationService.instant('SnowMenuManagement::Name'),
+      title: this.localizationService.instant('SuperAbpMenuManagement::Name'),
       index: 'name',
     },
     {
-      title: this.localizationService.instant('SnowMenuManagement::Route'),
+      title: this.localizationService.instant('SuperAbpMenuManagement::Route'),
       index: 'route',
     },
     {
-      title: this.localizationService.instant('SnowMenuManagement::Sort'),
+      title: this.localizationService.instant('SuperAbpMenuManagement::Sort'),
       index: 'sort',
       sort: true,
     },
     {
-      title: this.localizationService.instant('SnowMenuManagement::Icon'),
+      title: this.localizationService.instant('SuperAbpMenuManagement::Icon'),
       index: 'icon',
     },
     {
-      title: this.localizationService.instant('SnowMenuManagement::Permission'),
+      title: this.localizationService.instant(
+        'SuperAbpMenuManagement::Permission'
+      ),
       index: 'permission',
     },
     {
-      title: this.localizationService.instant('SnowMenuManagement::Group'),
+      title: this.localizationService.instant('SuperAbpMenuManagement::Group'),
       index: 'group',
       type: 'yn',
     },
     {
       title: this.localizationService.instant(
-        'SnowMenuManagement::HideInBreadcrumb'
+        'SuperAbpMenuManagement::HideInBreadcrumb'
       ),
       index: 'hideInBreadcrumb',
       type: 'yn',
     },
     {
-      title: this.localizationService.instant('SnowMenuManagement::ParentName'),
+      title: this.localizationService.instant(
+        'SuperAbpMenuManagement::ParentName'
+      ),
       index: 'parentName',
     },
     {
-      title: this.localizationService.instant('SnowMenuManagement::Actions'),
+      title: this.localizationService.instant(
+        'SuperAbpMenuManagement::Actions'
+      ),
       buttons: [
         {
           icon: 'edit',
           type: 'modal',
-          tooltip: this.localizationService.instant('SnowMenuManagement::Edit'),
+          tooltip: this.localizationService.instant(
+            'SuperAbpMenuManagement::Edit'
+          ),
           iif: () => {
             return this.permissionService.getGrantedPolicy(
-              'SnowMenuManagement.Menu.Update'
+              'SuperAbpMenuManagement.Menu.Update'
             );
           },
           modal: {
@@ -98,25 +106,25 @@ export class MenuManagementComponent implements OnInit {
           icon: 'delete',
           type: 'del',
           tooltip: this.localizationService.instant(
-            'SnowMenuManagement::Delete'
+            'SuperAbpMenuManagement::Delete'
           ),
           pop: {
             title: this.localizationService.instant(
-              'SnowMenuManagement::AreYouSure'
+              'SuperAbpMenuManagement::AreYouSure'
             ),
             okType: 'danger',
             icon: 'star',
           },
           iif: () => {
             return this.permissionService.getGrantedPolicy(
-              'SnowMenuManagement.Menu.Delete'
+              'SuperAbpMenuManagement.Menu.Delete'
             );
           },
           click: (record, _modal, component) => {
             this.menuService.delete(record.id).subscribe((response) => {
               this.messageService.success(
                 this.localizationService.instant(
-                  'SnowMenuManagement::Deleted',
+                  'SuperAbpMenuManagement::Deleted',
                   record.name
                 )
               );

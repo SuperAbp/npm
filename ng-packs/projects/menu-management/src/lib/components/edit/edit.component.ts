@@ -173,7 +173,7 @@ export class MenuManagementEditComponent implements OnInit {
         .pipe(
           tap((response) => {
             this.messageService.success(
-              this.localizationService.instant('SnowMenuManagement::Saved')
+              this.localizationService.instant('SuperAbpMenuManagement::Saved')
             );
             this.modal.close(true);
           }),
@@ -188,7 +188,7 @@ export class MenuManagementEditComponent implements OnInit {
         .pipe(
           tap((response) => {
             this.messageService.success(
-              this.localizationService.instant('SnowMenuManagement::Saved')
+              this.localizationService.instant('SuperAbpMenuManagement::Saved')
             );
             this.modal.close(true);
           }),

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { IdentityRoleComponent } from './roles/role/role.component';
-import { IdentityUserComponent } from './users/user/user.component';
+import { IdentityRoleComponent } from './components/roles/role/role.component';
+import { IdentityUserComponent } from './components/users/user/user.component';
 import { PermissionGuard } from '@abp/ng.core';
 import { JWTGuard } from '@delon/auth';
 

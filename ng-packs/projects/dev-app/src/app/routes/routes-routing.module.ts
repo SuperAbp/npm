@@ -45,6 +45,13 @@ const routes: Routes = [
             'projects/menu-management/src/lib/menu-management.module'
           ).then((m) => m.MenuManagementModule),
       },
+      {
+        path: 'setting-management',
+        loadChildren: () =>
+          import(
+            'projects/setting-management/src/lib/setting-management.module'
+          ).then((m) => m.SettingManagementModule),
+      },
     ],
   },
   // 空白布局

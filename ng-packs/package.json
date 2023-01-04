@@ -15,11 +15,15 @@
     "package:permission-management": "npm run build_lib:permission-management && npm run npm_pack:permission-management",
     "build_lib:menu-management": "ng build menu-management --configuration production",
     "npm_pack:menu-management": "cd dist/ng.menu-management && npm pack",
-    "package:menu-management": "npm run build_lib:menu-management && npm run npm_pack:menu-management"
+    "package:menu-management": "npm run build_lib:menu-management && npm run npm_pack:menu-management",
+    "build_lib:setting-management": "ng build setting-management --configuration production",
+    "npm_pack:setting-management": "cd dist/ng.setting-management && npm pack",
+    "package:setting-management": "npm run build_lib:setting-management && npm run npm_pack:setting-management"
   },
   "private": true,
   "dependencies": {
     "@abp/ng.core": "^6.0.0",
+    "@abp/ng.setting-management": "^6.0.0",
     "@angular/animations": "^14.2.0",
     "@angular/common": "^14.2.0",
     "@angular/compiler": "^14.2.0",

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IdentityRoutingModule } from './identity-routing.module';
-import { IdentityUserComponent } from './users/user/user.component';
+import { IdentityUserComponent } from './components/users/user/user.component';
 import { CoreModule } from '@abp/ng.core';
-import { IdentityUserEditComponent } from './users/user/edit/edit.component';
-import { IdentityRoleEditComponent } from './roles/role/edit/edit.component';
+import { IdentityUserEditComponent } from './components/users/user/edit/edit.component';
+import { IdentityRoleEditComponent } from './components/roles/role/edit/edit.component';
 
 import { PageHeaderModule } from '@delon/abc/page-header';
 import { DelonACLModule } from '@delon/acl';
@@ -29,15 +29,14 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { IdentityRoleComponent } from './roles/role/role.component';
-
+import { IdentityRoleComponent } from './components/roles/role/role.component';
 
 @NgModule({
   declarations: [
-    IdentityUserComponent
-    , IdentityUserEditComponent
-    , IdentityRoleComponent
-    , IdentityRoleEditComponent
+    IdentityUserComponent,
+    IdentityUserEditComponent,
+    IdentityRoleComponent,
+    IdentityRoleEditComponent,
   ],
   imports: [
     IdentityRoutingModule,
@@ -68,10 +67,10 @@ import { IdentityRoleComponent } from './roles/role/role.component';
     NzCheckboxModule,
   ],
   exports: [
-    IdentityUserComponent
-    , IdentityUserEditComponent
-    , IdentityRoleComponent
-    , IdentityRoleEditComponent
-  ]
+    IdentityUserComponent,
+    IdentityUserEditComponent,
+    IdentityRoleComponent,
+    IdentityRoleEditComponent,
+  ],
 })
-export class IdentityModule { }
+export class IdentityModule {}

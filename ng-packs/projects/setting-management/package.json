@@ -1,0 +1,22 @@
+{
+  "name": "@super-abp/ng.setting-management",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@abp/ng.core": "^6.0.0",    
+    "@angular/common": "^14.2.0",
+    "@angular/core": "^14.2.0",
+    "ng-zorro-antd": "^14.2.1",
+    "@delon/abc": "^14.3.0",
+    "@delon/acl": "^14.3.0",
+    "@delon/auth": "^14.3.0",
+    "@delon/cache": "^14.3.0",
+    "@delon/chart": "^14.3.0",
+    "@delon/form": "^14.3.0",
+    "@delon/mock": "^14.3.0",
+    "@delon/theme": "^14.3.0",
+    "@delon/util": "^14.3.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}

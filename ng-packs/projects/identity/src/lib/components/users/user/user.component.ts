@@ -9,7 +9,7 @@ import {
   GetIdentityUsersInput,
   IdentityUserDto,
   IdentityUserService,
-} from '../../proxy';
+} from '../../../proxy';
 
 @Component({
   selector: 'snow-users',

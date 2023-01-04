@@ -1,0 +1,13 @@
+{
+  "name": "email-setting",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@abp/ng.core": "^6.0.0",    
+    "@angular/common": "^14.2.0",
+    "@angular/core": "^14.2.0",
+    "ng-zorro-antd": "^14.2.1"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  }
+}
