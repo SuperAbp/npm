@@ -3,7 +3,7 @@
     <nz-tabset nzTabPosition="left">
         <ng-container *ngFor="let setting of settings; trackBy: trackByFn">
             <nz-tab *abpPermission="setting.requiredPolicy" [nzTitle]="setting.name | abpLocalization">
-                <ng-container *ngComponentOutlet="selected.component"></ng-container>
+                <ng-container *ngComponentOutlet="setting.component"></ng-container>
             </nz-tab>
         </ng-container>
     </nz-tabset>
