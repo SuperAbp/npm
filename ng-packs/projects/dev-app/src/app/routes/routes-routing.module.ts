@@ -34,23 +34,21 @@ const routes: Routes = [
       {
         path: 'identity',
         loadChildren: () =>
-          import('projects/identity/src/lib/identity.module').then(
-            (m) => m.IdentityModule
-          ),
+          import('@super-abp/ng.identity').then((m) => m.IdentityModule),
       },
       {
         path: 'menu-management',
         loadChildren: () =>
-          import(
-            'projects/menu-management/src/lib/menu-management.module'
-          ).then((m) => m.MenuManagementModule),
+          import('@super-abp/ng.menu-management').then(
+            (m) => m.MenuManagementModule
+          ),
       },
       {
         path: 'setting-management',
         loadChildren: () =>
-          import(
-            'projects/setting-management/src/lib/setting-management.module'
-          ).then((m) => m.SettingManagementModule),
+          import('@super-abp/ng.setting-management').then(
+            (m) => m.SettingManagementModule
+          ),
       },
     ],
   },
