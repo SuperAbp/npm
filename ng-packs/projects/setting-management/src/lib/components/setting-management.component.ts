@@ -1,8 +1,7 @@
 import { ABP } from '@abp/ng.core';
 import { Component, OnDestroy, OnInit, TrackByFunction } from '@angular/core';
+import { SettingTabsService } from '@super-abp/ng.setting-management/config';
 import { Subscription } from 'rxjs';
-// import { SettingTabsService } from '../services/settings-tabs.service';
-import { SettingTabsService } from '@super-abp/ng.setting-management';
 
 @Component({
   selector: 'lib-setting-management',

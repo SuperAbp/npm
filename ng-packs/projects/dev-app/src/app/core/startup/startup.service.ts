@@ -110,6 +110,7 @@ export class StartupService {
             ],
           },
           {
+            key: 'AbpSettingManagement::Settings',
             text: '设置管理',
             icon: { type: 'icon', value: 'appstore' },
             link: '/setting-management/setting',

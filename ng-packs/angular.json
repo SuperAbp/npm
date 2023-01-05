@@ -226,37 +226,6 @@
           }
         }
       }
-    },
-    "email-setting": {
-      "projectType": "library",
-      "root": "projects/email-setting",
-      "sourceRoot": "projects/email-setting/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/email-setting/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/email-setting/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/email-setting/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/email-setting/src/test.ts",
-            "tsConfig": "projects/email-setting/tsconfig.spec.json",
-            "karmaConfig": "projects/email-setting/karma.conf.js"
-          }
-        }
-      }
     }
   }
 }

@@ -8,10 +8,7 @@ const routes: Routes = [
   {
     path: 'setting',
     component: SettingManagementComponent,
-    // canActivate: [JWTGuard, PermissionGuard],
-    // data: {
-    //   requiredPolicy: 'AbpAccount.SettingManagement',
-    // },
+    canActivate: [JWTGuard],
   },
 ];
 

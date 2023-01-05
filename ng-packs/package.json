@@ -8,17 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build_lib:identity": "ng build identity --configuration production",
-    "npm_pack:identity": "cd dist/ng.identity && npm pack",
-    "package:identity": "npm run build_lib:identity && npm run npm_pack:identity",
     "build_lib:permission-management": "ng build permission-management --configuration production",
-    "npm_pack:permission-management": "cd dist/ng.permission-management && npm pack",
-    "package:permission-management": "npm run build_lib:permission-management && npm run npm_pack:permission-management",
     "build_lib:menu-management": "ng build menu-management --configuration production",
-    "npm_pack:menu-management": "cd dist/ng.menu-management && npm pack",
-    "package:menu-management": "npm run build_lib:menu-management && npm run npm_pack:menu-management",
-    "build_lib:setting-management": "ng build setting-management --configuration production",
-    "npm_pack:setting-management": "cd dist/ng.setting-management && npm pack",
-    "package:setting-management": "npm run build_lib:setting-management && npm run npm_pack:setting-management"
+    "build_lib:setting-management": "ng build setting-management --configuration production"
   },
   "private": true,
   "dependencies": {
