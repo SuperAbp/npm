@@ -59,15 +59,7 @@ export class MenuManagementEditComponent implements OnInit {
         )
         .subscribe();
     } else {
-      this.menu = {
-        name: '',
-        permission: '',
-        icon: '',
-        route: '',
-        sort: 0,
-        group: false,
-        hideInBreadcrumb: false,
-      };
+      this.menu = {} as GetMenuForEditorOutput;
       this.buildForm();
       this.loading = false;
     }
@@ -98,6 +90,7 @@ export class MenuManagementEditComponent implements OnInit {
           permission: [this.menu.permission || ''],
           icon: [this.menu.icon || ''],
           route: [this.menu.route || ''],
+          key: [this.menu.key || ''],
           sort: [this.menu.sort || 0],
           group: [this.menu.group || false],
           hideInBreadcrumb: [this.menu.hideInBreadcrumb || false],

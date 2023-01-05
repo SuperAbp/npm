@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-09-03 17:52:49
- * @LastEditTime: 2023-01-04 11:14:00
+ * @LastEditTime: 2023-01-05 16:03:30
  * @LastEditors: 陈磊 gbdvjxu1257q@outlook.com
  * @Description: In User Settings Edit
  * @FilePath: \abp\projects\menu-management\src\lib\components\edit\edit.component.html
@@ -18,106 +18,168 @@
   <ng-template #loaderRef>
     <nz-spin class="modal-spin"></nz-spin>
   </ng-template>
-  <form *ngIf="form; else loaderRef" nz-form (ngSubmit)="save()" [formGroup]="form">
+  <form
+    *ngIf="form; else loaderRef"
+    nz-form
+    (ngSubmit)="save()"
+    [formGroup]="form"
+  >
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>{{
-        "SuperAbpMenuManagement::DisplayName:Name" | abpLocalization
-        }}</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback
-        [nzValidatingTip]="'SuperAbpMenuManagement::Validating' | abpLocalization" [nzErrorTip]="nameErrorTpl">
-        <input formControlName="name" nz-input [placeholder]="
+        "SuperAbpMenuManagement::Name" | abpLocalization
+      }}</nz-form-label>
+      <nz-form-control
+        [nzSm]="14"
+        [nzXs]="24"
+        nzHasFeedback
+        [nzValidatingTip]="
+          'SuperAbpMenuManagement::Validating' | abpLocalization
+        "
+        [nzErrorTip]="nameErrorTpl"
+      >
+        <input
+          formControlName="name"
+          nz-input
+          [placeholder]="
             'SuperAbpMenuManagement::PlaceHolder'
               | abpLocalization
-                : ('SuperAbpMenuManagement::DisplayName:Name' | abpLocalization)
-          " />
+                : ('SuperAbpMenuManagement::Name' | abpLocalization)
+          "
+        />
         <ng-template #nameErrorTpl let-control>
           <ng-container *ngIf="control.hasError('required')">
-            {{ "SuperAbpMenuManagement::ThisFieldIsRequired." | abpLocalization }}
+            {{
+              "SuperAbpMenuManagement::ThisFieldIsRequired." | abpLocalization
+            }}
           </ng-container>
         </ng-template>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24">{{
-        "SuperAbpMenuManagement::DisplayName:Parent" | abpLocalization
-        }}</nz-form-label>
+        "SuperAbpMenuManagement::Parent" | abpLocalization
+      }}</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24" nzHasFeedback>
-        <nz-tree-select nzAllowClear formControlName="parentId" [nzPlaceHolder]="
+        <nz-tree-select
+          nzAllowClear
+          formControlName="parentId"
+          [nzPlaceHolder]="
             'SuperAbpMenuManagement::PlaceHolder'
               | abpLocalization
-                : ('SuperAbpMenuManagement::DisplayName:Parent' | abpLocalization)
-          " [nzDropdownMatchSelectWidth]="false" [nzDropdownStyle]="{ 'max-height': '300px' }" [nzNodes]="menus">
+                : ('SuperAbpMenuManagement::Parent' | abpLocalization)
+          "
+          [nzDropdownMatchSelectWidth]="false"
+          [nzDropdownStyle]="{ 'max-height': '300px' }"
+          [nzNodes]="menus"
+        >
         </nz-tree-select>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24">{{
-        "SuperAbpMenuManagement::DisplayName:Permission" | abpLocalization
-        }}</nz-form-label>
+      <nz-form-label [nzSm]="6" [nzXs]="24">
+        {{ "SuperAbpMenuManagement::Permission" | abpLocalization }}
+      </nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
-        <input formControlName="permission" nz-input [placeholder]="
+        <input
+          formControlName="permission"
+          nz-input
+          [placeholder]="
             'SuperAbpMenuManagement::PlaceHolder'
               | abpLocalization
-                : ('SuperAbpMenuManagement::DisplayName:Permission'
-                    | abpLocalization)
-          " />
+                : ('SuperAbpMenuManagement::Permission' | abpLocalization)
+          "
+        />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24">{{
-        "SuperAbpMenuManagement::DisplayName:Icon" | abpLocalization
-        }}</nz-form-label>
+        "SuperAbpMenuManagement::Icon" | abpLocalization
+      }}</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
-        <input formControlName="icon" nz-input [placeholder]="
+        <input
+          formControlName="icon"
+          nz-input
+          [placeholder]="
             'SuperAbpMenuManagement::PlaceHolder'
               | abpLocalization
-                : ('SuperAbpMenuManagement::DisplayName:Icon' | abpLocalization)
-          " />
+                : ('SuperAbpMenuManagement::Icon' | abpLocalization)
+          "
+        />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24">{{
-        "SuperAbpMenuManagement::DisplayName:Route" | abpLocalization
-        }}</nz-form-label>
+        "SuperAbpMenuManagement::Route" | abpLocalization
+      }}</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
-        <input formControlName="route" nz-input [placeholder]="
+        <input
+          formControlName="route"
+          nz-input
+          [placeholder]="
             'SuperAbpMenuManagement::PlaceHolder'
               | abpLocalization
-                : ('SuperAbpMenuManagement::DisplayName:Route' | abpLocalization)
-          " />
+                : ('SuperAbpMenuManagement::Route' | abpLocalization)
+          "
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24">
+        {{ "SuperAbpMenuManagement::Key" | abpLocalization }}
+      </nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input
+          formControlName="route"
+          nz-input
+          [placeholder]="
+            'SuperAbpMenuManagement::PlaceHolder'
+              | abpLocalization
+                : ('SuperAbpMenuManagement::Key' | abpLocalization)
+          "
+        />
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24">{{
-        "SuperAbpMenuManagement::DisplayName:Sort" | abpLocalization
-        }}</nz-form-label>
+        "SuperAbpMenuManagement::Sort" | abpLocalization
+      }}</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
-        <nz-input-number formControlName="sort" [nzMin]="0" [nzPlaceHolder]="
+        <nz-input-number
+          formControlName="sort"
+          [nzMin]="0"
+          [nzPlaceHolder]="
             'SuperAbpMenuManagement::PlaceHolder'
               | abpLocalization
-                : ('SuperAbpMenuManagement::DisplayName:Sort' | abpLocalization)
-          "></nz-input-number>
+                : ('SuperAbpMenuManagement::Sort' | abpLocalization)
+          "
+        ></nz-input-number>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzSpan]="14" [nzOffset]="6">
         <label nz-checkbox formControlName="group">{{
-          "SuperAbpMenuManagement::DisplayName:Group" | abpLocalization
-          }}</label>
+          "SuperAbpMenuManagement::Group" | abpLocalization
+        }}</label>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzSpan]="14" [nzOffset]="6">
         <label nz-checkbox formControlName="hideInBreadcrumb">{{
-          "SuperAbpMenuManagement::DisplayName:HideInBreadcrumb" | abpLocalization
-          }}</label>
+          "SuperAbpMenuManagement::HideInBreadcrumb" | abpLocalization
+        }}</label>
       </nz-form-control>
     </nz-form-item>
   </form>
 </div>
 <div class="modal-footer">
-  <button nz-button nzType="primary" *ngIf="form" [disabled]="!form.valid" [nzLoading]="isConfirmLoading"
-    (click)="save()">
+  <button
+    nz-button
+    nzType="primary"
+    *ngIf="form"
+    [disabled]="!form.valid"
+    [nzLoading]="isConfirmLoading"
+    (click)="save()"
+  >
     {{ "SuperAbpMenuManagement::Submit" | abpLocalization }}
   </button>
 </div>
