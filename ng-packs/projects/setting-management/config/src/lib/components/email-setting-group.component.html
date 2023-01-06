@@ -84,7 +84,12 @@
   </nz-form-item>
   <nz-form-item>
     <nz-form-control>
-      <button nz-button nzType="primary" (click)="submit()">
+      <button
+        nz-button
+        nzType="primary"
+        [nzLoading]="saving"
+        (click)="submit()"
+      >
         <span nz-icon nzType="save"></span>
         {{ "AbpSettingManagement::Save" | abpLocalization }}
       </button>
