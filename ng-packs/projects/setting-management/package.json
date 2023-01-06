@@ -1,8 +1,8 @@
 {
   "name": "@super-abp/ng.setting-management",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "peerDependencies": {
-    "@abp/ng.core": "^6.0.0",    
+    "@abp/ng.core": "^6.0.0",
     "@angular/common": "^14.2.0",
     "@angular/core": "^14.2.0",
     "ng-zorro-antd": "^14.2.1",

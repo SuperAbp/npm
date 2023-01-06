@@ -51,15 +51,13 @@ if($typeChoice -gt 0 -or $typeChoice -lt 6) {
     # 打包
     cd ../../
     # npm打包命令
-    $packageCmd = "package:" + $files[$fileChoice].Name    
+    $packageCmd = "build_lib:" + $files[$fileChoice].Name    
 
     npm run $packageCmd
 
     # 发布
     cd $publishPath
-    Get-ChildItem -Filter *.tgz | Where-Object { $_.Extension -eq '.tgz' } | ForEach-Object -Process {        
-        npm publish $_.FullName
-    }
+    npm publish
 }
 
 "`n按任意键退出：" ;
