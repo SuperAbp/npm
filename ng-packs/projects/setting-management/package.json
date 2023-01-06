@@ -1,6 +1,6 @@
 {
   "name": "@super-abp/ng.setting-management",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "peerDependencies": {
     "@abp/ng.core": "^6.0.0",
     "@angular/common": "^14.2.0",
