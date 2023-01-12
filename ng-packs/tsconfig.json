@@ -24,6 +24,9 @@
       "@super-abp/ng.permission-management": [
         "projects/permission-management/src/public-api.ts"
       ],
+      "@super-abp/ng.permission-management/proxy": [
+        "projects/permission-management/proxy/index.ts"
+      ],
       "@super-abp/ng.setting-management": [
         "projects/setting-management/src/public-api.ts"
       ],
@@ -33,7 +36,11 @@
       "@super-abp/ng.menu-management": [
         "projects/menu-management/src/public-api.ts"
       ],
+      "@super-abp/ng.menu-management/proxy": [
+        "projects/menu-management/proxy/index.ts"
+      ],
       "@super-abp/ng.identity": ["projects/identity/src/public-api.ts"],
+      "@super-abp/ng.identity/proxy": ["projects/identity/proxy/index.ts"],
       "@shared": ["projects/dev-app/src/app/shared/index"],
       "@core": ["projects/dev-app/src/app/core/index"],
       "@proxy/*": ["projects/dev-app/src/app/proxy/*"],

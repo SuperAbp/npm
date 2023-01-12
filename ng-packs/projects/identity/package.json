@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "peerDependencies": {
     "@abp/ng.core": "^6.0.0",
+    "@abp/utils": "^6.0.0",
     "@super-abp/ng.permission-management": "^0.0.1",
     "@angular/common": "^14.2.0",
     "@angular/core": "^14.2.0",

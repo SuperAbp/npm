@@ -2,7 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { finalize, tap } from 'rxjs/operators';
-import { IdentityRoleDto, IdentityRoleService } from '../../../../proxy';
+import {
+  IdentityRoleDto,
+  IdentityRoleService,
+} from '@super-abp/ng.identity/proxy';
 
 @Component({
   selector: 'snow-roles-edit',
@@ -38,13 +41,7 @@ export class IdentityRoleEditComponent implements OnInit {
         )
         .subscribe();
     } else {
-      this.role = {
-        isDefault: false,
-        isStatic: false,
-        isPublic: false,
-        id: null,
-        extraProperties: null,
-      };
+      this.role = {} as IdentityRoleDto;
       this.buildForm();
       this.loading = false;
     }
@@ -57,6 +54,7 @@ export class IdentityRoleEditComponent implements OnInit {
         [Validators.required, Validators.maxLength(256)],
       ],
       isDefault: [this.role.isDefault || false],
+      isStatic: [this.role.isStatic || false],
       isPublic: [this.role.isPublic || false],
     });
   }

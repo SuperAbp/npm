@@ -16,7 +16,7 @@ import {
   MenuListDto,
   MenuService,
   MenuTreeNodeDto,
-} from '../proxy/admin/menus';
+} from '@super-abp/ng.menu-management/proxy';
 
 @Component({
   selector: 'snow-menu-management',

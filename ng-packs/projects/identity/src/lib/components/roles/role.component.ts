@@ -3,14 +3,19 @@ import {
   LocalizationService,
   PermissionService,
 } from '@abp/ng.core';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { STChange, STColumn, STComponent, STPage } from '@delon/abc/st';
 import { SFSchema } from '@delon/form';
 import { ModalHelper, _HttpClient } from '@delon/theme';
 import { tap } from 'rxjs/operators';
 import { IdentityRoleEditComponent } from './edit/edit.component';
-import { IdentityRoleDto, IdentityRoleService } from '../../../proxy';
+import {
+  IdentityRoleDto,
+  IdentityRoleService,
+} from '@super-abp/ng.identity/proxy';
 import { PermissionManagementComponent } from '@super-abp/ng.permission-management';
+import { ExtensionsService } from '../../services/extensions.service';
+import { eIdentityComponents } from '@super-abp/ng.identity';
 @Component({
   selector: 'snow-roles',
   templateUrl: './role.component.html',
@@ -34,18 +39,27 @@ export class IdentityRoleComponent implements OnInit {
     properties: {},
   };
   @ViewChild('st', { static: false }) st: STComponent;
-  columns: STColumn[] = [
-    {
-      title: this.localizationService.instant('AbpIdentity::RoleName'),
-      index: 'name',
-    },
-    {
-      title: this.localizationService.instant('AbpIdentity::Actions'),
+  columns: STColumn[];
+
+  constructor(
+    private modal: ModalHelper,
+    private injector: Injector,
+    private localizationService: LocalizationService,
+    private roleService: IdentityRoleService,
+    private permissionService: PermissionService,
+    private extensionsService: ExtensionsService
+  ) {
+    const propList = this.extensionsService.entityProps
+      .get(eIdentityComponents.Roles)
+      .init(injector).props;
+    let props = propList.toArray();
+    props.push({
+      title: localizationService.instant('AbpIdentity::Actions'),
       buttons: [
         {
           icon: 'edit',
           type: 'modal',
-          tooltip: this.localizationService.instant('AbpIdentity::Edit'),
+          tooltip: localizationService.instant('AbpIdentity::Edit'),
           modal: {
             component: IdentityRoleEditComponent,
             params: (record: IdentityRoleDto) => ({
@@ -53,16 +67,16 @@ export class IdentityRoleComponent implements OnInit {
             }),
           },
           iif: () => {
-            return this.permissionService.getGrantedPolicy(
+            return permissionService.getGrantedPolicy(
               'AbpIdentity.Roles.Update'
             );
           },
           click: 'reload',
         },
         {
-          text: this.localizationService.instant('AbpIdentity::Permissions'),
+          text: localizationService.instant('AbpIdentity::Permissions'),
           type: 'modal',
-          tooltip: this.localizationService.instant('AbpIdentity::Permissions'),
+          tooltip: localizationService.instant('AbpIdentity::Permissions'),
           modal: {
             component: PermissionManagementComponent,
             params: (record: IdentityRoleDto) => ({
@@ -71,22 +85,16 @@ export class IdentityRoleComponent implements OnInit {
             }),
           },
           iif: () => {
-            return this.permissionService.getGrantedPolicy(
+            return permissionService.getGrantedPolicy(
               'AbpIdentity.Roles.ManagePermissions'
             );
           },
           click: 'reload',
         },
       ],
-    },
-  ];
-
-  constructor(
-    private modal: ModalHelper,
-    private localizationService: LocalizationService,
-    private roleService: IdentityRoleService,
-    private permissionService: PermissionService
-  ) {}
+    });
+    this.columns = props;
+  }
 
   ngOnInit() {
     this.getList();

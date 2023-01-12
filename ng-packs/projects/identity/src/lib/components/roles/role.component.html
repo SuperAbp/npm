@@ -1,0 +1,29 @@
+<page-header
+  [title]="'AbpIdentity::Roles' | abpLocalization"
+  [action]="phActionTpl"
+>
+  <ng-template #phActionTpl>
+    <button
+      *abpPermission="'AbpIdentity.Roles.Create'"
+      (click)="add()"
+      nz-button
+      nzType="primary"
+    >
+      {{ "AbpIdentity::NewRole" | abpLocalization }}
+    </button>
+  </ng-template>
+</page-header>
+<nz-card *ngIf="columns">
+  <st
+    #st
+    [data]="roles"
+    [columns]="columns"
+    [loading]="loading"
+    [page]="page"
+    [total]="total"
+    (change)="change($event)"
+    [header]="'AbpIdentity::DataStart' | abpLocalization"
+    [footer]="'AbpIdentity::DataEnd' | abpLocalization"
+    responsiveHideHeaderFooter
+  ></st>
+</nz-card>

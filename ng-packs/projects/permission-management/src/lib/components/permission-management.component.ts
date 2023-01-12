@@ -7,7 +7,12 @@ import {
   NzTreeNodeOptions,
 } from 'ng-zorro-antd/tree';
 import { finalize, tap } from 'rxjs/operators';
-import { GetPermissionListResultDto, PermissionGrantInfoDto, PermissionsService, ProviderInfoDto } from '../proxy';
+import {
+  GetPermissionListResultDto,
+  PermissionGrantInfoDto,
+  PermissionsService,
+  ProviderInfoDto,
+} from '@super-abp/ng.permission-management/proxy';
 
 @Component({
   selector: 'snow-permission-management',

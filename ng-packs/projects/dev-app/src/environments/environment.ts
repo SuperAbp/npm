@@ -5,42 +5,42 @@
 import { DelonMockModule } from '@delon/mock';
 import { Environment } from '../Environment';
 
-
 const baseUrl = 'http://localhost:4200';
 export const environment = {
   application: {
     baseUrl,
     name: '123',
-    logoUrl: ''
+    logoUrl: '',
   },
   oAuthConfig: {
     issuer: 'https://localhost:44388/',
     redirectUri: baseUrl,
-      clientId: 'Exam_Admin_App',
-      responseType: 'code',
-      scope: 'offline_access Exam',
+    clientId: 'Exam_Admin_App',
+    responseType: 'code',
+    scope: 'offline_access Exam',
     requireHttps: true,
   },
   apis: {
     default: {
       url: 'https://localhost:44388',
-      rootNamespace: 'Lzez.Exam'
-    }
+      rootNamespace: 'SuperAbp.Exam',
+    },
   },
   resource: {
     mediaUrl: 'https://localhost:44388/api/super-abp/media',
     userUrl: 'https://passport.lzez.com.cn',
-    erpUrl: 'https://erp.ahsanle.cn/'
+    erpUrl: 'https://erp.ahsanle.cn/',
   },
   identity: {
     url: 'https://passport.lzez.com.cn',
-    loginCallback: 'ejaLfSbcqezvj9WGUAxoCzq+GvfAAiXWu/38eLB9fsWP2rA/H6eh4b2Ugp1sUF6v',
-    logoutCallback: 'ejaLfSbcqezvj9WGUAxoC8aQim04tniO'
+    loginCallback:
+      'ejaLfSbcqezvj9WGUAxoCzq+GvfAAiXWu/38eLB9fsWP2rA/H6eh4b2Ugp1sUF6v',
+    logoutCallback: 'ejaLfSbcqezvj9WGUAxoC8aQim04tniO',
   },
   api: {
     baseUrl: './',
     refreshTokenEnabled: true,
-    refreshTokenType: 'auth-refresh'
+    refreshTokenType: 'auth-refresh',
   },
   production: false,
   useHash: true,

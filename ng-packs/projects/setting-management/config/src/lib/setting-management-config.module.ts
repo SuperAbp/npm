@@ -36,7 +36,6 @@ export class SettingManagementConfigModule {
     return {
       ngModule: SettingManagementConfigModule,
       providers: [
-        SETTING_MANAGEMENT_ROUTE_PROVIDERS,
         SETTING_MANAGEMENT_SETTING_TAB_PROVIDERS,
         SETTING_MANAGEMENT_FEATURES_PROVIDERS,
         SETTING_MANAGEMENT_VISIBLE_PROVIDERS,

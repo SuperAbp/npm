@@ -1,5 +1,5 @@
 import { LocalizationService, PermissionService } from '@abp/ng.core';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, OnInit, ViewChild } from '@angular/core';
 import { STChange, STColumn, STComponent, STPage } from '@delon/abc/st';
 import { ModalHelper, _HttpClient } from '@delon/theme';
 import { tap } from 'rxjs/operators';
@@ -9,7 +9,9 @@ import {
   GetIdentityUsersInput,
   IdentityUserDto,
   IdentityUserService,
-} from '../../../proxy';
+} from '@super-abp/ng.identity/proxy';
+import { ExtensionsService } from '../../services/extensions.service';
+import { eIdentityComponents } from '@super-abp/ng.identity';
 
 @Component({
   selector: 'snow-users',
@@ -39,20 +41,21 @@ export class IdentityUserComponent implements OnInit {
     },
   };
   @ViewChild('st', { static: false }) st: STComponent;
-  columns: STColumn[] = [
-    {
-      title: this.localizationService.instant('AbpIdentity::UserName'),
-      index: 'userName',
-    },
-    {
-      title: this.localizationService.instant('AbpIdentity::EmailAddress'),
-      index: 'email',
-    },
-    {
-      title: this.localizationService.instant('AbpIdentity::PhoneNumber'),
-      index: 'phoneNumber',
-    },
-    {
+  columns: STColumn[];
+
+  constructor(
+    private modal: ModalHelper,
+    private injector: Injector,
+    private localizationService: LocalizationService,
+    private userService: IdentityUserService,
+    private permissionService: PermissionService,
+    private extensionsService: ExtensionsService
+  ) {
+    const propList = this.extensionsService.entityProps
+      .get(eIdentityComponents.Users)
+      .init(injector).props;
+    let props = propList.toArray();
+    props.push({
       title: this.localizationService.instant('AbpIdentity::Actions'),
       buttons: [
         {
@@ -73,15 +76,9 @@ export class IdentityUserComponent implements OnInit {
           click: 'reload',
         },
       ],
-    },
-  ];
-
-  constructor(
-    private modal: ModalHelper,
-    private localizationService: LocalizationService,
-    private userService: IdentityUserService,
-    private permissionService: PermissionService
-  ) {}
+    });
+    this.columns = props;
+  }
 
   ngOnInit() {
     this.getList();

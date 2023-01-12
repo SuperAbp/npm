@@ -18,7 +18,7 @@
     [formGroup]="form"
     nzLayout="vertical"
   >
-    <nz-form-item class="form-group">
+    <nz-form-item>
       <nz-form-label nzRequired>{{
         "AbpIdentity::RoleName" | abpLocalization
       }}</nz-form-label>
@@ -34,6 +34,21 @@
           </ng-container>
         </ng-template>
       </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <label nz-checkbox formControlName="isDefault">
+        {{ "AbpIdentity::DisplayName:IsDefault" | abpLocalization }}
+      </label>
+    </nz-form-item>
+    <nz-form-item>
+      <label nz-checkbox formControlName="isStatic">
+        {{ "AbpIdentity::DisplayName:IsStatic" | abpLocalization }}
+      </label>
+    </nz-form-item>
+    <nz-form-item>
+      <label nz-checkbox formControlName="isPublic">
+        {{ "AbpIdentity::DisplayName:IsPublic" | abpLocalization }}
+      </label>
     </nz-form-item>
   </form>
 </div>

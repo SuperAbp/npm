@@ -2,16 +2,7 @@
 # yarn lockfile v1
 
 
-"@abp/ng.components@~6.0.2":
-  version "6.0.2"
-  resolved "http://121.196.122.107:8881/@abp%2fng.components/-/ng.components-6.0.2.tgz#5f26e603587c3096edd3a6d8cb2cfa336fa61aaf"
-  integrity sha512-891wM0v+OxjbwgZizMYWMojvVcwJww5mI03JLclATcqFjPL/Nl+PGxzkvNBPYjSw65FvapZCHUGb62byqtS1iQ==
-  dependencies:
-    chart.js "^3.5.1"
-    ng-zorro-antd "^14.0.0"
-    tslib "^2.0.0"
-
-"@abp/ng.core@^6.0.0", "@abp/ng.core@~6.0.2":
+"@abp/ng.core@^6.0.0":
   version "6.0.2"
   resolved "https://registry.npmmirror.com/@abp/ng.core/-/ng.core-6.0.2.tgz#d3950522f08da9204d86b8caeb500cf884f74829"
   integrity sha512-1So8ONG2MsSCVcqA+Ml+1D+sFgwiVGriEcspRoxpYE7uNOKup7Pl5l0E98dTBWfh3wgs7E1jamFP3lkELZF+7w==
@@ -23,30 +14,7 @@
     ts-toolbelt "6.15.4"
     tslib "^2.0.0"
 
-"@abp/ng.setting-management@^6.0.0":
-  version "6.0.2"
-  resolved "http://121.196.122.107:8881/@abp%2fng.setting-management/-/ng.setting-management-6.0.2.tgz#edb2d545d8ddd2ceb1e18fb0ddb43b402a34f9fb"
-  integrity sha512-sMoj4D9hvk6kVMLsSSEOr7ZDzEPRtOob6fEXXfdasO8RdrhxBHveGnaqAquVfgl6ZGKXPoNDUqZ15mDP2J559Q==
-  dependencies:
-    "@abp/ng.components" "~6.0.2"
-    "@abp/ng.theme.shared" "~6.0.2"
-    tslib "^2.0.0"
-
-"@abp/ng.theme.shared@~6.0.2":
-  version "6.0.2"
-  resolved "http://121.196.122.107:8881/@abp%2fng.theme.shared/-/ng.theme.shared-6.0.2.tgz#0ec1a7dcce82057366d57d224f02dc2b7ca52962"
-  integrity sha512-s1lMWvEcAOLRWR1mTeMxtBfxd+YoVF0bINcCimrVzUYIeNvSpLsVhVISb0g06kX2PGmxxlnUPZLYDcUnOd8SmA==
-  dependencies:
-    "@abp/ng.core" "~6.0.2"
-    "@fortawesome/fontawesome-free" "^5.15.4"
-    "@ng-bootstrap/ng-bootstrap" "13.0.0"
-    "@ngx-validate/core" "^0.1.2"
-    "@popperjs/core" "~2.11.2"
-    "@swimlane/ngx-datatable" "^20.0.0"
-    bootstrap "^5.2.0"
-    tslib "^2.0.0"
-
-"@abp/utils@~6.0.2":
+"@abp/utils@~6.0.0", "@abp/utils@~6.0.2":
   version "6.0.2"
   resolved "https://registry.npmmirror.com/@abp/utils/-/utils-6.0.2.tgz#69c0aa04bf9657fe52c200058d7e7ea8b26ad4ba"
   integrity sha512-UYSBhg2SyckDbiebzR+gNIUeXj/iNsTbPBjk3S5qiNxaDs2v2UqIcAoklyX1U9GCW37xOpOUrCjefrM+S9zAxg==
@@ -1684,11 +1652,6 @@
   resolved "https://registry.npmmirror.com/@esbuild/linux-loong64/-/linux-loong64-0.15.5.tgz#91aef76d332cdc7c8942b600fa2307f3387e6f82"
   integrity sha512-UHkDFCfSGTuXq08oQltXxSZmH1TXyWsL+4QhZDWvvLl6mEJQqk3u7/wq1LjhrrAXYIllaTtRSzUXl4Olkf2J8A==
 
-"@fortawesome/fontawesome-free@^5.15.4":
-  version "5.15.4"
-  resolved "http://121.196.122.107:8881/@fortawesome%2ffontawesome-free/-/fontawesome-free-5.15.4.tgz#ecda5712b61ac852c760d8b3c79c96adca5554e5"
-  integrity sha512-eYm8vijH/hpzr/6/1CJ/V/Eb1xQFW2nnUKArb3z+yUWv7HTwj6M7SP957oMjfZjAHU6qpoNc2wQvIxBLWYa/Jg==
-
 "@gar/promisify@^1.1.3":
   version "1.1.3"
   resolved "https://registry.npmmirror.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
@@ -1768,24 +1731,10 @@
   resolved "https://registry.npmmirror.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@ng-bootstrap/ng-bootstrap@13.0.0":
-  version "13.0.0"
-  resolved "http://121.196.122.107:8881/@ng-bootstrap%2fng-bootstrap/-/ng-bootstrap-13.0.0.tgz#1d2ba17cd5f47a38b7ae2ad2fa17010911091395"
-  integrity sha512-aumflJ24VVOQ6kIGmpaWmjqfreRsXOCf/l2nOxPO6Y+d7Pit6aZthyjO7F0bRMutv6n+B/ma18GKvhhBcMepUw==
-  dependencies:
-    tslib "^2.3.0"
-
 "@ngtools/webpack@14.2.10":
   version "14.2.10"
   resolved "https://registry.npmmirror.com/@ngtools/webpack/-/webpack-14.2.10.tgz#d33ff1147d01bd1f5d936a3d1744c81a28e2ca6a"
   integrity sha512-sLHapZLVub6mEz5b19tf1VfIV1w3tYfg7FNPLeni79aldxu1FbP1v2WmiFAnMzrswqyK0bhTtxrl+Z/CLKqyoQ==
-
-"@ngx-validate/core@^0.1.2":
-  version "0.1.2"
-  resolved "http://121.196.122.107:8881/@ngx-validate%2fcore/-/core-0.1.2.tgz#bd5f214ff43a1d446b1ec46eac0af9444283e916"
-  integrity sha512-I7Io8hjeG83z5QsVB8fluf4WkGnPsywv9TQmXsIKESyct5+RelAfBWncoUJ2Ayg6P/giVadVbz3JuVhc8X8gtA==
-  dependencies:
-    tslib "^1.9.0"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -1870,11 +1819,6 @@
     read-package-json-fast "^2.0.3"
     which "^2.0.2"
 
-"@popperjs/core@~2.11.2":
-  version "2.11.6"
-  resolved "http://121.196.122.107:8881/@popperjs%2fcore/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
-  integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
-
 "@rollup/plugin-json@^4.1.0":
   version "4.1.0"
   resolved "https://registry.npmmirror.com/@rollup/plugin-json/-/plugin-json-4.1.0.tgz#54e09867ae6963c593844d8bd7a9c718294496f3"
@@ -1916,13 +1860,6 @@
   version "3.1.0"
   resolved "https://registry.npmmirror.com/@socket.io/component-emitter/-/component-emitter-3.1.0.tgz#96116f2a912e0c02817345b3c10751069920d553"
   integrity sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==
-
-"@swimlane/ngx-datatable@^20.0.0":
-  version "20.1.0"
-  resolved "http://121.196.122.107:8881/@swimlane%2fngx-datatable/-/ngx-datatable-20.1.0.tgz#0f69552e6f2d0d68508165fcf9150a5f4a458253"
-  integrity sha512-oHnnx1QRNmv10l5UME13v5JP3M3GesM9K3QH6TRYo2C7UbbhY7vL5EZ4HGqcvtMMW4FOzqNOSltE++IVL99F3g==
-  dependencies:
-    tslib "^2.0.0"
 
 "@tootallnate/once@2":
   version "2.0.0"
@@ -2585,11 +2522,6 @@ boolbase@^1.0.0:
   resolved "https://registry.npmmirror.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
 
-bootstrap@^5.2.0:
-  version "5.2.3"
-  resolved "http://121.196.122.107:8881/bootstrap/-/bootstrap-5.2.3.tgz#54739f4414de121b9785c5da3c87b37ff008322b"
-  integrity sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==
-
 brace-expansion@^1.1.7:
   version "1.1.11"
   resolved "https://registry.npmmirror.com/brace-expansion/-/brace-expansion-1.1.11.tgz#3c7fcbf529d87226f3d2f52b966ff5271eb441dd"
@@ -2757,11 +2689,6 @@ chardet@^0.7.0:
   version "0.7.0"
   resolved "https://registry.npmmirror.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
-
-chart.js@^3.5.1:
-  version "3.9.1"
-  resolved "http://121.196.122.107:8881/chart.js/-/chart.js-3.9.1.tgz#3abf2c775169c4c71217a107163ac708515924b8"
-  integrity sha512-Ro2JbLmvg83gXF5F4sniaQ+lTbSv18E+TIf2cOeiH1Iqd2PGFOtem+DUufMZsCJwFE7ywPOpfXFBwRTGq7dh6w==
 
 "chokidar@>=3.0.0 <4.0.0", chokidar@^3.0.0, chokidar@^3.5.1, chokidar@^3.5.3:
   version "3.5.3"

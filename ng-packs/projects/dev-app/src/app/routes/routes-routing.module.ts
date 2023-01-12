@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { startPageGuard } from '@core';
 import { SimpleGuard } from '@delon/auth';
 import { environment } from '@env/environment';
+import { identityEntityPropContributors } from '../components/entity-prop-contributors';
 // layout
 import { LayoutBasicComponent } from '../layout/basic/basic.component';
 import { LayoutPassportComponent } from '../layout/passport/passport.component';
@@ -34,7 +35,11 @@ const routes: Routes = [
       {
         path: 'identity',
         loadChildren: () =>
-          import('@super-abp/ng.identity').then((m) => m.IdentityModule),
+          import('@super-abp/ng.identity').then((m) =>
+            m.IdentityModule.forLazy({
+              entityPropContributors: identityEntityPropContributors,
+            })
+          ),
       },
       {
         path: 'menu-management',
