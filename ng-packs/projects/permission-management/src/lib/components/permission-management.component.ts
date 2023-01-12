@@ -12,13 +12,7 @@ import {
   PermissionGrantInfoDto,
   PermissionsService,
   ProviderInfoDto,
-} from '../proxy';
-// import {
-//   GetPermissionListResultDto,
-//   PermissionGrantInfoDto,
-//   PermissionsService,
-//   ProviderInfoDto,
-// } from '@super-abp/ng.permission-management/proxy';
+} from '@super-abp/ng.permission-management/proxy';
 
 @Component({
   selector: 'super-abp-permission-management',

@@ -33,7 +33,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { IdentityConfigOptions } from './models/config-options';
 import { IDENTITY_ENTITY_PROP_CONTRIBUTORS } from './tokens';
 import { IdentityExtensionsGuard } from './guards';
-// import { PermissionManagementModule } from '@super-abp/ng.permission-management';
+import { PermissionManagementModule } from '@super-abp/ng.permission-management';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { IdentityExtensionsGuard } from './guards';
     CoreModule,
     IdentityRoutingModule,
     CommonModule,
-    // PermissionManagementModule,
+    PermissionManagementModule,
     AlainThemeModule.forChild(),
     DelonACLModule,
     PageHeaderModule,
