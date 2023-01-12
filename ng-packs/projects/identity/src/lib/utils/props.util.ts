@@ -1,5 +1,3 @@
-import { LocalizationService, PermissionService } from '@abp/ng.core';
-import { Injector } from '@angular/core';
 import {
   PropContributorCallback,
   PropList,

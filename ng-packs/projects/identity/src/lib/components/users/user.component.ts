@@ -11,10 +11,10 @@ import {
   IdentityUserService,
 } from '@super-abp/ng.identity/proxy';
 import { ExtensionsService } from '../../services/extensions.service';
-import { eIdentityComponents } from '@super-abp/ng.identity';
+import { eIdentityComponents } from '../../enums';
 
 @Component({
-  selector: 'snow-users',
+  selector: 'super-abp-identity-users',
   templateUrl: './user.component.html',
 })
 export class IdentityUserComponent implements OnInit {

@@ -1,6 +1,6 @@
 {
   "name": "@super-abp/ng.permission-management",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "peerDependencies": {
     "@abp/ng.core": "^6.0.0",
     "@angular/common": "^14.2.0",

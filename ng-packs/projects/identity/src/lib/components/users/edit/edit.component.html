@@ -19,7 +19,7 @@
   >
     <nz-tabset nzSelectedIndex="1">
       <nz-tab
-        nzTitle="{{ 'AbpIdentity::UserInformations' | abpLocalization }}"
+        [nzTitle]="'AbpIdentity::UserInformations' | abpLocalization"
         nzDisabled="true"
       >
         <nz-row>
@@ -54,9 +54,7 @@
               }}</nz-form-label>
               <nz-form-control
                 nzHasFeedback
-                nzValidatingTip="{{
-                  'AbpIdentity::Validating' | abpLocalization
-                }}"
+                [nzValidatingTip]="'AbpIdentity::Validating' | abpLocalization"
                 [nzErrorTip]="passwordErrorTpl"
               >
                 <input formControlName="password" nz-input />
@@ -141,15 +139,6 @@
           <nz-form-control>
             <label nz-checkbox formControlName="lockoutEnabled">
               {{ "AbpIdentity::DisplayName:LockoutEnabled" | abpLocalization }}
-            </label>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-control>
-            <label nz-checkbox formControlName="twoFactorEnabled">
-              {{
-                "AbpIdentity::DisplayName:TwoFactorEnabled" | abpLocalization
-              }}
             </label>
           </nz-form-control>
         </nz-form-item>

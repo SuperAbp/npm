@@ -19,7 +19,7 @@ import {
 } from '@super-abp/ng.menu-management/proxy';
 
 @Component({
-  selector: 'snow-menu-management',
+  selector: 'super-abp-menu-management',
   templateUrl: './menu-management.component.html',
 })
 export class MenuManagementComponent implements OnInit {

@@ -4,7 +4,7 @@ import { SettingTabsService } from '@super-abp/ng.setting-management/config';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'lib-setting-management',
+  selector: 'super-abp-setting-management',
   templateUrl: './setting-management.component.html',
 })
 export class SettingManagementComponent implements OnDestroy, OnInit {

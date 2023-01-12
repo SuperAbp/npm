@@ -25,7 +25,7 @@
         "projects/permission-management/src/public-api.ts"
       ],
       "@super-abp/ng.permission-management/proxy": [
-        "projects/permission-management/proxy/index.ts"
+        "projects/permission-management/proxy/src/public-api.ts"
       ],
       "@super-abp/ng.setting-management": [
         "projects/setting-management/src/public-api.ts"
@@ -37,15 +37,16 @@
         "projects/menu-management/src/public-api.ts"
       ],
       "@super-abp/ng.menu-management/proxy": [
-        "projects/menu-management/proxy/index.ts"
+        "projects/menu-management/proxy/src/public-api.ts"
       ],
       "@super-abp/ng.identity": ["projects/identity/src/public-api.ts"],
-      "@super-abp/ng.identity/proxy": ["projects/identity/proxy/index.ts"],
+      "@super-abp/ng.identity/proxy": [
+        "projects/identity/proxy/src/public-api.ts"
+      ],
       "@shared": ["projects/dev-app/src/app/shared/index"],
       "@core": ["projects/dev-app/src/app/core/index"],
       "@proxy/*": ["projects/dev-app/src/app/proxy/*"],
-      "@env/*": ["projects/dev-app/src/environments/*"],
-      "email-setting": ["dist/email-setting"]
+      "@env/*": ["projects/dev-app/src/environments/*"]
     }
   },
   "angularCompilerOptions": {

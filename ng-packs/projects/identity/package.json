@@ -1,10 +1,10 @@
 {
   "name": "@super-abp/ng.identity",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "peerDependencies": {
     "@abp/ng.core": "^6.0.0",
     "@abp/utils": "^6.0.0",
-    "@super-abp/ng.permission-management": "^0.0.1",
+    "@super-abp/ng.permission-management": "^0.0.2",
     "@angular/common": "^14.2.0",
     "@angular/core": "^14.2.0",
     "ng-zorro-antd": "^14.2.1",

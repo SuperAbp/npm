@@ -1,8 +1,9 @@
 import { ModuleWithProviders, NgModule, NgModuleFactory } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IdentityRoutingModule } from './identity-routing.module';
-import { IdentityUserComponent } from './components/users/user.component';
 import { CoreModule, LazyModuleFactory } from '@abp/ng.core';
+import { IdentityUserComponent } from './components/users/user.component';
+import { IdentityRoleComponent } from './components/roles/role.component';
 import { IdentityUserEditComponent } from './components/users/edit/edit.component';
 import { IdentityRoleEditComponent } from './components/roles/edit/edit.component';
 
@@ -29,10 +30,10 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { IdentityRoleComponent } from './components/roles/role.component';
 import { IdentityConfigOptions } from './models/config-options';
 import { IDENTITY_ENTITY_PROP_CONTRIBUTORS } from './tokens';
 import { IdentityExtensionsGuard } from './guards';
+// import { PermissionManagementModule } from '@super-abp/ng.permission-management';
 
 @NgModule({
   declarations: [
@@ -42,9 +43,10 @@ import { IdentityExtensionsGuard } from './guards';
     IdentityRoleEditComponent,
   ],
   imports: [
+    CoreModule,
     IdentityRoutingModule,
     CommonModule,
-    CoreModule,
+    // PermissionManagementModule,
     AlainThemeModule.forChild(),
     DelonACLModule,
     PageHeaderModule,

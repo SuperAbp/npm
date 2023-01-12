@@ -12,10 +12,16 @@ import {
   PermissionGrantInfoDto,
   PermissionsService,
   ProviderInfoDto,
-} from '@super-abp/ng.permission-management/proxy';
+} from '../proxy';
+// import {
+//   GetPermissionListResultDto,
+//   PermissionGrantInfoDto,
+//   PermissionsService,
+//   ProviderInfoDto,
+// } from '@super-abp/ng.permission-management/proxy';
 
 @Component({
-  selector: 'snow-permission-management',
+  selector: 'super-abp-permission-management',
   templateUrl: './permission-management.component.html',
 })
 export class PermissionManagementComponent implements OnInit {

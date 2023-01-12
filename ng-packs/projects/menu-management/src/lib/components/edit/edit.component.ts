@@ -16,7 +16,7 @@ import {
 } from '@super-abp/ng.menu-management/proxy';
 
 @Component({
-  selector: 'snow-menu-management-edit',
+  selector: 'super-abp-menu-management-edit',
   templateUrl: './edit.component.html',
   styles: [
     `

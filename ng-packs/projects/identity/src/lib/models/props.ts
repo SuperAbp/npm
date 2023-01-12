@@ -1,6 +1,5 @@
-import { LocalizationService, PermissionService } from '@abp/ng.core';
 import { LinkedList } from '@abp/utils';
-import { Inject, Injector, Type } from '@angular/core';
+import { Injector, Type } from '@angular/core';
 
 export abstract class PropList<R = any> extends LinkedList<R> {}
 

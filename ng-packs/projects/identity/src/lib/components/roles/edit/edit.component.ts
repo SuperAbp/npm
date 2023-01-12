@@ -8,7 +8,7 @@ import {
 } from '@super-abp/ng.identity/proxy';
 
 @Component({
-  selector: 'snow-roles-edit',
+  selector: 'super-abp-roles-edit',
   templateUrl: './edit.component.html',
 })
 export class IdentityRoleEditComponent implements OnInit {

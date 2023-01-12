@@ -8,16 +8,16 @@ import { STChange, STColumn, STComponent, STPage } from '@delon/abc/st';
 import { SFSchema } from '@delon/form';
 import { ModalHelper, _HttpClient } from '@delon/theme';
 import { tap } from 'rxjs/operators';
-import { IdentityRoleEditComponent } from './edit/edit.component';
 import {
   IdentityRoleDto,
   IdentityRoleService,
 } from '@super-abp/ng.identity/proxy';
 import { PermissionManagementComponent } from '@super-abp/ng.permission-management';
 import { ExtensionsService } from '../../services/extensions.service';
-import { eIdentityComponents } from '@super-abp/ng.identity';
+import { eIdentityComponents } from '../../enums';
+import { IdentityRoleEditComponent } from './edit/edit.component';
 @Component({
-  selector: 'snow-roles',
+  selector: 'super-abp-roles',
   templateUrl: './role.component.html',
 })
 export class IdentityRoleComponent implements OnInit {

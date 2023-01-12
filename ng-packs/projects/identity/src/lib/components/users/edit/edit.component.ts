@@ -17,7 +17,7 @@ import {
 } from '@super-abp/ng.identity/proxy';
 
 @Component({
-  selector: 'snow-users-edit',
+  selector: 'super-abp-identity-users-edit',
   templateUrl: './edit.component.html',
 })
 export class IdentityUserEditComponent implements OnInit {
@@ -58,17 +58,7 @@ export class IdentityUserEditComponent implements OnInit {
         });
       });
     } else {
-      this.user = {
-        id: null,
-        emailConfirmed: false,
-        phoneNumberConfirmed: false,
-        isActive: true,
-        isDeleted: false,
-        lockoutEnabled: false,
-        deletionTime: null,
-        creationTime: null,
-        extraProperties: null,
-      };
+      this.user = {} as IdentityUserDto;
       this.buildForm();
       this.loading = false;
     }
