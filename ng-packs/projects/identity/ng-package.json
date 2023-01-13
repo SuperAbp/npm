@@ -3,5 +3,8 @@
   "dest": "../../dist/identity",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "allowedNonPeerDependencies": [
+    "@SuperAbp/ng.permission-management"
+  ]
 }

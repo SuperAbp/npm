@@ -21,11 +21,9 @@
     "lib": ["es2020", "dom"],
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@super-abp/ng.permission-management": [
-        "projects/permission-management/src/public-api.ts"
-      ],
+      "@super-abp/ng.permission-management": ["dist/permission-management"],
       "@super-abp/ng.permission-management/proxy": [
-        "projects/permission-management/proxy/src/public-api.ts"
+        "dist/permission-management/proxy"
       ],
       "@super-abp/ng.setting-management": [
         "projects/setting-management/src/public-api.ts"
@@ -53,6 +51,7 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "preserveSymlinks": true
   }
 }

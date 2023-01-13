@@ -7,8 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build_lib:identity": "ng build identity --configuration production",
+    "pre_bulid_lib:identity": "ng build identity --configuration production",    
     "build_lib:permission-management": "ng build permission-management --configuration production",
+    "build_lib:identity": "yarn build_lib:permission-management && yarn pre_bulid_lib:identity",
     "build_lib:menu-management": "ng build menu-management --configuration production",
     "build_lib:setting-management": "ng build setting-management --configuration production"
   },

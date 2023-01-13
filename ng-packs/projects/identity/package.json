@@ -1,6 +1,11 @@
 {
   "name": "@super-abp/ng.identity",
   "version": "0.0.2",
+  "homepage": "https://SuperAbp.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SuperAbp/npm.git"
+  },
   "peerDependencies": {
     "@abp/ng.core": "^6.0.0",
     "@abp/utils": "^6.0.0",
@@ -20,5 +25,8 @@
   },
   "dependencies": {
     "tslib": "^2.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
