@@ -23,7 +23,7 @@
     "paths": {
       "@super-abp/ng.permission-management": ["dist/permission-management"],
       "@super-abp/ng.permission-management/proxy": [
-        "dist/permission-management/proxy"
+        "dist/permission-management"
       ],
       "@super-abp/ng.setting-management": [
         "projects/setting-management/src/public-api.ts"
