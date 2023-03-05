@@ -2,10 +2,10 @@
   "name": "@super-abp/ng.permission-management",
   "version": "0.0.2",
   "peerDependencies": {
-    "@abp/ng.core": "^6.0.0",
-    "@angular/common": "^14.2.0",
-    "@angular/core": "^14.2.0",
-    "ng-zorro-antd": "^14.2.1"
+    "@abp/ng.core": "^7.0.2",
+    "@angular/common": "^15.2.0",
+    "@angular/core": "^15.2.0",
+    "ng-zorro-antd": "^15.0.3"
   },
   "dependencies": {
     "tslib": "^2.3.0"
