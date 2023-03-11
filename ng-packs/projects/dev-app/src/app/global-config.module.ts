@@ -33,7 +33,7 @@ const alainConfig: AlainConfig = {
       /\/connect/,
       /.well-known\/openid-configuration/,
       /.well-known\/jwks/,
-      /application-configuration/,
+      /\/application-localization/,
     ],
   },
   acl: {

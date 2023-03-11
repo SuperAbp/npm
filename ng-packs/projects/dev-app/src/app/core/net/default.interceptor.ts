@@ -1,16 +1,17 @@
 import { LocalizationParam, LocalizationService } from '@abp/ng.core';
 import {
   HttpErrorResponse,
+  HttpContext,
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
   HttpRequest,
   HttpResponse,
-  HttpResponseBase
+  HttpResponseBase,
 } from '@angular/common/http';
 import { Inject, Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
-import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
+import { ALLOW_ANONYMOUS, DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
 import { _HttpClient } from '@delon/theme';
 import { CookieService } from '@delon/util';
 import { environment } from '@env/environment';
@@ -32,52 +33,53 @@ const CODEMESSAGE = {
   500: '服务器发生错误，请检查服务器。',
   502: '网关错误。',
   503: '服务不可用，服务器暂时过载或维护。',
-  504: '网关超时。'
+  504: '网关超时。',
 };
 export const DEFAULT_ERROR_MESSAGES = {
   defaultError: {
     title: 'An error has occurred!',
-    details: 'Error detail not sent by server.'
+    details: 'Error detail not sent by server.',
   },
   defaultError401: {
     title: 'You are not authenticated!',
-    details: 'You should be authenticated (sign in) in order to perform this operation.'
+    details:
+      'You should be authenticated (sign in) in order to perform this operation.',
   },
   defaultError403: {
     title: 'You are not authorized!',
-    details: 'You are not allowed to perform this operation.'
+    details: 'You are not allowed to perform this operation.',
   },
   defaultError404: {
     title: 'Resource not found!',
-    details: 'The resource requested could not found on the server.'
+    details: 'The resource requested could not found on the server.',
   },
   defaultError500: {
     title: 'Internal server error',
-    details: 'Error detail not sent by server.'
-  }
+    details: 'Error detail not sent by server.',
+  },
 };
 
 export const DEFAULT_ERROR_LOCALIZATIONS = {
   defaultError: {
     title: 'AbpUi::DefaultErrorMessage',
-    details: 'AbpUi::DefaultErrorMessageDetail'
+    details: 'AbpUi::DefaultErrorMessageDetail',
   },
   defaultError401: {
     title: 'AbpUi::DefaultErrorMessage401',
-    details: 'AbpUi::DefaultErrorMessage401Detail'
+    details: 'AbpUi::DefaultErrorMessage401Detail',
   },
   defaultError403: {
     title: 'AbpUi::DefaultErrorMessage403',
-    details: 'AbpUi::DefaultErrorMessage403Detail'
+    details: 'AbpUi::DefaultErrorMessage403Detail',
   },
   defaultError404: {
     title: 'AbpUi::DefaultErrorMessage404',
-    details: 'AbpUi::DefaultErrorMessage404Detail'
+    details: 'AbpUi::DefaultErrorMessage404Detail',
   },
   defaultError500: {
     title: 'AbpUi::500Message',
-    details: 'AbpUi::DefaultErrorMessage'
-  }
+    details: 'AbpUi::DefaultErrorMessage',
+  },
 };
 /**
  * 默认HTTP拦截器，其注册细节见 `app.module.ts`
@@ -113,7 +115,7 @@ export class DefaultInterceptor implements HttpInterceptor {
     }
     const body = ev?.['error']?.['error'] || {
       key: DEFAULT_ERROR_LOCALIZATIONS.defaultError.title,
-      defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.title
+      defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.title,
     };
     if (ev instanceof HttpErrorResponse && ev.headers.get('_AbpErrorFormat')) {
       const confirmation$ = this.showErrorWithRequestBody(body);
@@ -155,7 +157,9 @@ export class DefaultInterceptor implements HttpInterceptor {
         case 401:
           // 清空 token 信息
           if (ev.url.indexOf('application-configuration') <= 0) {
-            var tokenService = this.injector.get(DA_SERVICE_TOKEN) as ITokenService;
+            var tokenService = this.injector.get(
+              DA_SERVICE_TOKEN
+            ) as ITokenService;
             var cookieService = this.injector.get(CookieService);
             cookieService.remove('.AspNetCore.Cookies');
             tokenService.clear();
@@ -166,11 +170,11 @@ export class DefaultInterceptor implements HttpInterceptor {
           this.showError(
             {
               key: 'AbpAccount::DefaultErrorMessage403',
-              defaultValue: DEFAULT_ERROR_MESSAGES.defaultError403.title
+              defaultValue: DEFAULT_ERROR_MESSAGES.defaultError403.title,
             },
             {
               key: 'AbpAccount::DefaultErrorMessage403Detail',
-              defaultValue: DEFAULT_ERROR_MESSAGES.defaultError403.details
+              defaultValue: DEFAULT_ERROR_MESSAGES.defaultError403.details,
             }
           );
           break;
@@ -178,11 +182,11 @@ export class DefaultInterceptor implements HttpInterceptor {
           this.showError(
             {
               key: 'AbpAccount::DefaultErrorMessage404',
-              defaultValue: DEFAULT_ERROR_MESSAGES.defaultError404.title
+              defaultValue: DEFAULT_ERROR_MESSAGES.defaultError404.title,
             },
             {
               key: 'AbpAccount::DefaultErrorMessage404Detail',
-              defaultValue: DEFAULT_ERROR_MESSAGES.defaultError404.details
+              defaultValue: DEFAULT_ERROR_MESSAGES.defaultError404.details,
             }
           );
           break;
@@ -191,8 +195,14 @@ export class DefaultInterceptor implements HttpInterceptor {
           break;
         default:
           if (ev instanceof HttpErrorResponse) {
-            this.showError(DEFAULT_ERROR_MESSAGES.defaultError.title, DEFAULT_ERROR_MESSAGES.defaultError.details);
-            console.warn('未可知错误，大部分是由于后端不支持CORS或无效配置引起', ev);
+            this.showError(
+              DEFAULT_ERROR_MESSAGES.defaultError.title,
+              DEFAULT_ERROR_MESSAGES.defaultError.details
+            );
+            console.warn(
+              '未可知错误，大部分是由于后端不支持CORS或无效配置引起',
+              ev
+            );
           }
           break;
       }
@@ -214,13 +224,13 @@ export class DefaultInterceptor implements HttpInterceptor {
     } else if (body.message) {
       title = {
         key: DEFAULT_ERROR_LOCALIZATIONS.defaultError.title,
-        defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.title
+        defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.title,
       };
       message = body.message;
     } else {
       message = body.message || {
         key: DEFAULT_ERROR_LOCALIZATIONS.defaultError.title,
-        defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.title
+        defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.title,
       };
       title = '';
     }
@@ -229,7 +239,10 @@ export class DefaultInterceptor implements HttpInterceptor {
   }
 
   protected showError(message: LocalizationParam, title: LocalizationParam) {
-    return this.notification.error(this.location.instant(title), this.location.instant(message));
+    return this.notification.error(
+      this.location.instant(title),
+      this.location.instant(message)
+    );
   }
   // /**
   //  * 展示错误
@@ -248,21 +261,26 @@ export class DefaultInterceptor implements HttpInterceptor {
   //   }
   //   return this.notification.error(title, message);
   // }
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
     const tokenService = this.injector.get(DA_SERVICE_TOKEN) as ITokenService;
     // 统一加上服务端前缀
     let url = req.url;
+    let context = new HttpContext();
     if (
-      (tokenService.get().token === '' || tokenService.get().token === undefined) &&
-      (url.indexOf('application-configuration') > 0 || url.indexOf('app/data') > 0)
+      (tokenService.get().token === '' ||
+        tokenService.get().token === undefined) &&
+      (url.indexOf('application-configuration') > 0 ||
+        url.indexOf('app/data') > 0)
     ) {
-      url = `${url}?_allow_anonymous=true`;
+      context = context.set(ALLOW_ANONYMOUS, true);
     }
     if (!url.startsWith('https://') && !url.startsWith('http://')) {
       url = environment.apis.default.url + url;
     }
-
-    const newReq = req.clone({ url });
+    const newReq = req.clone({ url, context: context });
     return next.handle(newReq).pipe(
       mergeMap((event: any) => {
         // 允许统一对请求错误处理

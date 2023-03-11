@@ -1,21 +1,42 @@
 <page-header [action]="phActionTpl">
   <ng-template #phActionTpl>
-    <button (click)="add()" nz-button nzType="primary" *abpPermission="'SuperAbpMenuManagement.Menu.Create'">
+    <button
+      (click)="add()"
+      nz-button
+      nzType="primary"
+      *abpPermission="'SuperAbpMenuManagement.Menu.Create'"
+    >
       {{ "SuperAbpMenuManagement::NewMenu" | abpLocalization }}
     </button>
   </ng-template>
 </page-header>
-<nz-card>
-  <div class="mb-md">
-    <input nz-input [(ngModel)]="params.name" name="name" [placeholder]="
+<nz-card *ngIf="columns">
+  <!-- <div class="mb-md">
+    <input
+      nz-input
+      [(ngModel)]="params.name"
+      name="name"
+      [placeholder]="
         'SuperAbpMenuManagement::PlaceHolder'
-          | abpLocalization: ('SuperAbpMenuManagement::Name' | abpLocalization)
-      " style="width: 160px" class="mr-sm" />
-    <nz-tree-select nzAllowClear [(ngModel)]="params.parentId" [nzPlaceHolder]="
+          | abpLocalization : ('SuperAbpMenuManagement::Name' | abpLocalization)
+      "
+      style="width: 160px"
+      class="mr-sm"
+    />
+    <nz-tree-select
+      nzAllowClear
+      [(ngModel)]="params.parentId"
+      [nzPlaceHolder]="
         'SuperAbpMenuManagement::ChoosePlaceHolder'
-          | abpLocalization: ('SuperAbpMenuManagement::Parent' | abpLocalization)
-      " [nzDropdownMatchSelectWidth]="false" class="mr-sm" [nzNodes]="parents" [nzAsyncData]="true"
-      (nzExpandChange)="onExpandChange($event)">
+          | abpLocalization
+            : ('SuperAbpMenuManagement::Parent' | abpLocalization)
+      "
+      [nzDropdownMatchSelectWidth]="false"
+      class="mr-sm"
+      [nzNodes]="parents"
+      [nzAsyncData]="true"
+      (nzExpandChange)="onExpandChange($event)"
+    >
     </nz-tree-select>
     <button nz-button (click)="st.load(1)" [nzType]="'primary'">
       {{ "SuperAbpMenuManagement::Search" | abpLocalization }}
@@ -23,8 +44,23 @@
     <button nz-button (click)="reset()">
       {{ "SuperAbpMenuManagement::Reset" | abpLocalization }}
     </button>
-  </div>
-  <st #st [data]="menus" [columns]="columns" [loading]="loading" [page]="page" [total]="total" (change)="change($event)"
+  </div> -->
+  <sf
+    mode="search"
+    [schema]="searchSchema"
+    (formSubmit)="search($event)"
+    (formReset)="reset($event)"
+  ></sf>
+  <st
+    #st
+    [data]="menus"
+    [columns]="columns"
+    [loading]="loading"
+    [page]="page"
+    [total]="total"
+    (change)="change($event)"
     [header]="'SuperAbpMenuManagement::DataStart' | abpLocalization"
-    [footer]="'SuperAbpMenuManagement::DataEnd' | abpLocalization" responsiveHideHeaderFooter></st>
+    [footer]="'SuperAbpMenuManagement::DataEnd' | abpLocalization"
+    responsiveHideHeaderFooter
+  ></st>
 </nz-card>

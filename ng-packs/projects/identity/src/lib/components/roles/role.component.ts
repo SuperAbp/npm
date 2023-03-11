@@ -54,12 +54,12 @@ export class IdentityRoleComponent implements OnInit {
       .init(injector).props;
     let props = propList.toArray();
     props.push({
-      title: localizationService.instant('AbpIdentity::Actions'),
+      title: this.localizationService.instant('AbpIdentity::Actions'),
       buttons: [
         {
           icon: 'edit',
           type: 'modal',
-          tooltip: localizationService.instant('AbpIdentity::Edit'),
+          tooltip: this.localizationService.instant('AbpIdentity::Edit'),
           modal: {
             component: IdentityRoleEditComponent,
             params: (record: IdentityRoleDto) => ({
@@ -67,16 +67,16 @@ export class IdentityRoleComponent implements OnInit {
             }),
           },
           iif: () => {
-            return permissionService.getGrantedPolicy(
+            return this.permissionService.getGrantedPolicy(
               'AbpIdentity.Roles.Update'
             );
           },
           click: 'reload',
         },
         {
-          text: localizationService.instant('AbpIdentity::Permissions'),
+          text: this.localizationService.instant('AbpIdentity::Permissions'),
           type: 'modal',
-          tooltip: localizationService.instant('AbpIdentity::Permissions'),
+          tooltip: this.localizationService.instant('AbpIdentity::Permissions'),
           modal: {
             component: PermissionManagementComponent,
             params: (record: IdentityRoleDto) => ({
@@ -85,7 +85,7 @@ export class IdentityRoleComponent implements OnInit {
             }),
           },
           iif: () => {
-            return permissionService.getGrantedPolicy(
+            return this.permissionService.getGrantedPolicy(
               'AbpIdentity.Roles.ManagePermissions'
             );
           },

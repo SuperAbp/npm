@@ -106,6 +106,7 @@ import { SharedModule } from './shared/shared.module';
 import { STWidgetModule } from './shared/st-widget/st-widget.module';
 import { NgAbpErrorHandler } from './core/error.handler';
 import { SettingManagementConfigModule } from '@super-abp/ng.setting-management/config';
+import { AbpOAuthModule } from '@abp/ng.oauth';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -118,6 +119,7 @@ import { SettingManagementConfigModule } from '@super-abp/ng.setting-management/
       environment,
       registerLocaleFn: registerLocale(),
     }),
+    AbpOAuthModule.forRoot(),
     SettingManagementConfigModule.forRoot(),
     SharedModule,
     LayoutModule,

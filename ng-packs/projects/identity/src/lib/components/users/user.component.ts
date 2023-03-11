@@ -32,11 +32,14 @@ export class IdentityUserComponent implements OnInit {
     properties: {
       filter: {
         type: 'string',
-        title: this.localizationService.instant('AbpIdentity::Filter'),
-        placeholder: this.localizationService.instant(
-          'AbpIdentity::PlaceHolder',
-          this.localizationService.instant('AbpIdentity::Filter')
-        ),
+        title: '',
+        ui: {
+          placeholder: '请输入条件',
+          // this.localizationService.instant(
+          //   'AbpIdentity::PlaceHolder',
+          //   this.localizationService.instant('AbpIdentity::Filter')
+          // ),
+        },
       },
     },
   };
@@ -126,6 +129,8 @@ export class IdentityUserComponent implements OnInit {
   search(e) {
     if (e.filter) {
       this.params.filter = e.filter;
+    } else {
+      delete this.params.filter;
     }
     this.getList();
   }
