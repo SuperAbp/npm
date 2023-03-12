@@ -1,6 +1,6 @@
 {
   "name": "@super-abp/ng.menu-management",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "peerDependencies": {
     "@abp/ng.core": "^7.0.2",
     "@angular/common": "^15.2.0",
