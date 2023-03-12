@@ -22,9 +22,11 @@
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@super-abp/ng.permission-management": [
+        "dist/permission-management",
         "projects/permission-management/src/public-api.ts"
       ],
       "@super-abp/ng.permission-management/proxy": [
+        "dist/permission-management/proxy",
         "projects/permission-management/proxy/src/public-api.ts"
       ],
       "@super-abp/ng.setting-management": [
