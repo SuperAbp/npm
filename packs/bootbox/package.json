@@ -14,6 +14,6 @@
   "homepage": "http://superabp.com/",
   "license": "MIT",
   "dependencies": {
-    "bootbox": "^5.5.3"
+    "bootbox": "^6.0.0"
   }
 }

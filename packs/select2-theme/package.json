@@ -13,6 +13,6 @@
     "directory": "packs/select2-theme"
   },
   "dependencies": {
-    "select2-bootstrap-5-theme": "^1.2.0"
+    "select2-bootstrap-5-theme": "^1.3.0"
   }
 }

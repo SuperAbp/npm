@@ -12,6 +12,6 @@
     "directory": "packs/bootstrap-table"
   },
   "dependencies": {
-    "bootstrap-table": "^1.21.1"
+    "bootstrap-table": "^1.21.3"
   }
 }
