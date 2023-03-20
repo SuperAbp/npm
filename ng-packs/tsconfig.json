@@ -29,6 +29,12 @@
         "dist/permission-management/proxy",
         "projects/permission-management/proxy/src/public-api.ts"
       ],
+      "@super-abp/ng.audit-logging": [
+        "projects/audit-logging/src/public-api.ts"
+      ],
+      "@super-abp/ng.audit-logging/proxy": [
+        "projects/audit-logging/proxy/src/public-api.ts"
+      ],
       "@super-abp/ng.setting-management": [
         "projects/setting-management/src/public-api.ts"
       ],
@@ -48,7 +54,8 @@
       "@shared": ["projects/dev-app/src/app/shared/index"],
       "@core": ["projects/dev-app/src/app/core/index"],
       "@proxy/*": ["projects/dev-app/src/app/proxy/*"],
-      "@env/*": ["projects/dev-app/src/environments/*"]
+      "@env/*": ["projects/dev-app/src/environments/*"],
+      "audit-logging": ["dist/audit-logging"]
     }
   },
   "angularCompilerOptions": {

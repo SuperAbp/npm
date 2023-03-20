@@ -1,0 +1,94 @@
+<div class="modal-header">
+  <div class="modal-title">
+    {{ "SuperAbpAuditLogging::Detail" | abpLocalization }}
+  </div>
+</div>
+<div class="modal-body">
+  <ng-template #loaderRef>
+    <nz-spin class="modal-spin"></nz-spin>
+  </ng-template>
+  <div *ngIf="log; else loaderRef">
+    <sv-container>
+      <sv-title>
+        {{ "SuperAbpAuditLogging::BaseInfo" | abpLocalization }}
+      </sv-title>
+      <sv [label]="'SuperAbpAuditLogging::ApplicationName' | abpLocalization">
+        {{ log.applicationName }}
+      </sv>
+      <sv [label]="'SuperAbpAuditLogging::Url' | abpLocalization">
+        {{ log.url }}
+      </sv>
+      <sv [label]="'SuperAbpAuditLogging::HttpMethod' | abpLocalization">
+        {{ log.httpMethod }}
+      </sv>
+      <sv [label]="'SuperAbpAuditLogging::TenantName' | abpLocalization">
+        {{ log.tenantName }}
+      </sv>
+      <sv [label]="'SuperAbpAuditLogging::UserName' | abpLocalization">
+        {{ log.userName }}
+      </sv>
+      <sv [label]="'SuperAbpAuditLogging::ClientIpAddress' | abpLocalization">
+        {{ log.clientIpAddress }}
+      </sv>
+      <sv [label]="'SuperAbpAuditLogging::ExecutionTime' | abpLocalization">
+        {{ log.executionTime | _date : "yyyy年MM月dd日 HH:mm:ss" }}
+      </sv>
+      <sv [label]="'SuperAbpAuditLogging::ExecutionDuration' | abpLocalization">
+        {{ log.executionDuration }}
+      </sv>
+      <sv [label]="'SuperAbpAuditLogging::HttpStatusCode' | abpLocalization">{{
+        log.httpStatusCode
+      }}</sv>
+      <sv
+        [label]="'SuperAbpAuditLogging::BrowserInfo' | abpLocalization"
+        col="1"
+      >
+        {{ log.browserInfo }}
+      </sv>
+      <sv [label]="'SuperAbpAuditLogging::Comments' | abpLocalization" col="1">
+        {{ log.comments }}
+      </sv>
+      <sv
+        [label]="'SuperAbpAuditLogging::Exceptions' | abpLocalization"
+        col="1"
+      >
+        {{ log.exceptions }}
+      </sv>
+    </sv-container>
+    <nz-card
+      nzType="inner"
+      [nzTitle]="'SuperAbpAuditLogging::ActionInfo' | abpLocalization"
+    >
+      <sv-container *ngFor="let action of log.actions">
+        <sv
+          [label]="'SuperAbpAuditLogging::ServiceName' | abpLocalization"
+          col="2"
+        >
+          {{ action.serviceName }}
+        </sv>
+        <sv [label]="'SuperAbpAuditLogging::MethodName' | abpLocalization">
+          {{ action.methodName }}
+        </sv>
+        <sv [label]="'SuperAbpAuditLogging::ExecutionTime' | abpLocalization">
+          {{ action.executionTime | _date : "yyyy年MM月dd日 HH:mm:ss" }}
+        </sv>
+        <sv
+          [label]="'SuperAbpAuditLogging::ExecutionDuration' | abpLocalization"
+        >
+          {{ action.executionDuration }}
+        </sv>
+        <sv
+          [label]="'SuperAbpAuditLogging::Parameters' | abpLocalization"
+          col="1"
+        >
+          {{ action.parameters }}
+        </sv>
+      </sv-container>
+    </nz-card>
+  </div>
+</div>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">
+    {{ "SuperAbpAuditLogging::Close" | abpLocalization }}
+  </button>
+</div>

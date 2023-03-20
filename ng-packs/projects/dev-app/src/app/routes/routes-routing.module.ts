@@ -49,6 +49,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'audit-logging',
+        loadChildren: () =>
+          import('@super-abp/ng.audit-logging').then(
+            (m) => m.AuditLoggingModule
+          ),
+      },
+      {
         path: 'setting-management',
         loadChildren: () =>
           import('@super-abp/ng.setting-management').then(

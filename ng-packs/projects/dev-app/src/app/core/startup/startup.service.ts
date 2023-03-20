@@ -110,6 +110,11 @@ export class StartupService {
             ],
           },
           {
+            text: '审计日志',
+            icon: { type: 'icon', value: 'appstore' },
+            link: '/audit-logging/audit-logging',
+          },
+          {
             key: 'AbpSettingManagement::Settings',
             text: '设置管理',
             icon: { type: 'icon', value: 'appstore' },

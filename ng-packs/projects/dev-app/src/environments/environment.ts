@@ -13,17 +13,17 @@ export const environment = {
     logoUrl: '',
   },
   oAuthConfig: {
-    issuer: 'https://localhost:44388/',
+    issuer: 'https://localhost:44396/',
     redirectUri: baseUrl,
-    clientId: 'Exam_Admin_App',
+    clientId: 'Demo_App',
     responseType: 'code',
-    scope: 'offline_access Exam',
+    scope: 'offline_access Demo',
     requireHttps: true,
   },
   apis: {
     default: {
-      url: 'https://localhost:44388',
-      rootNamespace: 'SuperAbp.Exam',
+      url: 'https://localhost:44396',
+      rootNamespace: 'SuperAbp.Demo',
     },
   },
   resource: {

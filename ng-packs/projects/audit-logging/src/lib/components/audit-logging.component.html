@@ -1,0 +1,41 @@
+<page-header [action]="phActionTpl">
+  <ng-template #phActionTpl></ng-template>
+</page-header>
+<nz-card>
+  <sf
+    mode="search"
+    [schema]="searchSchema"
+    (formSubmit)="search($event)"
+    (formReset)="reset()"
+  ></sf>
+  <st
+    #st
+    [data]="logs"
+    [columns]="columns"
+    [loading]="loading"
+    [page]="page"
+    [total]="total"
+    (change)="change($event)"
+    header="{{ 'SuperAbpAuditLogging::DataStart' | abpLocalization }}"
+    footer="{{ 'SuperAbpAuditLogging::DataEnd' | abpLocalization }}"
+    responsiveHideHeaderFooter
+  >
+    <ng-template st-row="customerHttpStatusCode" let-item let-index="index">
+      <nz-badge *ngIf="item.httpStatusCode < 200" nzStatus="default"></nz-badge>
+      <nz-badge
+        *ngIf="item.httpStatusCode < 300 && item.httpStatusCode >= 200"
+        nzStatus="success"
+      ></nz-badge>
+      <nz-badge
+        *ngIf="item.httpStatusCode < 400 && item.httpStatusCode >= 300"
+        nzStatus="default"
+      ></nz-badge>
+      <nz-badge
+        *ngIf="item.httpStatusCode < 500 && item.httpStatusCode >= 400"
+        nzStatus="warning"
+      ></nz-badge>
+      <nz-badge *ngIf="item.httpStatusCode >= 500" nzStatus="error"></nz-badge>
+      {{ item.httpStatusCode }}
+    </ng-template>
+  </st>
+</nz-card>
