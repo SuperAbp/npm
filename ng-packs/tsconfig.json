@@ -18,7 +18,10 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "es2020",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@super-abp/ng.permission-management": [
@@ -28,6 +31,14 @@
       "@super-abp/ng.permission-management/proxy": [
         "dist/permission-management/proxy",
         "projects/permission-management/proxy/src/public-api.ts"
+      ],
+      "@super-abp/ng.region-management": [
+        "dist/region-management",
+        "projects/region-management/src/public-api.ts"
+      ],
+      "@super-abp/ng.region-management/proxy": [
+        "dist/region-management/proxy",
+        "projects/region-management/proxy/src/public-api.ts"
       ],
       "@super-abp/ng.audit-logging": [
         "projects/audit-logging/src/public-api.ts"
@@ -47,15 +58,30 @@
       "@super-abp/ng.menu-management/proxy": [
         "projects/menu-management/proxy/src/public-api.ts"
       ],
-      "@super-abp/ng.identity": ["projects/identity/src/public-api.ts"],
+      "@super-abp/ng.identity": [
+        "projects/identity/src/public-api.ts"
+      ],
       "@super-abp/ng.identity/proxy": [
         "projects/identity/proxy/src/public-api.ts"
       ],
-      "@shared": ["projects/dev-app/src/app/shared/index"],
-      "@core": ["projects/dev-app/src/app/core/index"],
-      "@proxy/*": ["projects/dev-app/src/app/proxy/*"],
-      "@env/*": ["projects/dev-app/src/environments/*"],
-      "audit-logging": ["dist/audit-logging"]
+      "@shared": [
+        "projects/dev-app/src/app/shared/index"
+      ],
+      "@core": [
+        "projects/dev-app/src/app/core/index"
+      ],
+      "@proxy/*": [
+        "projects/dev-app/src/app/proxy/*"
+      ],
+      "@env/*": [
+        "projects/dev-app/src/environments/*"
+      ],
+      "audit-logging": [
+        "dist/audit-logging"
+      ],
+      "region-management": [
+        "dist/region-management"
+      ]
     }
   },
   "angularCompilerOptions": {

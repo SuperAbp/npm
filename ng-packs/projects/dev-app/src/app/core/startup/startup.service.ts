@@ -120,6 +120,11 @@ export class StartupService {
             icon: { type: 'icon', value: 'appstore' },
             link: '/setting-management/setting',
           },
+          {
+            text: '区域管理',
+            icon: { type: 'icon', value: 'appstore' },
+            link: '/region-management/region',
+          },
         ],
       },
     ]);

@@ -15,9 +15,9 @@
   },
   "private": true,
   "dependencies": {
-    "@abp/ng.core": "^7.0.2",
-    "@abp/ng.oauth": "^7.0.2",
-    "@abp/utils": "~7.0.2",
+    "@abp/ng.core": "^7.1.0",
+    "@abp/ng.oauth": "^7.1.0",
+    "@abp/utils": "~7.1.0",
     "@angular/animations": "^15.2.0",
     "@angular/common": "^15.2.0",
     "@angular/compiler": "^15.2.0",
@@ -41,6 +41,7 @@
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
+    "@abp/ng.schematics":"^7.1.0",
     "@angular-devkit/build-angular": "^15.2.0",
     "@angular/cli": "~15.2.0",
     "@angular/compiler-cli": "^15.2.0",

@@ -1,21 +1,26 @@
 {
   "name": "@super-abp/ng.audit-logging",
   "version": "0.0.1",
+    "homepage": "https://SuperAbp.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SuperAbp/npm.git"
+  },
   "peerDependencies": {
-    "@angular/common": "^13.3.0",
-    "@angular/core": "^13.3.0",
-    "@abp/ng.core": "^5.0.0",
-    "ng-zorro-antd": "^13.1.1",
-    "@delon/abc": "^13.4.2",
-    "@delon/acl": "^13.4.2",
-    "@delon/auth": "^13.4.2",
-    "@delon/cache": "^13.4.2",
-    "@delon/chart": "^13.4.2",
-    "@delon/form": "^13.4.2",
-    "@delon/mock": "^13.4.2",
-    "@delon/theme": "^13.4.2",
-    "@delon/util": "^13.4.2",
-    "date-fns": "^2.28.0"
+    "@angular/common": "^15.2.0",
+    "@angular/core": "^15.2.0",
+    "@abp/ng.core": "^7.1.0",
+    "ng-zorro-antd": "^15.0.3",
+    "@delon/abc": "^15.1.0",
+    "@delon/acl": "^15.1.0",
+    "@delon/auth": "^15.1.0",
+    "@delon/cache": "^15.1.0",
+    "@delon/chart": "^15.1.0",
+    "@delon/form": "^15.1.0",
+    "@delon/mock": "^15.1.0",
+    "@delon/theme": "^15.1.0",
+    "@delon/util": "^15.1.0",
+    "date-fns": "^2.29.3"
   },
   "dependencies": {
     "tslib": "^2.3.0"

@@ -68,8 +68,8 @@ export class MenuManagementComponent implements OnInit {
           ui: {
             widget: 'tree-select',
             placeholder: this.localizationService.instant(
-              'SnowCategories::ChoosePlaceHolder',
-              this.localizationService.instant('SnowCategories::Parent')
+              'SuperAbpMenuManagement::ChoosePlaceholder',
+              this.localizationService.instant('SuperAbpMenuManagement::Parent')
             ),
             dropdownMatchSelectWidth: false,
             dropdownStyle: { 'max-height': '300px' },

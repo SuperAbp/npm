@@ -62,6 +62,13 @@ const routes: Routes = [
             (m) => m.SettingManagementModule
           ),
       },
+      {
+        path: 'region-management',
+        loadChildren: () =>
+          import('@super-abp/ng.region-management').then(
+            (m) => m.RegionManagementModule
+          ),
+      },
     ],
   },
   // 空白布局
