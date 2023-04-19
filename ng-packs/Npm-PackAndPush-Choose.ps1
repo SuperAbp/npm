@@ -57,7 +57,7 @@ if($typeChoice -gt 0 -or $typeChoice -lt 6) {
 
     # 发布
     cd $publishPath
-    npm publish
+    npm publish --access public
 }
 
 "`n按任意键退出：" ;

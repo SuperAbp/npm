@@ -1,6 +1,6 @@
 {
   "name": "ng-packs",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,9 +11,11 @@
     "build_lib:permission-management": "ng build permission-management --configuration production",
     "build_lib:identity": "yarn build_lib:permission-management && yarn pre_build_lib:identity",
     "build_lib:menu-management": "ng build menu-management --configuration production",
-    "build_lib:setting-management": "ng build setting-management --configuration production"
+    "build_lib:setting-management": "ng build setting-management --configuration production",
+    "build_lib:audit-logging": "ng build audit-logging --configuration production",
+    "build_lib:region-management": "ng build region-management --configuration production"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@abp/ng.core": "^7.1.0",
     "@abp/ng.oauth": "^7.1.0",
@@ -41,7 +43,7 @@
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
-    "@abp/ng.schematics":"^7.1.0",
+    "@abp/ng.schematics": "^7.1.0",
     "@angular-devkit/build-angular": "^15.2.0",
     "@angular/cli": "~15.2.0",
     "@angular/compiler-cli": "^15.2.0",
