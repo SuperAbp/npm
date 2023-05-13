@@ -7,7 +7,7 @@
     "url": "https://github.com/SuperAbp/npm.git"
   },
   "peerDependencies": {
-    "@abp/ng.core": "^7.1.0",
+    "@abp/ng.core": "^7.2.1",
     "@angular/common": "^15.2.0",
     "@angular/core": "^15.2.0",
     "ng-zorro-antd": "^15.0.3"

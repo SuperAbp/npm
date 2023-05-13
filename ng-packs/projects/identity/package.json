@@ -7,8 +7,8 @@
     "url": "https://github.com/SuperAbp/npm.git"
   },
   "peerDependencies": {
-    "@abp/ng.core": "^7.1.0",
-    "@abp/utils": "^7.1.0",
+    "@abp/ng.core": "^7.2.1",
+    "@abp/utils": "^7.2.1",
     "@super-abp/ng.permission-management": "^0.1.0",
     "@angular/common": "^15.2.0",
     "@angular/core": "^15.2.0",

@@ -9,7 +9,7 @@
   "peerDependencies": {
     "@angular/common": "^15.2.0",
     "@angular/core": "^15.2.0",
-    "@abp/ng.core": "^7.1.0",
+    "@abp/ng.core": "^7.2.1",
     "ng-zorro-antd": "^15.0.3",
     "@delon/abc": "^15.1.0",
     "@delon/acl": "^15.1.0",
