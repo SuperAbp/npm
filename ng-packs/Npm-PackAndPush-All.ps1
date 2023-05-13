@@ -14,8 +14,9 @@ Get-ChildItem projects\ | ?{$_.psiscontainer -eq $true} | foreach-object -proces
 
 # 发布所有包文件
 Get-ChildItem dist\ | ?{$_.psiscontainer -eq $true} | ForEach-Object -Process{
-    cd $_.Directory
-    npm publish
+    Write-Host "当前路径: $($_.FullName)"
+    cd $_.FullName
+    npm publish --access public
 }
 
 "`n按任意键退出：" ;

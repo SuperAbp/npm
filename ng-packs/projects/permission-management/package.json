@@ -1,7 +1,7 @@
 {
   "name": "@super-abp/ng.permission-management",
-  "version": "0.1.0",
-    "homepage": "https://SuperAbp.com",
+  "version": "0.2.0",
+  "homepage": "https://SuperAbp.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/SuperAbp/npm.git"
