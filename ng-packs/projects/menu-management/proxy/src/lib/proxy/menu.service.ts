@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class MenuService {
   apiName = 'MenuManagement';
+  
 
   create = (input: MenuCreateDto) =>
     this.restService.request<any, MenuListDto>({
@@ -16,13 +17,15 @@ export class MenuService {
       body: input,
     },
     { apiName: this.apiName });
+  
 
-  delete = (id: number) =>
+  delete = (id: string) =>
     this.restService.request<any, void>({
       method: 'DELETE',
       url: `/api/menus/${id}`,
     },
     { apiName: this.apiName });
+  
 
   getAllList = () =>
     this.restService.request<any, ListResultDto<MenuListDto>>({
@@ -30,20 +33,23 @@ export class MenuService {
       url: '/api/menus/list',
     },
     { apiName: this.apiName });
+  
 
-  getChildren = (id: number) =>
+  getChildren = (id: string) =>
     this.restService.request<any, ListResultDto<MenuTreeNodeDto>>({
       method: 'GET',
       url: `/api/menus/${id}/children`,
     },
     { apiName: this.apiName });
+  
 
-  getEditor = (id: number) =>
+  getEditor = (id: string) =>
     this.restService.request<any, GetMenuForEditorOutput>({
       method: 'GET',
       url: `/api/menus/${id}`,
     },
     { apiName: this.apiName });
+  
 
   getList = (input: GetMenusInput) =>
     this.restService.request<any, PagedResultDto<MenuListDto>>({
@@ -52,6 +58,7 @@ export class MenuService {
       params: { parentId: input.parentId, name: input.name, sorting: input.sorting, skipCount: input.skipCount, maxResultCount: input.maxResultCount },
     },
     { apiName: this.apiName });
+  
 
   getRoot = () =>
     this.restService.request<any, ListResultDto<MenuTreeNodeDto>>({
@@ -59,8 +66,9 @@ export class MenuService {
       url: '/api/menus/root',
     },
     { apiName: this.apiName });
+  
 
-  update = (id: number, input: MenuUpdateDto) =>
+  update = (id: string, input: MenuUpdateDto) =>
     this.restService.request<any, MenuListDto>({
       method: 'PUT',
       url: `/api/menus/${id}`,

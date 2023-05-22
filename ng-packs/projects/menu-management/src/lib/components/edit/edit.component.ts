@@ -28,7 +28,7 @@ import {
 })
 export class MenuManagementEditComponent implements OnInit {
   @Input()
-  menuId: number;
+  menuId: string;
   menu: GetMenuForEditorOutput;
   menus: NzTreeNodeOptions[] = [];
 
@@ -102,7 +102,7 @@ export class MenuManagementEditComponent implements OnInit {
         });
       });
   }
-  getChildren(list: MenuListDto[], parentId?: number): NzTreeNodeOptions[] {
+  getChildren(list: MenuListDto[], parentId?: string): NzTreeNodeOptions[] {
     const childrenMenu: NzTreeNodeOptions[] = [];
     list
       .filter((l) => l.parentId === parentId)
@@ -124,7 +124,7 @@ export class MenuManagementEditComponent implements OnInit {
       this.menuService
         .getList({
           name: '',
-          parentId: Number(node.key),
+          parentId: node.key,
           skipCount: 0,
           maxResultCount: 100,
           sorting: 'Sort DESC',

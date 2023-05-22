@@ -88,7 +88,7 @@ export class MenuManagementComponent implements OnInit {
                 ),
             expandChange: (e: NzFormatEmitEvent) =>
               this.menuService
-                .getChildren(Number(e.node.key))
+                .getChildren(e.node.key)
                 .pipe(map((res: any) => res.items))
                 .pipe(
                   map((list: any) => {
@@ -250,7 +250,7 @@ export class MenuManagementComponent implements OnInit {
     const node = e.node;
     if (node && node.getChildren().length === 0 && node.isExpanded) {
       this.menuService
-        .getChildren(Number(e.node.key))
+        .getChildren(e.node.key)
         .pipe(map((res: ListResultDto<MenuTreeNodeDto>) => res.items))
         .pipe(
           map((list: MenuTreeNodeDto[]) => {

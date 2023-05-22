@@ -1,19 +1,19 @@
 import type { EntityDto, PagedAndSortedResultRequestDto } from '@abp/ng.core';
 
-export interface GetMenuForEditorOutput extends EntityDto<number> {
+export interface GetMenuForEditorOutput extends EntityDto<string> {
   name?: string;
-  key?: string;
   permission?: string;
   icon?: string;
   route?: string;
+  key?: string;
   sort: number;
-  parentId?: number;
+  parentId?: string;
   group: boolean;
   hideInBreadcrumb: boolean;
 }
 
 export interface GetMenusInput extends PagedAndSortedResultRequestDto {
-  parentId?: number;
+  parentId?: string;
   name?: string;
 }
 
@@ -24,25 +24,26 @@ export interface MenuCreateOrUpdateDtoBase {
   permission?: string;
   icon?: string;
   route?: string;
+  key?: string;
   sort: number;
-  parentId?: number;
+  parentId?: string;
   group: boolean;
   hideInBreadcrumb: boolean;
 }
 
-export interface MenuListDto extends EntityDto<number> {
+export interface MenuListDto extends EntityDto<string> {
   name?: string;
   permission?: string;
   icon?: string;
   route?: string;
   sort: number;
-  parentId?: number;
+  parentId?: string;
   parentName?: string;
   group: boolean;
   hideInBreadcrumb: boolean;
 }
 
-export interface MenuTreeNodeDto extends EntityDto<number> {
+export interface MenuTreeNodeDto extends EntityDto<string> {
   name?: string;
   isLeaf: boolean;
 }
