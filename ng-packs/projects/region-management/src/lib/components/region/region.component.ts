@@ -181,7 +181,6 @@ export class RegionComponent implements OnInit {
     return {
       skipCount: 0,
       maxResultCount: 10,
-      sorting: 'Id Desc',
     };
   }
 
@@ -319,9 +318,6 @@ export class RegionComponent implements OnInit {
     if (e.type === 'pi' || e.type === 'ps') {
       this.params.skipCount = (e.pi - 1) * e.ps;
       this.params.maxResultCount = e.ps;
-      this.getList();
-    } else if (e.type === 'sort') {
-      this.params.sorting = e.sort.column.index[0];
       this.getList();
     }
   }

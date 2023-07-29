@@ -24,11 +24,7 @@ export class IdentityRoleComponent implements OnInit {
   roles: IdentityRoleDto[];
   total: number;
   loading = false;
-  params: PagedAndSortedResultRequestDto = {
-    skipCount: 0,
-    maxResultCount: 10,
-    sorting: 'Id Desc',
-  };
+  params: PagedAndSortedResultRequestDto = this.resetParameters();
   page: STPage = {
     show: true,
     showSize: true,
@@ -120,7 +116,6 @@ export class IdentityRoleComponent implements OnInit {
     return {
       skipCount: 0,
       maxResultCount: 10,
-      sorting: 'Id Desc',
     };
   }
   change(e: STChange) {

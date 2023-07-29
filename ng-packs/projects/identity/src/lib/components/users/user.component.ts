@@ -105,10 +105,8 @@ export class IdentityUserComponent implements OnInit {
    */
   resetParameters(): GetIdentityUsersInput {
     return {
-      filter: '',
       skipCount: 0,
       maxResultCount: 10,
-      sorting: 'Id Desc',
     };
   }
   change(e: STChange) {

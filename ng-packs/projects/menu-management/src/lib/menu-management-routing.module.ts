@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PermissionGuard } from '@abp/ng.core';
-import { JWTGuard } from '@delon/auth';
+import { authJWTCanActivate } from '@delon/auth';
 import { MenuManagementComponent } from './components/menu-management.component';
 
 const routes: Routes = [
   {
     path: 'menu',
     component: MenuManagementComponent,
-    canActivate: [JWTGuard, PermissionGuard],
+    canActivate: [authJWTCanActivate, PermissionGuard],
     data: {
-      requiredPolicy: 'SuperAbpMenuManagement.Menu.Management',
+      requiredPolicy: 'SuperAbpMenuManagement.Menu',
     },
   },
 ];

@@ -1,17 +1,10 @@
-<!--
- * @Author: your name
- * @Date: 2020-07-29 14:05:20
- * @LastEditTime: 2023-01-12 09:52:06
- * @LastEditors: 陈磊 gbdvjxu1257q@outlook.com
- * @Description: In User Settings Edit
- * @FilePath: \abp\projects\identity\src\lib\users\user\user.component.html
--->
+
 <page-header
   [title]="'AbpIdentity::Users' | abpLocalization"
   [action]="phActionTpl"
 >
   <ng-template #phActionTpl>
-    <!-- <button (click)="add()" nz-button nzType="primary">{{'AbpIdentity::NewUser'|abpLocalization}}</button> -->
+    <button (click)="add()" nz-button nzType="primary">{{'AbpIdentity::NewUser'|abpLocalization}}</button>
   </ng-template>
 </page-header>
 <nz-card *ngIf="columns">

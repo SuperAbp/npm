@@ -240,10 +240,8 @@ export class MenuManagementComponent implements OnInit {
   }
   resetParameters(): GetMenusInput {
     return {
-      name: '',
       skipCount: 0,
       maxResultCount: 10,
-      sorting: 'Sort Desc',
     } as GetMenusInput;
   }
   onExpandChange(e: NzFormatEmitEvent): void {

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { startPageGuard } from '@core';
-import { SimpleGuard } from '@delon/auth';
+import { authJWTCanActivate } from '@delon/auth';
 import { environment } from '@env/environment';
 import { identityEntityPropContributors } from '../components/entity-prop-contributors';
 // layout
@@ -19,7 +19,7 @@ const routes: Routes = [
   {
     path: '',
     component: LayoutBasicComponent,
-    canActivate: [startPageGuard, SimpleGuard],
+    canActivate: [startPageGuard, authJWTCanActivate],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {

@@ -39,7 +39,6 @@ export class AuditLoggingComponent implements OnInit {
     endDate: formatDate(this.today, 'yyyy-MM-dd', 'zh-Hans'),
     skipCount: 0,
     maxResultCount: 10,
-    sorting: 'ExecutionTime Desc',
   };
   page: STPage = {
     show: true,
