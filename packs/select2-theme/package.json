@@ -1,6 +1,6 @@
 {
   "name": "@super-abp/select2-theme",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "keywords": [
     "abp",
     "bootstrap",
@@ -13,6 +13,6 @@
     "directory": "packs/select2-theme"
   },
   "dependencies": {
-    "select2-bootstrap-5-theme": "^1.3.0"
+    "select2-bootstrap-5-theme": "^1.3.1"
   }
 }

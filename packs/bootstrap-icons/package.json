@@ -1,6 +1,6 @@
 {
   "name": "@super-abp/bootstrap-icons",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "keywords": [
     "abp",
     "bootstrap",
@@ -14,6 +14,6 @@
   "homepage": "http://superabp.com/",
   "license": "MIT",
   "dependencies": {
-    "bootstrap-icons": "^1.10.4"
+    "bootstrap-icons": "^1.10.5"
   }
 }
