@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   GetProvinceForEditorOutput,
-  ProvinceService,
+  ProvinceAdminService,
 } from '@super-abp/ng.region-management/proxy';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -28,7 +28,7 @@ export class RegionProvinceEditComponent {
     private messageService: NzMessageService,
     private localizationService: LocalizationService,
     private fb: FormBuilder,
-    private provinceService: ProvinceService
+    private provinceService: ProvinceAdminService
   ) {}
 
   ngOnInit(): void {

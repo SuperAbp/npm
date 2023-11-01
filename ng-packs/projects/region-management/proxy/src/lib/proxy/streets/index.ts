@@ -1,2 +1,2 @@
 export * from './models';
-export * from './street.service'
+export * from './street-admin.service';

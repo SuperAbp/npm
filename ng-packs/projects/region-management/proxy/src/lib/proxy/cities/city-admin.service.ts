@@ -1,13 +1,13 @@
+import type { CityCreateDto, CityListDto, CityUpdateDto, GetCitiesInput, GetCityForEditorOutput } from './models';
 import { RestService } from '@abp/ng.core';
 import type { ListResultDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
-import type { CityCreateDto, CityListDto, CityUpdateDto, GetCitiesInput, GetCityForEditorOutput } from '../cities/models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CityService {
-  apiName = 'RegionManagement';
+export class CityAdminService {
+  apiName = 'RegionManagementAdmin';
   
 
   create = (input: CityCreateDto) =>

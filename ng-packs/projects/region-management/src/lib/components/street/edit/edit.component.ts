@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   GetStreetForEditorOutput,
-  StreetService,
+  StreetAdminService,
 } from '@super-abp/ng.region-management/proxy';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -35,7 +35,7 @@ export class RegionStreetEditComponent {
     private messageService: NzMessageService,
     private localizationService: LocalizationService,
     private fb: FormBuilder,
-    private streetService: StreetService
+    private streetService: StreetAdminService
   ) {}
 
   ngOnInit(): void {

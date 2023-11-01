@@ -2,7 +2,7 @@ import { LocalizationService } from '@abp/ng.core';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
-  DistrictService,
+  DistrictAdminService,
   GetCityForEditorOutput,
   GetDistrictForEditorOutput,
 } from '@super-abp/ng.region-management/proxy';
@@ -33,7 +33,7 @@ export class RegionDistrictEditComponent {
     private messageService: NzMessageService,
     private localizationService: LocalizationService,
     private fb: FormBuilder,
-    private districtService: DistrictService
+    private districtService: DistrictAdminService
   ) {}
 
   ngOnInit(): void {

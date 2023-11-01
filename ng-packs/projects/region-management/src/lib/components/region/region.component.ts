@@ -3,14 +3,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { STChange, STColumn, STComponent, STPage } from '@delon/abc/st';
 import { SFSchema } from '@delon/form';
 import { ModalHelper } from '@delon/theme';
-import {
-  CityService,
-  DistrictService,
-  ProvinceService,
-  RegionLevel,
-  StreetService,
-  VillageService,
-} from '@super-abp/ng.region-management/proxy';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {
   NzFormatEmitEvent,
@@ -24,6 +16,14 @@ import { RegionDistrictEditComponent } from '../district/edit/edit.component';
 import { RegionProvinceEditComponent } from '../province/edit/edit.component';
 import { RegionStreetEditComponent } from '../street/edit/edit.component';
 import { RegionVillageEditComponent } from '../village/edit/edit.component';
+import {
+  CityAdminService,
+  DistrictAdminService,
+  ProvinceAdminService,
+  StreetAdminService,
+  VillageAdminService,
+} from '@super-abp/ng.region-management/proxy';
+import { RegionLevel } from 'projects/region-management/proxy/src/lib/proxy/region-level.enum';
 
 class RegionTempDto {
   id?: string;
@@ -62,11 +62,11 @@ export class RegionComponent implements OnInit {
     private messageService: NzMessageService,
     private localizationService: LocalizationService,
     private permissionService: PermissionService,
-    private provinceService: ProvinceService,
-    private cityService: CityService,
-    private districtService: DistrictService,
-    private streetService: StreetService,
-    private villageService: VillageService
+    private provinceService: ProvinceAdminService,
+    private cityService: CityAdminService,
+    private districtService: DistrictAdminService,
+    private streetService: StreetAdminService,
+    private villageService: VillageAdminService
   ) {
     this.basicColumns = [
       {
@@ -93,7 +93,6 @@ export class RegionComponent implements OnInit {
   getList() {
     this.loading = true;
     this.columns = this.getColumns();
-    console.log(this.columns);
 
     var callback = () => (this.loading = false);
     switch (this.regionLevel) {

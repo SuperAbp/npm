@@ -1,11 +1,11 @@
-import { RestService } from '@abp/ng.core';
-import type { PagedResultDto } from '@abp/ng.core';
-import { Injectable } from '@angular/core';
-import {
+import type {
   AuditLogDetailDto,
   AuditLogListDto,
   GetAuditLogsInput,
 } from './models';
+import { RestService } from '@abp/ng.core';
+import type { PagedResultDto } from '@abp/ng.core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',

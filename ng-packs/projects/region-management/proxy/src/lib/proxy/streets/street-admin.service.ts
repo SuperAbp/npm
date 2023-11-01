@@ -1,13 +1,13 @@
+import type { GetStreetForEditorOutput, GetStreetsInput, StreetCreateDto, StreetListDto, StreetUpdateDto } from './models';
 import { RestService } from '@abp/ng.core';
 import type { ListResultDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
-import type { GetStreetForEditorOutput, GetStreetsInput, StreetCreateDto, StreetListDto, StreetUpdateDto } from '../streets/models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class StreetService {
-  apiName = 'RegionManagement';
+export class StreetAdminService {
+  apiName = 'RegionManagementAdmin';
   
 
   create = (input: StreetCreateDto) =>

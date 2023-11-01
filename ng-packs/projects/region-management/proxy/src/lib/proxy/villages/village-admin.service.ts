@@ -1,13 +1,13 @@
+import type { GetVillageForEditorOutput, GetVillagesInput, VillageCreateDto, VillageListDto, VillageUpdateDto } from './models';
 import { RestService } from '@abp/ng.core';
 import type { ListResultDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
-import type { GetVillageForEditorOutput, GetVillagesInput, VillageCreateDto, VillageListDto, VillageUpdateDto } from '../villages/models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class VillageService {
-  apiName = 'RegionManagement';
+export class VillageAdminService {
+  apiName = 'RegionManagementAdmin';
   
 
   create = (input: VillageCreateDto) =>

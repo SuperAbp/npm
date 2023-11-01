@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   GetVillageForEditorOutput,
-  VillageService,
+  VillageAdminService,
 } from '@super-abp/ng.region-management/proxy';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -37,7 +37,7 @@ export class RegionVillageEditComponent {
     private messageService: NzMessageService,
     private localizationService: LocalizationService,
     private fb: FormBuilder,
-    private villageService: VillageService
+    private villageService: VillageAdminService
   ) {}
 
   ngOnInit(): void {

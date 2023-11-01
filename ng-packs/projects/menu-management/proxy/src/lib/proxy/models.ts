@@ -17,7 +17,8 @@ export interface GetMenusInput extends PagedAndSortedResultRequestDto {
   name?: string;
 }
 
-export interface MenuCreateDto extends MenuCreateOrUpdateDtoBase {}
+export interface MenuCreateDto extends MenuCreateOrUpdateDtoBase {
+}
 
 export interface MenuCreateOrUpdateDtoBase {
   name?: string;
@@ -48,4 +49,5 @@ export interface MenuTreeNodeDto extends EntityDto<string> {
   isLeaf: boolean;
 }
 
-export interface MenuUpdateDto extends MenuCreateOrUpdateDtoBase {}
+export interface MenuUpdateDto extends MenuCreateOrUpdateDtoBase {
+}

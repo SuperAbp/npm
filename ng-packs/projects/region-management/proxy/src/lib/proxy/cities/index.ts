@@ -1,2 +1,2 @@
+export * from './city-admin.service';
 export * from './models';
-export * from './city.service'

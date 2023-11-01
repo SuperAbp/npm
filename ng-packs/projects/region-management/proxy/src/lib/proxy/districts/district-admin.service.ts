@@ -1,13 +1,13 @@
+import type { DistrictCreateDto, DistrictListDto, DistrictUpdateDto, GetDistrictForEditorOutput, GetDistrictsInput } from './models';
 import { RestService } from '@abp/ng.core';
 import type { ListResultDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';
-import type { DistrictCreateDto, DistrictListDto, DistrictUpdateDto, GetDistrictForEditorOutput, GetDistrictsInput } from '../districts/models';
 
 @Injectable({
   providedIn: 'root',
 })
-export class DistrictService {
-  apiName = 'RegionManagement';
+export class DistrictAdminService {
+  apiName = 'RegionManagementAdmin';
   
 
   create = (input: DistrictCreateDto) =>

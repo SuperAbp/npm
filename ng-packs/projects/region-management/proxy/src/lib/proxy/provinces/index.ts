@@ -1,2 +1,2 @@
 export * from './models';
-export * from './province.service'
+export * from './province-admin.service';
