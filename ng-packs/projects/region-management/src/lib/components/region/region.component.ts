@@ -20,10 +20,10 @@ import {
   CityAdminService,
   DistrictAdminService,
   ProvinceAdminService,
+  RegionLevel,
   StreetAdminService,
   VillageAdminService,
 } from '@super-abp/ng.region-management/proxy';
-import { RegionLevel } from 'projects/region-management/proxy/src/lib/proxy/region-level.enum';
 
 class RegionTempDto {
   id?: string;
