@@ -86,19 +86,19 @@ export class MenuManagementComponent implements OnInit {
                     }));
                   })
                 ),
-            expandChange: (e: NzFormatEmitEvent) =>
-              this.menuService
-                .getChildren(e.node.key)
-                .pipe(map((res: any) => res.items))
-                .pipe(
-                  map((list: any) => {
-                    return list.map((menu: MenuTreeNodeDto) => ({
-                      title: menu.name,
-                      key: menu.id.toString(),
-                      isLeaf: menu.isLeaf,
-                    }));
-                  })
-                ),
+            // expandChange: (e: NzFormatEmitEvent) =>
+            //   this.menuService
+            //     .getChildren(e.node.key)
+            //     .pipe(map((res: any) => res.items))
+            //     .pipe(
+            //       map((list: any) => {
+            //         return list.map((menu: MenuTreeNodeDto) => ({
+            //           title: menu.name,
+            //           key: menu.id.toString(),
+            //           isLeaf: menu.isLeaf,
+            //         }));
+            //       })
+            //     ),
           } as SFTreeSelectWidgetSchema,
         },
       },
