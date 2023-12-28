@@ -22,15 +22,15 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 @Component({
   selector: 'super-abp-permission-management',
   templateUrl: './permission-management.component.html',
-  standalone: true,
-  imports: [
-    CoreModule,
-    NzButtonModule,
-    NzTreeModule,
-    NzCardModule,
-    NzSpinModule,
-    NzModalModule,
-  ],
+  // standalone: true,
+  // imports: [
+  //   CoreModule,
+  //   NzButtonModule,
+  //   NzTreeModule,
+  //   NzCardModule,
+  //   NzSpinModule,
+  //   NzModalModule,
+  // ],
 })
 export class PermissionManagementComponent implements OnInit {
   @Input()
