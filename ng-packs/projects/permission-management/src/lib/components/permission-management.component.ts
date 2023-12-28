@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { NzModalRef } from 'ng-zorro-antd/modal';
+import { NzModalModule, NzModalRef } from 'ng-zorro-antd/modal';
 import {
   NzFormatEmitEvent,
   NzTreeComponent,
+  NzTreeModule,
   NzTreeNode,
   NzTreeNodeOptions,
 } from 'ng-zorro-antd/tree';
@@ -13,10 +14,23 @@ import {
   PermissionsService,
   ProviderInfoDto,
 } from '@super-abp/ng.permission-management/proxy';
+import { CoreModule } from '@abp/ng.core';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @Component({
   selector: 'super-abp-permission-management',
   templateUrl: './permission-management.component.html',
+  standalone: true,
+  imports: [
+    CoreModule,
+    NzButtonModule,
+    NzTreeModule,
+    NzCardModule,
+    NzSpinModule,
+    NzModalModule,
+  ],
 })
 export class PermissionManagementComponent implements OnInit {
   @Input()

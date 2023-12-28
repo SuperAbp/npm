@@ -1,12 +1,23 @@
-import { LocalizationService, PermissionService } from '@abp/ng.core';
+import {
+  CoreModule,
+  LocalizationService,
+  PermissionService,
+} from '@abp/ng.core';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { STChange, STColumn, STComponent, STPage } from '@delon/abc/st';
+import {
+  STChange,
+  STColumn,
+  STComponent,
+  STModule,
+  STPage,
+} from '@delon/abc/st';
 import { SFSchema } from '@delon/form';
 import { ModalHelper } from '@delon/theme';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {
   NzFormatEmitEvent,
   NzTreeComponent,
+  NzTreeModule,
   NzTreeNode,
   NzTreeNodeOptions,
 } from 'ng-zorro-antd/tree';
@@ -24,6 +35,10 @@ import {
   StreetAdminService,
   VillageAdminService,
 } from '@super-abp/ng.region-management/proxy';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { PageHeaderModule } from '@delon/abc/page-header';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzGridModule } from 'ng-zorro-antd/grid';
 
 class RegionTempDto {
   id?: string;
@@ -35,6 +50,16 @@ class RegionTempDto {
 @Component({
   selector: 'super-abp-region',
   templateUrl: './region.component.html',
+  standalone: true,
+  imports: [
+    CoreModule,
+    NzCardModule,
+    STModule,
+    PageHeaderModule,
+    NzButtonModule,
+    NzGridModule,
+    NzTreeModule,
+  ],
 })
 export class RegionComponent implements OnInit {
   proinces: NzTreeNodeOptions[] | NzTreeNode[];
@@ -322,7 +347,15 @@ export class RegionComponent implements OnInit {
   }
 
   nzEvent(event: NzFormatEmitEvent): void {
+    if (event.keys.length == 0) {
+      this.regionLevel = RegionLevel.Province;
+      this.getList();
+      return;
+    }
     const key = event.keys[event.keys.length - 1];
+    if (!key) {
+      return;
+    }
     this.setLevel(event.node.level);
     const node = event.node;
     if (event.eventName === 'expand') {

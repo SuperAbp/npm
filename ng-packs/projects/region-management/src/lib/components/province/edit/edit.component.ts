@@ -1,17 +1,35 @@
-import { LocalizationService } from '@abp/ng.core';
+import { CoreModule, LocalizationService } from '@abp/ng.core';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { STModule } from '@delon/abc/st';
 import {
   GetProvinceForEditorOutput,
   ProvinceAdminService,
 } from '@super-abp/ng.region-management/proxy';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { finalize, tap } from 'rxjs';
 
 @Component({
   selector: 'super-abp-region-province-edit',
   templateUrl: './edit.component.html',
+  standalone: true,
+  imports: [
+    CoreModule,
+    NzFormModule,
+    NzInputModule,
+    NzSpinModule,
+    NzButtonModule,
+  ],
 })
 export class RegionProvinceEditComponent {
   @Input()

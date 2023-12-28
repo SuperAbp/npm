@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { AlainThemeModule } from '@delon/theme';
 import { DelonACLModule } from '@delon/acl';
 import { DelonFormModule } from '@delon/form';
-import { CoreModule as AbpCoreModule } from '@abp/ng.core';
 
 import { SHARED_DELON_MODULES } from './shared-delon.module';
 import { SHARED_ZORRO_MODULES } from './shared-zorro.module';
@@ -25,12 +24,11 @@ const DIRECTIVES: Array<Type<void>> = [];
 
 @NgModule({
   imports: [
-    AbpCoreModule,
     CommonModule,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    AlainThemeModule.forChild(),
+    AlainThemeModule,
     DelonACLModule,
     DelonFormModule,
     ...SHARED_DELON_MODULES,
@@ -44,7 +42,6 @@ const DIRECTIVES: Array<Type<void>> = [];
     ...DIRECTIVES
   ],
   exports: [
-    AbpCoreModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

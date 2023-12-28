@@ -15,10 +15,29 @@ import {
   IdentityUserDto,
   IdentityUserService,
 } from '@super-abp/ng.identity/proxy';
+import { CoreModule } from '@abp/ng.core';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 @Component({
   selector: 'super-abp-identity-users-edit',
   templateUrl: './edit.component.html',
+  // standalone: true,
+  // imports: [
+  //   CoreModule,
+  //   NzSpinModule,
+  //   NzFormModule,
+  //   NzButtonModule,
+  //   NzCheckboxModule,
+  //   NzInputModule,
+  //   NzMessageModule,
+  //   NzTabsModule,
+  // ],
 })
 export class IdentityUserEditComponent implements OnInit {
   @Input()

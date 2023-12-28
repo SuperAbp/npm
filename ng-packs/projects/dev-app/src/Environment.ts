@@ -3,8 +3,8 @@ import { Environment as delonEnv } from '@delon/theme';
 
 export interface Environment extends delonEnv, abpEnv {
   resource: {
-    mediaUrl;
-    userUrl;
-    erpUrl;
+    mediaUrl: string;
+    userUrl: string;
+    erpUrl: string;
   };
 }

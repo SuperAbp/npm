@@ -18,10 +18,14 @@
     nzLayout="vertical"
   >
     <nz-form-item>
-      <nz-form-label>
+      <nz-form-label nzRequired>
         {{ "SuperAbpRegionManagement::Name" | abpLocalization }}
       </nz-form-label>
-      <nz-form-control>
+      <nz-form-control
+        nzHasFeedback
+        [nzValidatingTip]="'AbpValidation::Validating' | abpLocalization"
+        [nzErrorTip]="nameErrorTpl"
+      >
         <input
           formControlName="name"
           nz-input
@@ -31,13 +35,22 @@
                 : ('SuperAbpRegionManagement::Name' | abpLocalization)
           "
         />
+        <ng-template #nameErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">
+            {{ "AbpValidation::ThisFieldIsRequired." | abpLocalization }}
+          </ng-container>
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label>
+      <nz-form-label nzRequired>
         {{ "SuperAbpRegionManagement::Code" | abpLocalization }}
       </nz-form-label>
-      <nz-form-control>
+      <nz-form-control
+        nzHasFeedback
+        [nzValidatingTip]="'AbpValidation::Validating' | abpLocalization"
+        [nzErrorTip]="codeErrorTpl"
+      >
         <input
           formControlName="code"
           nz-input
@@ -47,6 +60,11 @@
                 : ('SuperAbpRegionManagement::Code' | abpLocalization)
           "
         />
+        <ng-template #codeErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">
+            {{ "AbpValidation::ThisFieldIsRequired." | abpLocalization }}
+          </ng-container>
+        </ng-template>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>

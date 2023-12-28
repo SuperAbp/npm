@@ -1,4 +1,4 @@
-import { LocalizationService } from '@abp/ng.core';
+import { CoreModule, LocalizationService } from '@abp/ng.core';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
@@ -6,13 +6,25 @@ import {
   GetCityForEditorOutput,
   GetDistrictForEditorOutput,
 } from '@super-abp/ng.region-management/proxy';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { finalize, tap } from 'rxjs';
 
 @Component({
   selector: 'super-abp-region-district-edit',
   templateUrl: './edit.component.html',
+  standalone: true,
+  imports: [
+    CoreModule,
+    NzFormModule,
+    NzInputModule,
+    NzSpinModule,
+    NzButtonModule,
+  ],
 })
 export class RegionDistrictEditComponent {
   @Input()

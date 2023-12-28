@@ -1,13 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { STPage, STComponent, STColumn, STChange } from '@delon/abc/st';
+import {
+  STPage,
+  STComponent,
+  STColumn,
+  STChange,
+  STModule,
+} from '@delon/abc/st';
 import {
   SFSchema,
   SFDateWidgetSchema,
   SFSelectWidgetSchema,
+  DelonFormModule,
 } from '@delon/form';
 import { map, tap } from 'rxjs/operators';
 import { ModalHelper } from '@delon/theme';
-import { LocalizationService } from '@abp/ng.core';
+import { CoreModule, LocalizationService } from '@abp/ng.core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { formatDate } from '@angular/common';
 import { addDays } from 'date-fns';
@@ -18,11 +25,25 @@ import {
   AuditLogService,
   GetAuditLogsInput,
 } from '@super-abp/ng.audit-logging/proxy';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { PageHeaderModule } from '@delon/abc/page-header';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
 
 @Component({
   selector: 'super-abp-audit-logging',
   templateUrl: './audit-logging.component.html',
   styles: [],
+  standalone: true,
+  imports: [
+    CoreModule,
+    NzButtonModule,
+    NzCardModule,
+    STModule,
+    PageHeaderModule,
+    DelonFormModule,
+    NzBadgeModule,
+  ],
 })
 export class AuditLoggingComponent implements OnInit {
   logs: AuditLogListDto[];

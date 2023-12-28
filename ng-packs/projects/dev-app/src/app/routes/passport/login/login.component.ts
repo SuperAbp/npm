@@ -1,21 +1,42 @@
 import { AuthService } from '@abp/ng.core';
-import { ChangeDetectionStrategy, Component, Inject, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { StartupService } from '@core';
 import { DA_SERVICE_TOKEN, ITokenService, SocialService } from '@delon/auth';
-import { _HttpClient } from '@delon/theme';
+import { I18nPipe, _HttpClient } from '@delon/theme';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'passport-login',
-  template: '',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.less'],
   providers: [SocialService],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [
+    RouterLink,
+    ReactiveFormsModule,
+    I18nPipe,
+    NzCheckboxModule,
+    NzTabsModule,
+    NzAlertModule,
+    NzFormModule,
+    NzInputModule,
+    NzButtonModule,
+    NzToolTipModule,
+    NzIconModule,
+  ],
 })
 export class UserLoginComponent {
-  get hasLoggedIn(): boolean {
-    return this.oAuthService.hasValidAccessToken();
-  }
   constructor(
     private router: Router,
     @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
@@ -26,7 +47,7 @@ export class UserLoginComponent {
     if (this.hasLoggedIn) {
       this.tokenService.set({
         token: oAuthService.getAccessToken(),
-        expired: this.oAuthService.getAccessTokenExpiration()
+        expired: this.oAuthService.getAccessTokenExpiration(),
       });
       this.startupSrv.load().subscribe(() => {
         let url = this.tokenService.referrer?.url || '/';
@@ -38,5 +59,10 @@ export class UserLoginComponent {
     } else {
       this.authService.navigateToLogin();
     }
+  }
+
+  // #region fields
+  get hasLoggedIn(): boolean {
+    return this.oAuthService.hasValidAccessToken();
   }
 }

@@ -1,17 +1,29 @@
-import { LocalizationService } from '@abp/ng.core';
+import { CoreModule, LocalizationService } from '@abp/ng.core';
 import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   GetStreetForEditorOutput,
   StreetAdminService,
 } from '@super-abp/ng.region-management/proxy';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { finalize, tap } from 'rxjs';
 
 @Component({
   selector: 'super-abp-region-street-edit',
   templateUrl: './edit.component.html',
+  standalone: true,
+  imports: [
+    CoreModule,
+    NzFormModule,
+    NzInputModule,
+    NzSpinModule,
+    NzButtonModule,
+  ],
 })
 export class RegionStreetEditComponent {
   @Input()
@@ -32,8 +44,6 @@ export class RegionStreetEditComponent {
 
   constructor(
     private modal: NzModalRef,
-    private messageService: NzMessageService,
-    private localizationService: LocalizationService,
     private fb: FormBuilder,
     private streetService: StreetAdminService
   ) {}
@@ -82,7 +92,7 @@ export class RegionStreetEditComponent {
           ...this.form.value,
         })
         .pipe(
-          tap((response) => {
+          tap(() => {
             this.modal.close(true);
           }),
           finalize(() => (this.isConfirmLoading = false))
@@ -97,7 +107,7 @@ export class RegionStreetEditComponent {
           districtId: this.districtId,
         })
         .pipe(
-          tap((response) => {
+          tap(() => {
             this.modal.close(true);
           }),
           finalize(() => (this.isConfirmLoading = false))

@@ -116,6 +116,9 @@ a.ant-typography, .ant-typography a {color: @primary-color;}
 .ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected .ant-picker-calendar-date .ant-picker-calendar-date-value, .ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected:hover .ant-picker-calendar-date .ant-picker-calendar-date-value, .ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected .ant-picker-calendar-date-today .ant-picker-calendar-date-value, .ant-picker-calendar-full .ant-picker-panel .ant-picker-cell-selected:hover .ant-picker-calendar-date-today .ant-picker-calendar-date-value {color: @primary-color;}
 .ant-picker-calendar-full .ant-picker-panel .ant-picker-calendar-date-today {border-color: @primary-color;}
 .ant-result-info .ant-result-icon > .anticon {color: @primary-color;}
+.ant-cron-expression-input-group-focus {border-color: @primary-color;}
+.ant-cron-expression-label-foucs {color: @primary-color;}
+.ant-color-picker-trigger:hover {border-color: @primary-color;}
 .setting-drawer__handle {background: @primary-color;}
 .theme-btn-active {color: @primary-color;}
 .theme-btn .ant-avatar:hover {color: @primary-color;}
@@ -133,6 +136,7 @@ a.ant-typography, .ant-typography a {color: @primary-color;}
 .tag-select__trigger {color: @primary-color;}
 .loading-default__icon {color: @primary-color;}
 .loading-default__text {color: @primary-color;}
+.cell__primary {color: @primary-color;}
 .g2-mini-progress__value {background-color: @primary-color;}
 .alain-default__header {background-color: @primary-color;}
 .sidebar-nav__item-link:hover {color: @primary-color;}
@@ -1886,7 +1890,6 @@ this.tinycolor = tinycolor;})()`;}
 @sf-optional-margin: 2px;
 @sf-inline-ant-select-min-width: 100px;
 @sf-widget-array-type-card-remove-bg: rgba(0, 0, 0, 0.26);
-@sf-widget-array-transfer-bg: #fff;
 @yn-yes-color: @blue-6;
 @yn-no-color: @grey-7;
 @setting-drawer-enabled: true;
@@ -1926,6 +1929,8 @@ this.tinycolor = tinycolor;})()`;}
 @alain-default-header-icon-fs: 18px;
 @alain-default-header-logo-max-height: 36px;
 @alain-default-header-box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+@alain-default-header-nav-bg-hover: rgba(255, 255, 255, 0.2);
+@alain-default-header-top-menu-item-padding: 0 16px;
 @alain-default-aside-wd: 200px;
 @alain-default-aside-bg: #fff;
 @alain-default-aside-scrollbar-width: 0;
@@ -1942,7 +1947,6 @@ this.tinycolor = tinycolor;})()`;}
 @alain-default-aside-nav-group-text-color: @text-color-secondary;
 @alain-default-aside-nav-selected-text-color: @primary-color;
 @alain-default-aside-nav-selected-bg: #fcfcfc;
-@alain-default-aside-nav-item-height: 38px;
 @alain-default-aside-nav-depth1-padding-left: @layout-gutter * 3;
 @alain-default-aside-nav-depth2-padding-left: @layout-gutter * 4;
 @alain-default-aside-nav-depth3-padding-left: @layout-gutter * 5;
@@ -1951,6 +1955,7 @@ this.tinycolor = tinycolor;})()`;}
 @alain-default-aside-collapsed-wd: @layout-gutter * 8;
 @alain-default-aside-collapsed-nav-fs: 24px;
 @alain-default-aside-collapsed-nav-img-wh: 24px;
+@alain-default-aside-collapsed-padding: (@layout-gutter * 2) 0;
 @alain-default-content-heading-bg: #fafbfc;
 @alain-default-content-heading-border: #efe3e5;
 @alain-default-content-padding: @layout-gutter * 3;
@@ -1967,6 +1972,7 @@ this.tinycolor = tinycolor;})()`;}
 @st-resizable-handle-width: 1px;
 @st-resizable-handle-height: 60%;
 @st-resizable-handle-color: @border-color-base;
+@st-no-column-height: 100px;
 @sv-label-color: rgba(0, 0, 0, 0.5);
 @sv-label-optional-color: rgba(0, 0, 0, 0.35);
 @sv-detail-color: @text-color;
@@ -2000,6 +2006,7 @@ this.tinycolor = tinycolor;})()`;}
 @page-header-bg: #fff;
 @page-header-padding: 16px 32px 0 32px;
 @page-header-wide: 1200px;
+@page-header-title-sub-color: fade(@heading-color, 40%);
 @quick-menu-border-width: 1px;
 @quick-menu-ctrl-hw: 50px;
 @quick-menu-border-color: #fff;
@@ -2023,3 +2030,10 @@ this.tinycolor = tinycolor;})()`;}
 @onboarding-zindex: 99999;
 @tag-select-margin: 16px;
 @tag-select-item-margin-right: 24px;
+@cell-default-color: @text-color-secondary;
+@cell-large: 18px;
+@cell-small: 12px;
+@cell-unit-color: @text-color-secondary;
+@cell-unit-font-size: 12px;
+@cell-img-space: 4px;
+@cell-link-disabled-color: @text-color;
