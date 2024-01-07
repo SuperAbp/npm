@@ -11,40 +11,6 @@
   </ng-template>
 </page-header>
 <nz-card *ngIf="columns">
-  <!-- <div class="mb-md">
-    <input
-      nz-input
-      [(ngModel)]="params.name"
-      name="name"
-      [placeholder]="
-        'SuperAbpMenuManagement::PlaceHolder'
-          | abpLocalization : ('SuperAbpMenuManagement::Name' | abpLocalization)
-      "
-      style="width: 160px"
-      class="mr-sm"
-    />
-    <nz-tree-select
-      nzAllowClear
-      [(ngModel)]="params.parentId"
-      [nzPlaceHolder]="
-        'SuperAbpMenuManagement::ChoosePlaceHolder'
-          | abpLocalization
-            : ('SuperAbpMenuManagement::Parent' | abpLocalization)
-      "
-      [nzDropdownMatchSelectWidth]="false"
-      class="mr-sm"
-      [nzNodes]="parents"
-      [nzAsyncData]="true"
-      (nzExpandChange)="onExpandChange($event)"
-    >
-    </nz-tree-select>
-    <button nz-button (click)="st.load(1)" [nzType]="'primary'">
-      {{ "SuperAbpMenuManagement::Search" | abpLocalization }}
-    </button>
-    <button nz-button (click)="reset()">
-      {{ "SuperAbpMenuManagement::Reset" | abpLocalization }}
-    </button>
-  </div> -->
   <sf
     mode="search"
     [schema]="searchSchema"

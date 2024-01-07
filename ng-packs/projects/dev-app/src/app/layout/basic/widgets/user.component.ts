@@ -1,15 +1,17 @@
-import { AuthService } from '@abp/ng.core';
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
-import { SettingsService, User } from '@delon/theme';
-import { tap } from 'rxjs';
+import { DA_SERVICE_TOKEN } from '@delon/auth';
+import { I18nPipe, SettingsService, User } from '@delon/theme';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
 
 @Component({
   selector: 'header-user',
   template: `
     <div class="alain-default__nav-item d-flex align-items-center px-sm" nz-dropdown nzPlacement="bottomRight" [nzDropdownMenu]="userMenu">
-      <nz-avatar [nzSrc]="user.avatar" nzSize="small" class="mr-sm"></nz-avatar>
+      <nz-avatar [nzSrc]="user.avatar" nzSize="small" class="mr-sm" />
       {{ user.name }}
     </div>
     <nz-dropdown-menu #userMenu="nzDropdownMenu">
@@ -34,28 +36,20 @@ import { tap } from 'rxjs';
       </div>
     </nz-dropdown-menu>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [NzDropDownModule, NzMenuModule, NzIconModule, I18nPipe, NzAvatarModule]
 })
 export class HeaderUserComponent {
+  private readonly settings = inject(SettingsService);
+  private readonly router = inject(Router);
+  private readonly tokenService = inject(DA_SERVICE_TOKEN);
   get user(): User {
     return this.settings.user;
   }
 
-  constructor(
-    private authService: AuthService,
-    private settings: SettingsService,
-    private router: Router,
-    @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService
-  ) {}
-
   logout(): void {
-    this.authService
-      .logout()
-      .pipe(
-        tap(() => {
-          this.tokenService.clear();
-        })
-      )
-      .subscribe();
+    this.tokenService.clear();
+    this.router.navigateByUrl(this.tokenService.login_url!);
   }
 }

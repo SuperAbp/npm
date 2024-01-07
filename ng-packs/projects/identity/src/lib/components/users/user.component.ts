@@ -1,10 +1,20 @@
-import { LocalizationService, PermissionService } from '@abp/ng.core';
+import {
+  CoreModule,
+  LocalizationService,
+  PermissionService,
+} from '@abp/ng.core';
 import { Component, Injector, OnInit, ViewChild } from '@angular/core';
-import { STChange, STColumn, STComponent, STPage } from '@delon/abc/st';
+import {
+  STChange,
+  STColumn,
+  STComponent,
+  STModule,
+  STPage,
+} from '@delon/abc/st';
 import { ModalHelper, _HttpClient } from '@delon/theme';
 import { tap } from 'rxjs/operators';
 import { IdentityUserEditComponent } from './edit/edit.component';
-import { SFSchema } from '@delon/form';
+import { DelonFormModule, SFSchema } from '@delon/form';
 import {
   GetIdentityUsersInput,
   IdentityUserDto,
@@ -12,10 +22,26 @@ import {
 } from '@super-abp/ng.identity/proxy';
 import { ExtensionsService } from '../../services/extensions.service';
 import { eIdentityComponents } from '../../enums';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzMessageModule } from 'ng-zorro-antd/message';
+import { TreeSelectWidgetModule } from '@delon/form/widgets/tree-select';
+import { PageHeaderModule } from '@delon/abc/page-header';
 
 @Component({
   selector: 'super-abp-identity-users',
   templateUrl: './user.component.html',
+  // standalone: true,
+  // imports: [
+  //   CoreModule,
+  //   NzCardModule,
+  //   STModule,
+  //   NzButtonModule,
+  //   NzMessageModule,
+  //   TreeSelectWidgetModule,
+  //   PageHeaderModule,
+  //   DelonFormModule,
+  // ],
 })
 export class IdentityUserComponent implements OnInit {
   users: IdentityUserDto[];
@@ -105,10 +131,8 @@ export class IdentityUserComponent implements OnInit {
    */
   resetParameters(): GetIdentityUsersInput {
     return {
-      filter: '',
       skipCount: 0,
       maxResultCount: 10,
-      sorting: 'Id Desc',
     };
   }
   change(e: STChange) {

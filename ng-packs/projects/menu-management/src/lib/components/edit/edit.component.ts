@@ -1,7 +1,7 @@
-import { LocalizationService } from '@abp/ng.core';
+import { CoreModule, LocalizationService } from '@abp/ng.core';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import {
   NzFormatEmitEvent,
@@ -14,6 +14,13 @@ import {
   MenuListDto,
   MenuService,
 } from '@super-abp/ng.menu-management/proxy';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 @Component({
   selector: 'super-abp-menu-management-edit',
@@ -25,10 +32,22 @@ import {
       }
     `,
   ],
+  standalone: true,
+  imports: [
+    CoreModule,
+    NzSpinModule,
+    NzTreeSelectModule,
+    NzFormModule,
+    NzButtonModule,
+    NzCheckboxModule,
+    NzInputModule,
+    NzInputNumberModule,
+    NzMessageModule,
+  ],
 })
 export class MenuManagementEditComponent implements OnInit {
   @Input()
-  menuId: number;
+  menuId: string;
   menu: GetMenuForEditorOutput;
   menus: NzTreeNodeOptions[] = [];
 
@@ -102,7 +121,7 @@ export class MenuManagementEditComponent implements OnInit {
         });
       });
   }
-  getChildren(list: MenuListDto[], parentId?: number): NzTreeNodeOptions[] {
+  getChildren(list: MenuListDto[], parentId?: string): NzTreeNodeOptions[] {
     const childrenMenu: NzTreeNodeOptions[] = [];
     list
       .filter((l) => l.parentId === parentId)
@@ -124,10 +143,9 @@ export class MenuManagementEditComponent implements OnInit {
       this.menuService
         .getList({
           name: '',
-          parentId: Number(node.key),
+          parentId: node.key,
           skipCount: 0,
           maxResultCount: 100,
-          sorting: 'Sort DESC',
         })
         .pipe(map((res: any) => res.items))
         .pipe(

@@ -3,14 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { IdentityRoleComponent } from './components/roles/role.component';
 import { IdentityUserComponent } from './components/users/user.component';
 import { PermissionGuard } from '@abp/ng.core';
-import { JWTGuard } from '@delon/auth';
+import { authJWTCanActivate } from '@delon/auth';
 import { IdentityExtensionsGuard } from './guards';
 
 const routes: Routes = [
   {
     path: 'user',
     component: IdentityUserComponent,
-    canActivate: [JWTGuard, PermissionGuard, IdentityExtensionsGuard],
+    canActivate: [authJWTCanActivate, PermissionGuard, IdentityExtensionsGuard],
     data: {
       requiredPolicy: 'AbpIdentity.Users',
     },

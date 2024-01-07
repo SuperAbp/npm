@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { CanActivate } from '@angular/router';
+
 import { GET_DEFAULT_ROLES_ENTITY_PROPS } from '../defaults/default-roles-entity-props';
 import { GET_DEFAULT_USERS_ENTITY_PROPS } from '../defaults/default-users-entity-props';
 import { eIdentityComponents } from '../enums';
@@ -9,7 +9,7 @@ import { IDENTITY_ENTITY_PROP_CONTRIBUTORS } from '../tokens';
 import { mergeWithDefaultProps } from '../utils/props.util';
 
 @Injectable()
-export class IdentityExtensionsGuard implements CanActivate {
+export class IdentityExtensionsGuard  {
   constructor(private injector: Injector) {}
 
   canActivate(): boolean {

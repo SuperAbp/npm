@@ -1,1 +1,22 @@
-<p>region works!</p>
+<page-header [action]="action">
+  <ng-template #action>
+    <button nz-button nzType="primary" (click)="add()">
+      {{ "SuperAbpRegionManagement::NewRegion" | abpLocalization }}
+    </button>
+  </ng-template>
+</page-header>
+<div nz-row [nzGutter]="24">
+  <div nz-col nzSpan="4">
+    <nz-card>
+      <nz-tree #nzTreeComponent [nzData]="proinces" nzAsyncData (nzClick)="nzEvent($event)"
+        (nzExpandChange)="nzEvent($event)"></nz-tree>
+    </nz-card>
+  </div>
+  <div nz-col nzSpan="20">
+    <nz-card>
+      <st #st [data]="regions" [columns]="columns" [loading]="loading" [page]="page" [total]="total"
+        (change)="change($event)" [header]="'SuperAbpRegionManagement::DataStart' | abpLocalization"
+        [footer]="'SuperAbpRegionManagement::DataEnd' | abpLocalization" responsiveHideHeaderFooter></st>
+    </nz-card>
+  </div>
+</div>
