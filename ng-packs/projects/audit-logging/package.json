@@ -7,16 +7,16 @@
     "url": "https://github.com/SuperAbp/npm.git"
   },
   "peerDependencies": {
-    "@abp/ng.core": "~8.0.0",
-    "@angular/common": "^17.0.8",
-    "@angular/core": "^17.0.8",
-    "ng-zorro-antd": "^17.1.0",
-    "@delon/abc": "^17.0.5",
-    "@delon/acl": "^17.0.5",
-    "@delon/auth": "^17.0.5",
-    "@delon/form": "^17.0.5",
-    "@delon/theme": "^17.0.5",
-    "@delon/util": "^17.0.5",
+    "@abp/ng.core": "~9.0.0",
+    "@angular/common": "^18.2.12",
+    "@angular/core": "^18.2.12",
+    "ng-zorro-antd": "^18.2.1",
+    "@delon/abc": "^18.3.0",
+    "@delon/acl": "^18.3.0",
+    "@delon/auth": "^18.3.0",
+    "@delon/form": "^18.3.0",
+    "@delon/theme": "^18.3.0",
+    "@delon/util": "^18.3.0",
     "date-fns": "^3.0.6"
   },
   "dependencies": {
