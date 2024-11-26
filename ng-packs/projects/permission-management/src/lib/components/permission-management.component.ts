@@ -73,46 +73,43 @@ export class PermissionManagementComponent implements OnInit {
             treeNode.key = g.name;
             treeNode.expanded = true;
             treeNode.disabled = true;
-            treeNode.children = this.createPermissionsTreeNodel(g.permissions);
+            treeNode.children = this.createPermissionsTreeNodel(
+              g.permissions,
+              null
+            );
             treeArr.push(treeNode);
           });
+          console.log(treeArr);
           this.permissions = treeArr;
         })
       )
       .subscribe();
   }
-  createPermissionsTreeNodel(permissions: PermissionGrantInfoDto[]): any {
+  createPermissionsTreeNodel(
+    permissions: PermissionGrantInfoDto[],
+    parentName
+  ): any {
     const nodeArr: any[] = [];
     this.unchangedPermissions = this.unchangedPermissions.concat(permissions);
-    permissions
-      .filter((p) => p.parentName === null)
-      .forEach((p) => {
-        const treeNode: any = {};
-        treeNode.title = p.displayName;
-        treeNode.key = p.name;
-        treeNode.disabled = this.isGrantedByOtherProviderName(
-          p.grantedProviders
-        );
-        treeNode.children = [];
-        if (p.isGranted) {
-          this.defaultCheckedKeys.push(p.name);
-        }
-        const chindPermission = permissions.filter(
-          (cp) => cp.parentName === p.name
-        );
-
-        chindPermission.forEach((cpi) => {
-          const treeNodeItem: any = {};
-          treeNodeItem.title = cpi.displayName;
-          treeNodeItem.key = cpi.name;
-          treeNodeItem.isLeaf = true;
-          treeNode.children.push(treeNodeItem);
-          if (cpi.isGranted) {
-            this.defaultCheckedKeys.push(cpi.name);
-          }
-        });
-        nodeArr.push(treeNode);
-      });
+    let tempPermissions = permissions.filter(
+      (p) => p.parentName === parentName
+    );
+    if (tempPermissions.length == 0) {
+      return [];
+    }
+    tempPermissions.forEach((p) => {
+      const treeNode: any = {};
+      treeNode.title = p.displayName;
+      treeNode.key = p.name;
+      treeNode.disabled = this.isGrantedByOtherProviderName(p.grantedProviders);
+      let children = this.createPermissionsTreeNodel(permissions, p.name);
+      treeNode.isLeaf = children.length == 0;
+      treeNode.children = children;
+      if (p.isGranted) {
+        this.defaultCheckedKeys.push(p.name);
+      }
+      nodeArr.push(treeNode);
+    });
     return nodeArr;
   }
 
@@ -148,8 +145,9 @@ export class PermissionManagementComponent implements OnInit {
     this.isConfirmLoading = true;
 
     const changedPermissions = this.unchangedPermissions
-      .filter((unchanged) =>
-        this.nzTreeComponent.getTreeNodeByKey(unchanged.name).isHalfChecked
+      .filter((unchanged) => {
+        return this.nzTreeComponent.getTreeNodeByKey(unchanged.name)
+          .isHalfChecked
           ? this.nzTreeComponent.getTreeNodeByKey(unchanged.name)
               .isHalfChecked === unchanged.isGranted
             ? false
@@ -157,8 +155,8 @@ export class PermissionManagementComponent implements OnInit {
           : this.nzTreeComponent.getTreeNodeByKey(unchanged.name).isChecked ===
             unchanged.isGranted
           ? false
-          : true
-      )
+          : true;
+      })
       .map(({ name, isGranted }) => ({ name, isGranted: !isGranted }));
 
     if (changedPermissions.length > 0) {
@@ -172,6 +170,7 @@ export class PermissionManagementComponent implements OnInit {
         });
     } else {
       this.isConfirmLoading = false;
+      this.modal.close(true);
     }
   }
   getCheckedNodeKey(nodes: NzTreeNode[]): string[] {

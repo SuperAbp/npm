@@ -17,11 +17,8 @@
     [formGroup]="form"
     nzLayout="vertical"
   >
-    <nz-tabset [nzSelectedIndex]="1">
-      <nz-tab
-        [nzTitle]="'AbpIdentity::UserInformations' | abpLocalization"
-        nzDisabled="true"
-      >
+    <nz-tabset>
+      <nz-tab [nzTitle]="'AbpIdentity::UserInformations' | abpLocalization">
         <nz-row>
           <nz-col nzLg="6" nzMd="12" nzSm="24">
             <nz-form-item>

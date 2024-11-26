@@ -4,7 +4,7 @@ import {
   PermissionService,
   CoreModule,
 } from '@abp/ng.core';
-import { Component, Injector, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, OnInit, ViewChild, inject } from '@angular/core';
 import {
   STChange,
   STColumn,
@@ -44,6 +44,13 @@ import { PageHeaderModule } from '@delon/abc/page-header';
   // ],
 })
 export class IdentityRoleComponent implements OnInit {
+  private modal = inject(ModalHelper);
+  private injector = inject(Injector);
+  private localizationService = inject(LocalizationService);
+  private roleService = inject(IdentityRoleService);
+  private permissionService = inject(PermissionService);
+  private extensionsService = inject(ExtensionsService);
+
   roles: IdentityRoleDto[];
   total: number;
   loading = false;
@@ -60,17 +67,10 @@ export class IdentityRoleComponent implements OnInit {
   @ViewChild('st', { static: false }) st: STComponent;
   columns: STColumn[];
 
-  constructor(
-    private modal: ModalHelper,
-    private injector: Injector,
-    private localizationService: LocalizationService,
-    private roleService: IdentityRoleService,
-    private permissionService: PermissionService,
-    private extensionsService: ExtensionsService
-  ) {
+  ngOnInit() {
     const propList = this.extensionsService.entityProps
       .get(eIdentityComponents.Roles)
-      .init(injector).props;
+      .init(this.injector).props;
     let props = propList.toArray();
     props.push({
       title: this.localizationService.instant('AbpIdentity::Actions'),
@@ -113,9 +113,6 @@ export class IdentityRoleComponent implements OnInit {
       ],
     });
     this.columns = props;
-  }
-
-  ngOnInit() {
     this.getList();
   }
   getList() {
@@ -129,12 +126,6 @@ export class IdentityRoleComponent implements OnInit {
         )
       );
   }
-  /**
-   * 重置查询参数
-   *
-   * @return {*}  {GetProductsInput}
-   * @memberof ProductManagementProductComponent
-   */
   resetParameters(): PagedAndSortedResultRequestDto {
     return {
       skipCount: 0,

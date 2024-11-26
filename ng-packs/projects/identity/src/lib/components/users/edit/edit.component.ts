@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, TrackByFunction } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  TrackByFunction,
+  inject,
+} from '@angular/core';
 import {
   AbstractControl,
   FormArray,
@@ -42,6 +48,12 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 export class IdentityUserEditComponent implements OnInit {
   @Input()
   userId: string;
+
+  private modal = inject(NzModalRef);
+  private fb = inject(FormBuilder);
+  private roleService = inject(IdentityRoleService);
+  private userService = inject(IdentityUserService);
+
   user: IdentityUserDto;
   roles: IdentityRoleDto[];
   selectedUserRoles: IdentityRoleDto[];
@@ -51,13 +63,6 @@ export class IdentityUserEditComponent implements OnInit {
   form: FormGroup;
   trackByFn: TrackByFunction<AbstractControl> = (index, item) =>
     Object.keys(item)[0] || index;
-  constructor(
-    private modal: NzModalRef,
-    public http: _HttpClient,
-    private fb: FormBuilder,
-    private roleService: IdentityRoleService,
-    private userService: IdentityUserService
-  ) {}
 
   get roleGroups(): FormGroup[] {
     return (this.form.get('roleNames') as FormArray).controls as FormGroup[];
@@ -65,7 +70,6 @@ export class IdentityUserEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    // pipe:可以实现一些业务逻辑;subscribe:仅用于给模型赋值数据.
 
     if (this.userId) {
       this.userService.get(this.userId).subscribe((userResult) => {
