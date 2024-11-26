@@ -1,5 +1,5 @@
 import { CoreModule, LocalizationService } from '@abp/ng.core';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   GetStreetForEditorOutput,
@@ -35,18 +35,15 @@ export class RegionStreetEditComponent {
   @Input()
   districtId: string;
 
+  private modal = inject(NzModalRef);
+  private fb = inject(FormBuilder);
+  private streetService = inject(StreetAdminService);
   street: GetStreetForEditorOutput;
 
   loading = false;
   isConfirmLoading = false;
 
   form: FormGroup = null;
-
-  constructor(
-    private modal: NzModalRef,
-    private fb: FormBuilder,
-    private streetService: StreetAdminService
-  ) {}
 
   ngOnInit(): void {
     this.loading = true;

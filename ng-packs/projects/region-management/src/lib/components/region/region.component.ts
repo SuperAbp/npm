@@ -3,7 +3,7 @@ import {
   LocalizationService,
   PermissionService,
 } from '@abp/ng.core';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import {
   STChange,
   STColumn,
@@ -62,6 +62,16 @@ class RegionTempDto {
   ],
 })
 export class RegionComponent implements OnInit {
+  private modal = inject(ModalHelper);
+  private messageService = inject(NzMessageService);
+  private localizationService = inject(LocalizationService);
+  private permissionService = inject(PermissionService);
+  private provinceService = inject(ProvinceAdminService);
+  private cityService = inject(CityAdminService);
+  private districtService = inject(DistrictAdminService);
+  private streetService = inject(StreetAdminService);
+  private villageService = inject(VillageAdminService);
+
   proinces: NzTreeNodeOptions[] | NzTreeNode[];
   regions: RegionTempDto[];
 
@@ -77,40 +87,22 @@ export class RegionComponent implements OnInit {
   };
   searchSchema: SFSchema;
   @ViewChild('st', { static: false }) st: STComponent;
-  basicColumns: STColumn[];
+  basicColumns: STColumn[] = [
+    {
+      title: this.localizationService.instant('SuperAbpRegionManagement::Name'),
+      index: 'name',
+    },
+    {
+      title: this.localizationService.instant('SuperAbpRegionManagement::Code'),
+      index: 'code',
+    },
+  ];
   columns: STColumn[];
   @ViewChild('nzTreeComponent', { static: false })
   nzTreeComponent!: NzTreeComponent;
 
-  constructor(
-    private modal: ModalHelper,
-    private messageService: NzMessageService,
-    private localizationService: LocalizationService,
-    private permissionService: PermissionService,
-    private provinceService: ProvinceAdminService,
-    private cityService: CityAdminService,
-    private districtService: DistrictAdminService,
-    private streetService: StreetAdminService,
-    private villageService: VillageAdminService
-  ) {
-    this.basicColumns = [
-      {
-        title: this.localizationService.instant(
-          'SuperAbpRegionManagement::Name'
-        ),
-        index: 'name',
-      },
-      {
-        title: this.localizationService.instant(
-          'SuperAbpRegionManagement::Code'
-        ),
-        index: 'code',
-      },
-    ];
-    this.columns = this.getColumns();
-  }
-
   ngOnInit(): void {
+    this.columns = this.getColumns();
     this.loadProvince();
     this.getList();
   }

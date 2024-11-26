@@ -1,5 +1,5 @@
 import { CoreModule, LocalizationService } from '@abp/ng.core';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   GetVillageForEditorOutput,
@@ -37,20 +37,15 @@ export class RegionVillageEditComponent {
   @Input()
   streetId: string;
 
+  private modal = inject(NzModalRef);
+  private fb = inject(FormBuilder);
+  private villageService = inject(VillageAdminService);
   village: GetVillageForEditorOutput;
 
   loading = false;
   isConfirmLoading = false;
 
   form: FormGroup = null;
-
-  constructor(
-    private modal: NzModalRef,
-    private messageService: NzMessageService,
-    private localizationService: LocalizationService,
-    private fb: FormBuilder,
-    private villageService: VillageAdminService
-  ) {}
 
   ngOnInit(): void {
     this.loading = true;
