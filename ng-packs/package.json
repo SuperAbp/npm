@@ -42,7 +42,7 @@
     "date-fns": "^3.0.6",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.2"
+    "zone.js": "~0.14.3"
   },
   "devDependencies": {
     "@abp/ng.schematics": "~9.0.0",

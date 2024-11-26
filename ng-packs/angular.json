@@ -117,6 +117,10 @@
             "tsConfig": "projects/dev-app/tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              },
               "projects/dev-app/src/favicon.ico",
               "projects/dev-app/src/assets"
             ],
@@ -186,6 +190,10 @@
             "karmaConfig": "projects/dev-app/karma.conf.js",
             "inlineStyleLanguage": "less",
             "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              },
               "projects/dev-app/src/favicon.ico",
               "projects/dev-app/src/assets"
             ],

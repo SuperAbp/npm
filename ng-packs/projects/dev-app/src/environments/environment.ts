@@ -12,29 +12,18 @@ export const environment = {
     logoUrl: '',
   },
   oAuthConfig: {
-    issuer: 'https://localhost:44396/',
+    issuer: 'https://localhost:44386/',
     redirectUri: baseUrl,
-    clientId: 'Demo_App',
+    clientId: 'Exam_Admin_App',
     responseType: 'code',
-    scope: 'offline_access Demo',
+    scope: 'offline_access Exam',
     requireHttps: true,
   },
   apis: {
     default: {
-      url: 'https://localhost:44396',
+      url: 'https://localhost:44388',
       rootNamespace: 'SuperAbp.Demo',
     },
-  },
-  resource: {
-    mediaUrl: 'https://localhost:44388/api/super-abp/media',
-    userUrl: 'https://passport.lzez.com.cn',
-    erpUrl: 'https://erp.ahsanle.cn/',
-  },
-  identity: {
-    url: 'https://passport.lzez.com.cn',
-    loginCallback:
-      'ejaLfSbcqezvj9WGUAxoCzq+GvfAAiXWu/38eLB9fsWP2rA/H6eh4b2Ugp1sUF6v',
-    logoutCallback: 'ejaLfSbcqezvj9WGUAxoC8aQim04tniO',
   },
   api: {
     baseUrl: './',
