@@ -1,6 +1,6 @@
 {
   "name": "ng-packs",
-  "version": "0.2.0",
+  "version": "0.6.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -32,15 +32,15 @@
     "@delon/acl": "^18.3.0",
     "@delon/auth": "^18.3.0",
     "@delon/cache": "^18.3.0",
+    "@delon/chart": "^18.3.0",
     "@delon/form": "^18.3.0",
     "@delon/mock": "^18.3.0",
     "@delon/theme": "^18.3.0",
     "@delon/util": "^18.3.0",
-    "@delon/chart": "^18.3.0",
-    "ng-zorro-antd": "^18.2.1",
-    "screenfull": "^6.0.2",
     "date-fns": "^3.0.6",
+    "ng-zorro-antd": "^18.2.1",
     "rxjs": "~7.8.0",
+    "screenfull": "^6.0.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },

@@ -1,5 +1,5 @@
 import { CoreModule, LocalizationService } from '@abp/ng.core';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -48,6 +48,13 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 export class MenuManagementEditComponent implements OnInit {
   @Input()
   menuId: string;
+
+  private modal = inject(NzModalRef);
+  private messageService = inject(NzMessageService);
+  private localizationService = inject(LocalizationService);
+  private fb = inject(FormBuilder);
+  private menuService = inject(MenuService);
+
   menu: GetMenuForEditorOutput;
   menus: NzTreeNodeOptions[] = [];
 
@@ -55,14 +62,6 @@ export class MenuManagementEditComponent implements OnInit {
   isConfirmLoading = false;
 
   form: FormGroup = null;
-
-  constructor(
-    private modal: NzModalRef,
-    private messageService: NzMessageService,
-    private localizationService: LocalizationService,
-    private fb: FormBuilder,
-    private menuService: MenuService
-  ) {}
 
   ngOnInit(): void {
     this.loading = true;
