@@ -77,6 +77,8 @@ export class TenantManagementEditComponent implements OnInit {
     if (this.tenantId) {
       this.form.get('adminEmailAddress').disable();
       this.form.get('adminPassword').disable();
+    } else {
+      this.form.get('concurrencyStamp').disable();
     }
   }
 
