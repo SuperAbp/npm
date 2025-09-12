@@ -1,0 +1,87 @@
+<div class="modal-header">
+  <div class="modal-title" *ngIf="form && !tenantId">
+    {{ "AbpTenantManagement::NewTenant" | abpLocalization }}
+  </div>
+  <div class="modal-title" *ngIf="form && tenantId">
+    {{ "AbpTenantManagement::Edit" | abpLocalization }} {{ tenant.name }}
+  </div>
+</div>
+<div class="modal-body">
+  <ng-template #loaderRef>
+    <nz-spin class="modal-spin"></nz-spin>
+  </ng-template>
+
+  <form
+    *ngIf="form; else loaderRef"
+    nz-form
+    (ngSubmit)="save()"
+    [formGroup]="form"
+    nzLayout="vertical"
+  >
+    <nz-form-item>
+      <nz-form-label nzRequired>{{
+        "AbpTenantManagement::DisplayName:TenantName" | abpLocalization
+      }}</nz-form-label>
+      <nz-form-control
+        nzHasFeedback
+        [nzValidatingTip]="'AbpTenantManagement::Validating' | abpLocalization"
+        [nzErrorTip]="nameErrorTpl"
+      >
+        <input formControlName="name" nz-input />
+        <ng-template #nameErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">
+            {{ "AbpTenantManagement::ThisFieldIsRequired" | abpLocalization }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    @if(!this.tenantId){
+    <nz-form-item>
+      <nz-form-label nzRequired>{{
+        "AbpTenantManagement::DisplayName:AdminEmailAddress" | abpLocalization
+      }}</nz-form-label>
+      <nz-form-control
+        nzHasFeedback
+        [nzValidatingTip]="'AbpTenantManagement::Validating' | abpLocalization"
+        [nzErrorTip]="nameErrorTpl"
+      >
+        <input formControlName="adminEmailAddress" nz-input />
+        <ng-template #nameErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">
+            {{ "AbpTenantManagement::ThisFieldIsRequired" | abpLocalization }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzRequired>{{
+        "AbpTenantManagement::DisplayName:AdminPassword" | abpLocalization
+      }}</nz-form-label>
+      <nz-form-control
+        nzHasFeedback
+        [nzValidatingTip]="'AbpTenantManagement::Validating' | abpLocalization"
+        [nzErrorTip]="nameErrorTpl"
+      >
+        <input formControlName="adminPassword" nz-input type="password" />
+        <ng-template #nameErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">
+            {{ "AbpTenantManagement::ThisFieldIsRequired" | abpLocalization }}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    }
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    nz-button
+    nzType="primary"
+    *ngIf="form"
+    [disabled]="!form.valid"
+    [nzLoading]="isConfirmLoading"
+    (click)="save()"
+  >
+    {{ "AbpTenantManagement::Submit" | abpLocalization }}
+  </button>
+</div>

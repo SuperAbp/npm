@@ -26,6 +26,11 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'tenant-management',
+        loadChildren: () =>
+          import('@super-abp/ng.tenant-management').then((m) => m.routes),
+      },
+      {
         path: 'menu-management',
         loadChildren: () =>
           import('@super-abp/ng.menu-management').then((m) => m.routes),

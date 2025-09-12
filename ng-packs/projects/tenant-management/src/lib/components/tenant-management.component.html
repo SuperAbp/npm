@@ -1,13 +1,14 @@
 <page-header
-  [title]="'AbpIdentity::Users' | abpLocalization"
+  [title]="'AbpTenantManagement::Tenants' | abpLocalization"
   [action]="phActionTpl"
 >
   <ng-template #phActionTpl>
     <button (click)="add()" nz-button nzType="primary">
-      {{ "AbpIdentity::NewUser" | abpLocalization }}
+      {{ "AbpTenantManagement::NewTenant" | abpLocalization }}
     </button>
   </ng-template>
 </page-header>
+
 <nz-card *ngIf="columns">
   <sf
     mode="search"
@@ -17,14 +18,14 @@
   ></sf>
   <st
     #st
-    [data]="users"
+    [data]="tenants"
     [columns]="columns"
     [loading]="loading"
     [page]="page"
     [total]="total"
     (change)="change($event)"
-    [header]="'AbpIdentity::DataStart' | abpLocalization"
-    [footer]="'AbpIdentity::DataEnd' | abpLocalization"
+    [header]="'AbpTenantManagement::DataStart' | abpLocalization"
+    [footer]="'AbpTenantManagement::DataEnd' | abpLocalization"
     responsiveHideHeaderFooter
   ></st>
 </nz-card>
