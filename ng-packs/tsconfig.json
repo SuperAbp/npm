@@ -67,10 +67,7 @@
       "@shared": ["projects/dev-app/src/app/shared/index"],
       "@core": ["projects/dev-app/src/app/core/index"],
       "@proxy/*": ["projects/dev-app/src/app/proxy/*"],
-      "@env/*": ["projects/dev-app/src/environments/*"],
-      "audit-logging": ["dist/audit-logging"],
-      "region-management": ["dist/region-management"],
-      "tenant-management": ["./dist/tenant-management"]
+      "@env/*": ["projects/dev-app/src/environments/*"]
     }
   },
   "angularCompilerOptions": {

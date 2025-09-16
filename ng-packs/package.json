@@ -13,7 +13,8 @@
     "build_lib:menu-management": "ng build menu-management --configuration production",
     "build_lib:setting-management": "ng build setting-management --configuration production",
     "build_lib:audit-logging": "ng build audit-logging --configuration production",
-    "build_lib:region-management": "ng build region-management --configuration production"
+    "build_lib:region-management": "ng build region-management --configuration production",
+    "build_lib:tenant-management": "ng build tenant-management --configuration production"
   },
   "private": false,
   "dependencies": {
