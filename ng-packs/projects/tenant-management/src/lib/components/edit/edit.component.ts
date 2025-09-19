@@ -14,6 +14,7 @@ import {
   TenantDto,
   TenantService,
 } from '@super-abp/ng.tenant-management/proxy';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
   selector: 'super-abp-tenants-edit',
@@ -27,6 +28,7 @@ import {
     NzCheckboxModule,
     NzInputModule,
     NzMessageModule,
+    NzIconModule,
   ],
 })
 export class TenantManagementEditComponent implements OnInit {
@@ -41,7 +43,8 @@ export class TenantManagementEditComponent implements OnInit {
 
   loading = false;
   isConfirmLoading = false;
-
+  passwordVisible = false;
+  password?: string;
   form: FormGroup = null;
 
   ngOnInit(): void {

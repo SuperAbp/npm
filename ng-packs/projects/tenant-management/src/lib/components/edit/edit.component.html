@@ -62,7 +62,21 @@
         [nzValidatingTip]="'AbpTenantManagement::Validating' | abpLocalization"
         [nzErrorTip]="nameErrorTpl"
       >
-        <input formControlName="adminPassword" nz-input type="password" />
+        <nz-input-group [nzSuffix]="suffixTemplate">
+          <input
+            formControlName="adminPassword"
+            nz-input
+            [type]="passwordVisible ? 'text' : 'password'"
+          />
+        </nz-input-group>
+        <ng-template #suffixTemplate>
+          <span
+            nz-icon
+            class="ant-input-password-icon"
+            [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+            (click)="passwordVisible = !passwordVisible"
+          ></span>
+        </ng-template>
         <ng-template #nameErrorTpl let-control>
           <ng-container *ngIf="control.hasError('required')">
             {{ "AbpTenantManagement::ThisFieldIsRequired" | abpLocalization }}

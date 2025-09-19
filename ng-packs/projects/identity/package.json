@@ -1,6 +1,6 @@
 {
   "name": "@super-abp/ng.identity",
-  "version": "0.6.0",
+  "version": "0.6.2",
   "homepage": "https://SuperAbp.com",
   "repository": {
     "type": "git",
@@ -13,6 +13,7 @@
     "@angular/common": "^18.2.12",
     "@angular/core": "^18.2.12",
     "ng-zorro-antd": "^18.2.1",
+    "@ngx-validate/core": "^0.2.0",
     "@delon/abc": "^18.3.0",
     "@delon/acl": "^18.3.0",
     "@delon/auth": "^18.3.0",

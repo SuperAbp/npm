@@ -1,4 +1,9 @@
-import { HttpHeaders, HttpResponseBase } from '@angular/common/http';
+import { LocalizationParam } from '@abp/ng.core';
+import {
+  HttpErrorResponse,
+  HttpHeaders,
+  HttpResponseBase,
+} from '@angular/common/http';
 import { Injector, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { DA_SERVICE_TOKEN } from '@delon/auth';
@@ -25,7 +30,53 @@ export const CODEMESSAGE: { [key: number]: string } = {
   500: '服务器发生错误，请检查服务器。',
   502: '网关错误。',
   503: '服务不可用，服务器暂时过载或维护。',
-  504: '网关超时。'
+  504: '网关超时。',
+};
+export const DEFAULT_ERROR_MESSAGES = {
+  defaultError: {
+    title: 'An error has occurred!',
+    details: 'Error detail not sent by server.',
+  },
+  defaultError401: {
+    title: 'You are not authenticated!',
+    details:
+      'You should be authenticated (sign in) in order to perform this operation.',
+  },
+  defaultError403: {
+    title: 'You are not authorized!',
+    details: 'You are not allowed to perform this operation.',
+  },
+  defaultError404: {
+    title: 'Resource not found!',
+    details: 'The resource requested could not found on the server.',
+  },
+  defaultError500: {
+    title: 'Internal server error',
+    details: 'Error detail not sent by server.',
+  },
+};
+
+export const DEFAULT_ERROR_LOCALIZATIONS = {
+  defaultError: {
+    title: 'AbpUi::DefaultErrorMessage',
+    details: 'AbpUi::DefaultErrorMessageDetail',
+  },
+  defaultError401: {
+    title: 'AbpUi::DefaultErrorMessage401',
+    details: 'AbpUi::DefaultErrorMessage401Detail',
+  },
+  defaultError403: {
+    title: 'AbpUi::DefaultErrorMessage403',
+    details: 'AbpUi::DefaultErrorMessage403Detail',
+  },
+  defaultError404: {
+    title: 'AbpUi::DefaultErrorMessage404',
+    details: 'AbpUi::DefaultErrorMessage404Detail',
+  },
+  defaultError500: {
+    title: 'AbpUi::500Message',
+    details: 'AbpUi::DefaultErrorMessage',
+  },
 };
 
 export function goTo(injector: Injector, url: string): void {
@@ -33,11 +84,15 @@ export function goTo(injector: Injector, url: string): void {
 }
 
 export function toLogin(injector: Injector): void {
-  injector.get(NzNotificationService).error(`未登录或登录已过期，请重新登录。`, ``);
+  injector
+    .get(NzNotificationService)
+    .error(`未登录或登录已过期，请重新登录。`, ``);
   goTo(injector, injector.get(DA_SERVICE_TOKEN).login_url!);
 }
 
-export function getAdditionalHeaders(headers?: HttpHeaders): { [name: string]: string } {
+export function getAdditionalHeaders(headers?: HttpHeaders): {
+  [name: string]: string;
+} {
   const res: { [name: string]: string } = {};
   const lang = inject(ALAIN_I18N_TOKEN).currentLang;
   if (!headers?.has('Accept-Language') && lang) {
@@ -51,7 +106,41 @@ export function checkStatus(injector: Injector, ev: HttpResponseBase): void {
   if ((ev.status >= 200 && ev.status < 300) || ev.status === 401) {
     return;
   }
-
+  if (ev instanceof HttpErrorResponse && ev.headers.get('_AbpErrorFormat')) {
+    const { message, title } = getErrorFromRequestBody(ev?.error?.error);
+    injector
+      .get(NzNotificationService)
+      .error(title.toString(), message.toString());
+    return;
+  }
   const errortext = CODEMESSAGE[ev.status] || ev.statusText;
-  injector.get(NzNotificationService).error(`请求错误 ${ev.status}: ${ev.url}`, errortext);
+  injector
+    .get(NzNotificationService)
+    .error(`请求错误 ${ev.status}: ${ev.url}`, errortext);
+}
+
+export function getErrorFromRequestBody(
+  body: { details?: string; message?: string } | undefined
+) {
+  let message: LocalizationParam;
+  let title: LocalizationParam;
+
+  if (body.details) {
+    message = body.details;
+    title = body.message;
+  } else if (body.message) {
+    title = {
+      key: DEFAULT_ERROR_LOCALIZATIONS.defaultError.title,
+      defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.title,
+    };
+    message = body.message;
+  } else {
+    message = {
+      key: DEFAULT_ERROR_LOCALIZATIONS.defaultError.title,
+      defaultValue: DEFAULT_ERROR_MESSAGES.defaultError.title,
+    };
+    title = '';
+  }
+
+  return { message, title };
 }

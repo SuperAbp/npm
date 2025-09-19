@@ -1,7 +1,11 @@
 import { ModuleWithProviders, NgModule, NgModuleFactory } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IdentityRoutingModule } from './identity-routing.module';
-import { CoreModule, LazyModuleFactory } from '@abp/ng.core';
+import {
+  CoreModule,
+  LazyModuleFactory,
+  TrackCapsLockDirective,
+} from '@abp/ng.core';
 import { IdentityUserComponent } from './components/users/user.component';
 import { IdentityRoleComponent } from './components/roles/role.component';
 import { IdentityUserEditComponent } from './components/users/edit/edit.component';
@@ -70,6 +74,7 @@ import { PermissionManagementModule } from '@super-abp/ng.permission-management'
     NzSwitchModule,
     NzRadioModule,
     NzCheckboxModule,
+    TrackCapsLockDirective,
   ],
   exports: [
     IdentityUserComponent,
