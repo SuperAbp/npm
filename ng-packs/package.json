@@ -38,6 +38,7 @@
     "@delon/mock": "^18.3.0",
     "@delon/theme": "^18.3.0",
     "@delon/util": "^18.3.0",
+    "@ngx-validate/core": "^0.2.0",
     "date-fns": "^3.0.6",
     "ng-zorro-antd": "^18.2.1",
     "rxjs": "~7.8.0",
