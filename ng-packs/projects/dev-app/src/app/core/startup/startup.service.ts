@@ -108,6 +108,11 @@ export class StartupService {
             icon: { type: 'icon', value: 'appstore' },
             children: [
               {
+                text: '租户管理',
+                icon: { type: 'icon', value: 'appstore' },
+                link: '/tenant-management/tenant',
+              },
+              {
                 text: '用户管理',
                 icon: { type: 'icon', value: 'appstore' },
                 link: '/identity/user',

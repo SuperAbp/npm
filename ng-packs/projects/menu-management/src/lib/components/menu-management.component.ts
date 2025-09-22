@@ -4,7 +4,7 @@ import {
   LocalizationService,
   PermissionService,
 } from '@abp/ng.core';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import {
   STChange,
   STColumn,
@@ -48,6 +48,12 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
   ],
 })
 export class MenuManagementComponent implements OnInit {
+  private modal = inject(ModalHelper);
+  private localizationService = inject(LocalizationService);
+  private messageService = inject(NzMessageService);
+  private permissionService = inject(PermissionService);
+  private menuService = inject(MenuService);
+
   menus: MenuListDto[];
   parents: NzTreeNodeOptions[] = [];
   selectMenus: SFSchemaEnumType[] = [];
@@ -214,14 +220,6 @@ export class MenuManagementComponent implements OnInit {
     },
   ];
 
-  constructor(
-    private modal: ModalHelper,
-    private localizationService: LocalizationService,
-    private messageService: NzMessageService,
-    private permissionService: PermissionService,
-    private menuService: MenuService
-  ) {}
-
   ngOnInit() {
     this.menuService
       .getRoot()
@@ -251,12 +249,7 @@ export class MenuManagementComponent implements OnInit {
         this.total = response.totalCount;
       });
   }
-  resetParameters(): GetMenusInput {
-    return {
-      skipCount: 0,
-      maxResultCount: 10,
-    } as GetMenusInput;
-  }
+
   onExpandChange(e: NzFormatEmitEvent): void {
     const node = e.node;
     if (node && node.getChildren().length === 0 && node.isExpanded) {
@@ -290,7 +283,7 @@ export class MenuManagementComponent implements OnInit {
   }
   reset(e) {
     this.params = this.resetParameters();
-    this.getList();
+    this.st.load(1);
   }
   search(e) {
     if (e.name) {
@@ -303,7 +296,13 @@ export class MenuManagementComponent implements OnInit {
     } else {
       delete this.params.parentId;
     }
-    this.getList();
+    this.st.load(1);
+  }
+  resetParameters(): GetMenusInput {
+    return {
+      skipCount: 0,
+      maxResultCount: 10,
+    } as GetMenusInput;
   }
   add() {
     this.modal

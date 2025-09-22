@@ -1,14 +1,22 @@
-import { Component, Input, OnInit, TrackByFunction } from '@angular/core';
+import {
+  Component,
+  Injector,
+  Input,
+  OnInit,
+  TrackByFunction,
+  inject,
+} from '@angular/core';
 import {
   AbstractControl,
   FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { _HttpClient } from '@delon/theme';
 import { NzModalRef } from 'ng-zorro-antd/modal';
-import { finalize } from 'rxjs/operators';
+import { finalize, tap } from 'rxjs/operators';
 import {
   IdentityRoleDto,
   IdentityRoleService,
@@ -23,6 +31,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { getPasswordValidators } from '../../../utils/validation-utils';
 
 @Component({
   selector: 'super-abp-identity-users-edit',
@@ -42,22 +51,24 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 export class IdentityUserEditComponent implements OnInit {
   @Input()
   userId: string;
+
+  private readonly injector = inject(Injector);
+  private modal = inject(NzModalRef);
+  private fb = inject(FormBuilder);
+  private roleService = inject(IdentityRoleService);
+  private userService = inject(IdentityUserService);
+
   user: IdentityUserDto;
   roles: IdentityRoleDto[];
   selectedUserRoles: IdentityRoleDto[];
   rolesOption = [];
   loading = false;
   isConfirmLoading = false;
+  passwordVisible = false;
+  password?: string;
   form: FormGroup;
   trackByFn: TrackByFunction<AbstractControl> = (index, item) =>
     Object.keys(item)[0] || index;
-  constructor(
-    private modal: NzModalRef,
-    public http: _HttpClient,
-    private fb: FormBuilder,
-    private roleService: IdentityRoleService,
-    private userService: IdentityUserService
-  ) {}
 
   get roleGroups(): FormGroup[] {
     return (this.form.get('roleNames') as FormArray).controls as FormGroup[];
@@ -65,7 +76,6 @@ export class IdentityUserEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    // pipe:可以实现一些业务逻辑;subscribe:仅用于给模型赋值数据.
 
     if (this.userId) {
       this.userService.get(this.userId).subscribe((userResult) => {
@@ -117,15 +127,12 @@ export class IdentityUserEditComponent implements OnInit {
           }),
         ],
       });
+      const passwordValidators = getPasswordValidators(this.injector);
+      this.form
+        .get('password')
+        .setValidators([...passwordValidators, Validators.required]);
+      this.form.get('password').updateValueAndValidity();
     });
-
-    // TODO:动态创建密码验证规则
-    // const passwordValidators = getPasswordValidators(this.store);
-    // this.form.addControl('password', new FormControl('', [...passwordValidators]));
-    // if (!this.user.userName) {
-    //   this.form.get('password').setValidators([...passwordValidators, Validators.required]);
-    //   this.form.get('password').updateValueAndValidity();
-    // }
   }
 
   save() {
@@ -133,47 +140,41 @@ export class IdentityUserEditComponent implements OnInit {
       return;
     }
     this.isConfirmLoading = true;
-    this.userService
-      .updateRoles(this.userId, {
-        roleNames: (this.form.value.roleNames as any[])
-          .filter((r) => r.checked)
-          .map((r) => r.value),
-      })
-      .pipe(finalize(() => (this.isConfirmLoading = false)))
-      .subscribe(() => {
-        this.modal.close(true);
-      });
-    // if (this.userId) {
-    //   this.userService
-    //     .updateByIdAndInput(
-    //       new IdentityUserUpdateDto({
-    //         ...this.user,
-    //         ...this.form.value,
-    //       }),
-    //       this.userId,
-    //     )
-    //     .pipe(
-    //       tap((response) => {
-    //         this.isConfirmLoading = false;
-
-    //         this.modal.close(true);
-    //       }),
-    //     );
-    // } else {
-    //   this.userService
-    //     .createByInput(
-    //       new IdentityUserCreateDto({
-    //         ...this.form.value,
-    //       }),
-    //     )
-    //     .pipe(
-    //       tap((response) => {
-    //         this.isConfirmLoading = false;
-
-    //         this.modal.close(true);
-    //       }),
-    //     );
-    // }
+    let roleNames = (this.form.value.roleNames as any[])
+      .filter((r) => r.checked)
+      .map((r) => r.value);
+    if (this.userId) {
+      this.userService
+        .update(this.userId, {
+          ...this.user,
+          ...this.form.value,
+          roleNames,
+        })
+        .pipe(
+          tap(() => {
+            this.modal.close(true);
+          }),
+          finalize(() => {
+            this.isConfirmLoading = false;
+          })
+        )
+        .subscribe();
+    } else {
+      this.userService
+        .create({
+          ...this.form.value,
+          roleNames,
+        })
+        .pipe(
+          tap(() => {
+            this.modal.close(true);
+          }),
+          finalize(() => {
+            this.isConfirmLoading = false;
+          })
+        )
+        .subscribe();
+    }
   }
 
   close() {

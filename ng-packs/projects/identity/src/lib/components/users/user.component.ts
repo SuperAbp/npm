@@ -3,7 +3,7 @@ import {
   LocalizationService,
   PermissionService,
 } from '@abp/ng.core';
-import { Component, Injector, OnInit, ViewChild } from '@angular/core';
+import { Component, Injector, OnInit, ViewChild, inject } from '@angular/core';
 import {
   STChange,
   STColumn,
@@ -44,6 +44,13 @@ import { PageHeaderModule } from '@delon/abc/page-header';
   // ],
 })
 export class IdentityUserComponent implements OnInit {
+  private injector = inject(Injector);
+  private modal = inject(ModalHelper);
+  private localizationService = inject(LocalizationService);
+  private userService = inject(IdentityUserService);
+  private permissionService = inject(PermissionService);
+  private extensionsService = inject(ExtensionsService);
+
   users: IdentityUserDto[];
   total: number;
   loading = false;
@@ -60,11 +67,10 @@ export class IdentityUserComponent implements OnInit {
         type: 'string',
         title: '',
         ui: {
-          placeholder: '请输入条件',
-          // this.localizationService.instant(
-          //   'AbpIdentity::PlaceHolder',
-          //   this.localizationService.instant('AbpIdentity::Filter')
-          // ),
+          placeholder: this.localizationService.instant(
+            'AbpIdentity::PlaceHolder',
+            this.localizationService.instant('AbpIdentity::Filter')
+          ),
         },
       },
     },
@@ -72,17 +78,10 @@ export class IdentityUserComponent implements OnInit {
   @ViewChild('st', { static: false }) st: STComponent;
   columns: STColumn[];
 
-  constructor(
-    private modal: ModalHelper,
-    private injector: Injector,
-    private localizationService: LocalizationService,
-    private userService: IdentityUserService,
-    private permissionService: PermissionService,
-    private extensionsService: ExtensionsService
-  ) {
+  ngOnInit() {
     const propList = this.extensionsService.entityProps
       .get(eIdentityComponents.Users)
-      .init(injector).props;
+      .init(this.injector).props;
     let props = propList.toArray();
     props.push({
       title: this.localizationService.instant('AbpIdentity::Actions'),
@@ -107,9 +106,6 @@ export class IdentityUserComponent implements OnInit {
       ],
     });
     this.columns = props;
-  }
-
-  ngOnInit() {
     this.getList();
   }
   getList() {
@@ -123,18 +119,7 @@ export class IdentityUserComponent implements OnInit {
         )
       );
   }
-  /**
-   * 重置查询参数
-   *
-   * @return {*}  {GetProductsInput}
-   * @memberof ProductManagementProductComponent
-   */
-  resetParameters(): GetIdentityUsersInput {
-    return {
-      skipCount: 0,
-      maxResultCount: 10,
-    };
-  }
+
   change(e: STChange) {
     if (e.type === 'pi' || e.type === 'ps') {
       this.params.skipCount = (e.pi - 1) * e.ps;
@@ -145,10 +130,9 @@ export class IdentityUserComponent implements OnInit {
       this.getList();
     }
   }
-
   reset(e) {
     this.params = this.resetParameters();
-    this.getList();
+    this.st.load(1);
   }
   search(e) {
     if (e.filter) {
@@ -156,7 +140,13 @@ export class IdentityUserComponent implements OnInit {
     } else {
       delete this.params.filter;
     }
-    this.getList();
+    this.st.load(1);
+  }
+  resetParameters(): GetIdentityUsersInput {
+    return {
+      skipCount: 0,
+      maxResultCount: 10,
+    };
   }
   add() {
     this.modal

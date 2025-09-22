@@ -17,11 +17,8 @@
     [formGroup]="form"
     nzLayout="vertical"
   >
-    <nz-tabset nzSelectedIndex="1">
-      <nz-tab
-        [nzTitle]="'AbpIdentity::UserInformations' | abpLocalization"
-        nzDisabled="true"
-      >
+    <nz-tabset>
+      <nz-tab [nzTitle]="'AbpIdentity::UserInformations' | abpLocalization">
         <nz-row>
           <nz-col nzLg="6" nzMd="12" nzSm="24">
             <nz-form-item>
@@ -35,9 +32,11 @@
               >
                 <input formControlName="userName" nz-input />
                 <ng-template #userNameErrorTpl let-control>
-                  <ng-container *ngIf="control.hasError('required')">
+                  @if (control.hasError('required')) {
+                  <div>
                     {{ "AbpIdentity::ThisFieldIsRequired" | abpLocalization }}
-                  </ng-container>
+                  </div>
+                  }
                 </ng-template>
               </nz-form-control>
             </nz-form-item>
@@ -57,11 +56,72 @@
                 [nzValidatingTip]="'AbpIdentity::Validating' | abpLocalization"
                 [nzErrorTip]="passwordErrorTpl"
               >
-                <input formControlName="password" nz-input />
+                <nz-input-group [nzSuffix]="suffixTemplate">
+                  <input
+                    [type]="passwordVisible ? 'text' : 'password'"
+                    formControlName="password"
+                    nz-input
+                  />
+                </nz-input-group>
+                <ng-template #suffixTemplate>
+                  <span
+                    nz-icon
+                    class="ant-input-password-icon"
+                    [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                    (click)="passwordVisible = !passwordVisible"
+                  ></span>
+                </ng-template>
+
                 <ng-template #passwordErrorTpl let-control>
-                  <ng-container *ngIf="control.hasError('required')">
+                  @if (control.hasError('required')) {
+                  <div>
                     {{ "AbpIdentity::ThisFieldIsRequired" | abpLocalization }}
-                  </ng-container>
+                  </div>
+                  } @if (control.hasError('minlength')) {
+                  <div>
+                    {{
+                      "AbpValidation::ThisFieldMustBeAStringOrArrayTypeWithAMinimumLengthOf{0}"
+                        | abpLocalization
+                          : control.errors.minlength.requiredLength
+                    }}
+                  </div>
+                  } @if (control.hasError('maxlength')) {
+                  <div>
+                    {{
+                      "AbpValidation::ThisFieldMustBeAStringOrArrayTypeWithAMaximumLengthOf{0}"
+                        | abpLocalization
+                          : control.errors.maxlength.requiredLength
+                    }}
+                  </div>
+                  } @if (control.hasError('passwordRequiresLower')) {
+                  <div>
+                    {{
+                      "AbpIdentity::Volo.Abp.Identity:PasswordRequiresLower"
+                        | abpLocalization
+                    }}
+                  </div>
+                  } @if (control.hasError('passwordRequiresUpper')) {
+                  <div>
+                    {{
+                      "AbpIdentity::Volo.Abp.Identity:PasswordRequiresUpper"
+                        | abpLocalization
+                    }}
+                  </div>
+                  } @if (control.hasError('passwordRequiresDigit')) {
+                  <div>
+                    {{
+                      "AbpIdentity::Volo.Abp.Identity:PasswordRequiresDigit"
+                        | abpLocalization
+                    }}
+                  </div>
+                  } @if (control.hasError('passwordRequiresNonAlphanumeric')) {
+                  <div>
+                    {{
+                      "AbpIdentity::Volo.Abp.Identity:PasswordRequiresNonAlphanumeric"
+                        | abpLocalization
+                    }}
+                  </div>
+                  }
                 </ng-template>
               </nz-form-control>
             </nz-form-item>
@@ -120,16 +180,16 @@
               }}</nz-form-label>
               <nz-form-control
                 nzHasFeedback
-                nzValidatingTip="{{
-                  'AbpIdentity::Validating' | abpLocalization
-                }}"
+                [nzValidatingTip]="'AbpIdentity::Validating' | abpLocalization"
                 [nzErrorTip]="emailErrorTpl"
               >
                 <input formControlName="email" nz-input />
                 <ng-template #emailErrorTpl let-control>
-                  <ng-container *ngIf="control.hasError('required')">
+                  @if (control.hasError('required')) {
+                  <div>
                     {{ "AbpIdentity::ThisFieldIsRequired" | abpLocalization }}
-                  </ng-container>
+                  </div>
+                  }
                 </ng-template>
               </nz-form-control>
             </nz-form-item>

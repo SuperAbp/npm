@@ -19,10 +19,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ],
+    "lib": ["ES2022", "dom"],
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@super-abp/ng.permission-management": [
@@ -57,30 +54,20 @@
       "@super-abp/ng.menu-management/proxy": [
         "projects/menu-management/proxy/src/public-api.ts"
       ],
-      "@super-abp/ng.identity": [
-        "projects/identity/src/public-api.ts"
-      ],
+      "@super-abp/ng.identity": ["projects/identity/src/public-api.ts"],
       "@super-abp/ng.identity/proxy": [
         "projects/identity/proxy/src/public-api.ts"
       ],
-      "@shared": [
-        "projects/dev-app/src/app/shared/index"
+      "@super-abp/ng.tenant-management": [
+        "projects/tenant-management/src/public-api.ts"
       ],
-      "@core": [
-        "projects/dev-app/src/app/core/index"
+      "@super-abp/ng.tenant-management/proxy": [
+        "projects/tenant-management/proxy/src/public-api.ts"
       ],
-      "@proxy/*": [
-        "projects/dev-app/src/app/proxy/*"
-      ],
-      "@env/*": [
-        "projects/dev-app/src/environments/*"
-      ],
-      "audit-logging": [
-        "dist/audit-logging"
-      ],
-      "region-management": [
-        "dist/region-management"
-      ]
+      "@shared": ["projects/dev-app/src/app/shared/index"],
+      "@core": ["projects/dev-app/src/app/core/index"],
+      "@proxy/*": ["projects/dev-app/src/app/proxy/*"],
+      "@env/*": ["projects/dev-app/src/environments/*"]
     }
   },
   "angularCompilerOptions": {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { finalize, tap } from 'rxjs/operators';
@@ -31,18 +31,17 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 export class IdentityRoleEditComponent implements OnInit {
   @Input()
   roleId: string;
+
+  private modal = inject(NzModalRef);
+  private fb = inject(FormBuilder);
+  private roleService = inject(IdentityRoleService);
+
   role: IdentityRoleDto;
 
   loading = false;
   isConfirmLoading = false;
 
   form: FormGroup = null;
-
-  constructor(
-    private modal: NzModalRef,
-    private fb: FormBuilder,
-    private roleService: IdentityRoleService
-  ) {}
 
   ngOnInit(): void {
     this.loading = true;

@@ -1,3 +1,4 @@
 node_modules/
 lerna-debug.log
 ng-packs/yarn.lock
+ng-packs/.vscode

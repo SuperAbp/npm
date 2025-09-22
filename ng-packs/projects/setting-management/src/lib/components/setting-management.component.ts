@@ -1,5 +1,11 @@
 import { ABP, CoreModule } from '@abp/ng.core';
-import { Component, OnDestroy, OnInit, TrackByFunction } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  TrackByFunction,
+  inject,
+} from '@angular/core';
 import { PageHeaderModule } from '@delon/abc/page-header';
 import { DelonACLModule } from '@delon/acl';
 import { SettingTabsService } from '@super-abp/ng.setting-management/config';
@@ -20,14 +26,13 @@ import { Subscription } from 'rxjs';
   ],
 })
 export class SettingManagementComponent implements OnDestroy, OnInit {
+  private settingTabsService = inject(SettingTabsService);
   private subscription = new Subscription();
   settings: ABP.Tab[] = [];
 
   selected!: ABP.Tab;
 
   trackByFn: TrackByFunction<ABP.Tab> = (_, item) => item.name;
-
-  constructor(private settingTabsService: SettingTabsService) {}
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

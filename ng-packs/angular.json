@@ -117,6 +117,10 @@
             "tsConfig": "projects/dev-app/tsconfig.app.json",
             "inlineStyleLanguage": "less",
             "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              },
               "projects/dev-app/src/favicon.ico",
               "projects/dev-app/src/assets"
             ],
@@ -186,6 +190,10 @@
             "karmaConfig": "projects/dev-app/karma.conf.js",
             "inlineStyleLanguage": "less",
             "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              },
               "projects/dev-app/src/favicon.ico",
               "projects/dev-app/src/assets"
             ],
@@ -286,6 +294,39 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/region-management/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "tenant-management": {
+      "projectType": "library",
+      "root": "projects/tenant-management",
+      "sourceRoot": "projects/tenant-management/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/tenant-management/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/tenant-management/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/tenant-management/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/tenant-management/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"

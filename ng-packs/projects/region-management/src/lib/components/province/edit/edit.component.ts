@@ -1,5 +1,5 @@
 import { CoreModule, LocalizationService } from '@abp/ng.core';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { STModule } from '@delon/abc/st';
 import {
@@ -34,20 +34,15 @@ import { finalize, tap } from 'rxjs';
 export class RegionProvinceEditComponent {
   @Input()
   id: string;
+  private modal = inject(NzModalRef);
+  private fb = inject(FormBuilder);
+  private provinceService = inject(ProvinceAdminService);
   province: GetProvinceForEditorOutput;
 
   loading = false;
   isConfirmLoading = false;
 
   form: FormGroup = null;
-
-  constructor(
-    private modal: NzModalRef,
-    private messageService: NzMessageService,
-    private localizationService: LocalizationService,
-    private fb: FormBuilder,
-    private provinceService: ProvinceAdminService
-  ) {}
 
   ngOnInit(): void {
     this.loading = true;

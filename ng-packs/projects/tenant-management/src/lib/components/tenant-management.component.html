@@ -1,0 +1,31 @@
+<page-header
+  [title]="'AbpTenantManagement::Tenants' | abpLocalization"
+  [action]="phActionTpl"
+>
+  <ng-template #phActionTpl>
+    <button (click)="add()" nz-button nzType="primary">
+      {{ "AbpTenantManagement::NewTenant" | abpLocalization }}
+    </button>
+  </ng-template>
+</page-header>
+
+<nz-card *ngIf="columns">
+  <sf
+    mode="search"
+    [schema]="searchSchema"
+    (formSubmit)="search($event)"
+    (formReset)="reset($event)"
+  ></sf>
+  <st
+    #st
+    [data]="tenants"
+    [columns]="columns"
+    [loading]="loading"
+    [page]="page"
+    [total]="total"
+    (change)="change($event)"
+    [header]="'AbpTenantManagement::DataStart' | abpLocalization"
+    [footer]="'AbpTenantManagement::DataEnd' | abpLocalization"
+    responsiveHideHeaderFooter
+  ></st>
+</nz-card>
