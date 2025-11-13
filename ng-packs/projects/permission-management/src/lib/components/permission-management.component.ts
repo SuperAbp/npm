@@ -11,6 +11,7 @@ import { finalize, tap } from 'rxjs/operators';
 import {
   GetPermissionListResultDto,
   PermissionGrantInfoDto,
+  PermissionGroupDto,
   PermissionsService,
   ProviderInfoDto,
 } from '@super-abp/ng.permission-management/proxy';
@@ -68,6 +69,9 @@ export class PermissionManagementComponent implements OnInit {
         tap((response: GetPermissionListResultDto) => {
           const treeArr = [];
           response.groups.forEach((g) => {
+            this.unchangedPermissions = this.unchangedPermissions.concat(
+              g.permissions
+            );
             const treeNode: any = {};
             treeNode.title = g.displayName;
             treeNode.key = g.name;
@@ -90,7 +94,6 @@ export class PermissionManagementComponent implements OnInit {
     parentName
   ): any {
     const nodeArr: any[] = [];
-    this.unchangedPermissions = this.unchangedPermissions.concat(permissions);
     let tempPermissions = permissions.filter(
       (p) => p.parentName === parentName
     );
@@ -143,7 +146,7 @@ export class PermissionManagementComponent implements OnInit {
 
   save() {
     this.isConfirmLoading = true;
-
+    debugger;
     const changedPermissions = this.unchangedPermissions
       .filter((unchanged) => {
         return this.nzTreeComponent.getTreeNodeByKey(unchanged.name)
