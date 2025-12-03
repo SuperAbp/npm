@@ -31539,7 +31539,7 @@ a:focus {
     border-radius: 0 0 2px 2px
 }
 
-.modal-include-tabs nz-tabset {
+.modal-include-tabs nz-tabs {
     margin-top: -16px
 }
 
