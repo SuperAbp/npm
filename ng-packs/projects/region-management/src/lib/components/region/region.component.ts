@@ -48,18 +48,17 @@ class RegionTempDto {
 }
 
 @Component({
-  selector: 'super-abp-region',
-  templateUrl: './region.component.html',
-  standalone: true,
-  imports: [
-    CoreModule,
-    NzCardModule,
-    STModule,
-    PageHeaderModule,
-    NzButtonModule,
-    NzGridModule,
-    NzTreeModule,
-  ],
+    selector: 'super-abp-region',
+    templateUrl: './region.component.html',
+    imports: [
+        CoreModule,
+        NzCardModule,
+        STModule,
+        PageHeaderModule,
+        NzButtonModule,
+        NzGridModule,
+        NzTreeModule,
+    ]
 })
 export class RegionComponent implements OnInit {
   private modal = inject(ModalHelper);

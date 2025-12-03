@@ -14,16 +14,15 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { finalize, tap } from 'rxjs';
 
 @Component({
-  selector: 'super-abp-region-street-edit',
-  templateUrl: './edit.component.html',
-  standalone: true,
-  imports: [
-    CoreModule,
-    NzFormModule,
-    NzInputModule,
-    NzSpinModule,
-    NzButtonModule,
-  ],
+    selector: 'super-abp-region-street-edit',
+    templateUrl: './edit.component.html',
+    imports: [
+        CoreModule,
+        NzFormModule,
+        NzInputModule,
+        NzSpinModule,
+        NzButtonModule,
+    ]
 })
 export class RegionStreetEditComponent {
   @Input()

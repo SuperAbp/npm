@@ -21,17 +21,9 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @Component({
-  selector: 'super-abp-permission-management',
-  templateUrl: './permission-management.component.html',
-  // standalone: true,
-  // imports: [
-  //   CoreModule,
-  //   NzButtonModule,
-  //   NzTreeModule,
-  //   NzCardModule,
-  //   NzSpinModule,
-  //   NzModalModule,
-  // ],
+    selector: 'super-abp-permission-management',
+    templateUrl: './permission-management.component.html',
+    standalone: false
 })
 export class PermissionManagementComponent implements OnInit {
   @Input()

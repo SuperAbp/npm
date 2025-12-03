@@ -30,19 +30,18 @@ import { PageHeaderModule } from '@delon/abc/page-header';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 
 @Component({
-  selector: 'super-abp-audit-logging',
-  templateUrl: './audit-logging.component.html',
-  styles: [],
-  standalone: true,
-  imports: [
-    CoreModule,
-    NzButtonModule,
-    NzCardModule,
-    STModule,
-    PageHeaderModule,
-    DelonFormModule,
-    NzBadgeModule,
-  ],
+    selector: 'super-abp-audit-logging',
+    templateUrl: './audit-logging.component.html',
+    styles: [],
+    imports: [
+        CoreModule,
+        NzButtonModule,
+        NzCardModule,
+        STModule,
+        PageHeaderModule,
+        DelonFormModule,
+        NzBadgeModule,
+    ]
 })
 export class AuditLoggingComponent implements OnInit {
   private delonLocaleService = inject(DelonLocaleService);

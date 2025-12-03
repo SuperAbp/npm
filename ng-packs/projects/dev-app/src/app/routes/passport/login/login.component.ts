@@ -16,25 +16,24 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
-  selector: 'passport-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.less'],
-  providers: [SocialService],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [
-    RouterLink,
-    ReactiveFormsModule,
-    I18nPipe,
-    NzCheckboxModule,
-    NzTabsModule,
-    NzAlertModule,
-    NzFormModule,
-    NzInputModule,
-    NzButtonModule,
-    NzToolTipModule,
-    NzIconModule,
-  ],
+    selector: 'passport-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.less'],
+    providers: [SocialService],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [
+        RouterLink,
+        ReactiveFormsModule,
+        I18nPipe,
+        NzCheckboxModule,
+        NzTabsModule,
+        NzAlertModule,
+        NzFormModule,
+        NzInputModule,
+        NzButtonModule,
+        NzToolTipModule,
+        NzIconModule,
+    ]
 })
 export class UserLoginComponent {
   constructor(

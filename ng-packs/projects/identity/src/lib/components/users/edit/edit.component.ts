@@ -34,19 +34,9 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { getPasswordValidators } from '../../../utils/validation-utils';
 
 @Component({
-  selector: 'super-abp-identity-users-edit',
-  templateUrl: './edit.component.html',
-  // standalone: true,
-  // imports: [
-  //   CoreModule,
-  //   NzSpinModule,
-  //   NzFormModule,
-  //   NzButtonModule,
-  //   NzCheckboxModule,
-  //   NzInputModule,
-  //   NzMessageModule,
-  //   NzTabsModule,
-  // ],
+    selector: 'super-abp-identity-users-edit',
+    templateUrl: './edit.component.html',
+    standalone: false
 })
 export class IdentityUserEditComponent implements OnInit {
   @Input()

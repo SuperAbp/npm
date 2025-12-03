@@ -15,18 +15,9 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 
 @Component({
-  selector: 'super-abp-roles-edit',
-  templateUrl: './edit.component.html',
-  // standalone: true,
-  // imports: [
-  //   CoreModule,
-  //   NzSpinModule,
-  //   NzFormModule,
-  //   NzButtonModule,
-  //   NzCheckboxModule,
-  //   NzInputModule,
-  //   NzMessageModule,
-  // ],
+    selector: 'super-abp-roles-edit',
+    templateUrl: './edit.component.html',
+    standalone: false
 })
 export class IdentityRoleEditComponent implements OnInit {
   @Input()

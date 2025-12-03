@@ -6,8 +6,9 @@ import { finalize } from 'rxjs';
 import { EmailSettingsDto, EmailSettingsService } from '../proxy';
 
 @Component({
-  selector: 'lib-setting-management',
-  templateUrl: './email-setting-group.component.html',
+    selector: 'lib-setting-management',
+    templateUrl: './email-setting-group.component.html',
+    standalone: false
 })
 export class EmailSettingGroupComponent implements OnInit {
   form!: FormGroup;

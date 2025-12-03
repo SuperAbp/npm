@@ -26,18 +26,17 @@ import {
 } from '@super-abp/ng.tenant-management/proxy';
 
 @Component({
-  selector: 'super-abp-tenant-management',
-  templateUrl: './tenant-management.component.html',
-  standalone: true,
-  imports: [
-    CoreModule,
-    NzCardModule,
-    STModule,
-    NzButtonModule,
-    NzMessageModule,
-    PageHeaderModule,
-    DelonFormModule,
-  ],
+    selector: 'super-abp-tenant-management',
+    templateUrl: './tenant-management.component.html',
+    imports: [
+        CoreModule,
+        NzCardModule,
+        STModule,
+        NzButtonModule,
+        NzMessageModule,
+        PageHeaderModule,
+        DelonFormModule,
+    ]
 })
 export class TenantManagementComponent implements OnInit {
   private modal = inject(ModalHelper);

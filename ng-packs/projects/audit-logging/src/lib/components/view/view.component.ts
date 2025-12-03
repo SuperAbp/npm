@@ -14,18 +14,17 @@ import { NzModalRef } from 'ng-zorro-antd/modal';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { tap } from 'rxjs/operators';
 @Component({
-  selector: 'super-abp-audit-logging-view',
-  templateUrl: './view.component.html',
-  standalone: true,
-  imports: [
-    CoreModule,
-    NzSpinModule,
-    NzButtonModule,
-    NzCardModule,
-    NzDescriptionsModule,
-    SVModule,
-    AlainThemeModule,
-  ],
+    selector: 'super-abp-audit-logging-view',
+    templateUrl: './view.component.html',
+    imports: [
+        CoreModule,
+        NzSpinModule,
+        NzButtonModule,
+        NzCardModule,
+        NzDescriptionsModule,
+        SVModule,
+        AlainThemeModule,
+    ]
 })
 export class AuditLoggingViewComponent implements OnInit {
   @Input()

@@ -23,27 +23,26 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 @Component({
-  selector: 'super-abp-menu-management-edit',
-  templateUrl: './edit.component.html',
-  styles: [
-    `
+    selector: 'super-abp-menu-management-edit',
+    templateUrl: './edit.component.html',
+    styles: [
+        `
       nz-input-number {
         width: 100%;
       }
     `,
-  ],
-  standalone: true,
-  imports: [
-    CoreModule,
-    NzSpinModule,
-    NzTreeSelectModule,
-    NzFormModule,
-    NzButtonModule,
-    NzCheckboxModule,
-    NzInputModule,
-    NzInputNumberModule,
-    NzMessageModule,
-  ],
+    ],
+    imports: [
+        CoreModule,
+        NzSpinModule,
+        NzTreeSelectModule,
+        NzFormModule,
+        NzButtonModule,
+        NzCheckboxModule,
+        NzInputModule,
+        NzInputNumberModule,
+        NzMessageModule,
+    ]
 })
 export class MenuManagementEditComponent implements OnInit {
   @Input()

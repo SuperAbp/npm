@@ -5,8 +5,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
 
 @Component({
-  selector: 'exception-trigger',
-  template: `
+    selector: 'exception-trigger',
+    template: `
     <div class="pt-lg">
       <nz-card>
         @for (t of types; track $index) {
@@ -16,8 +16,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
       </nz-card>
     </div>
   `,
-  standalone: true,
-  imports: [NzCardModule, NzButtonModule]
+    imports: [NzCardModule, NzButtonModule]
 })
 export class ExceptionTriggerComponent {
   types = [401, 403, 404, 500];

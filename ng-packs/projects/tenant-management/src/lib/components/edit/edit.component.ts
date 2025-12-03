@@ -17,19 +17,18 @@ import {
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
-  selector: 'super-abp-tenants-edit',
-  templateUrl: './edit.component.html',
-  standalone: true,
-  imports: [
-    CoreModule,
-    NzSpinModule,
-    NzFormModule,
-    NzButtonModule,
-    NzCheckboxModule,
-    NzInputModule,
-    NzMessageModule,
-    NzIconModule,
-  ],
+    selector: 'super-abp-tenants-edit',
+    templateUrl: './edit.component.html',
+    imports: [
+        CoreModule,
+        NzSpinModule,
+        NzFormModule,
+        NzButtonModule,
+        NzCheckboxModule,
+        NzInputModule,
+        NzMessageModule,
+        NzIconModule,
+    ]
 })
 export class TenantManagementEditComponent implements OnInit {
   @Input()

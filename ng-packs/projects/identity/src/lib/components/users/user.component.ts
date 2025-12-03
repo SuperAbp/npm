@@ -29,19 +29,9 @@ import { TreeSelectWidgetModule } from '@delon/form/widgets/tree-select';
 import { PageHeaderModule } from '@delon/abc/page-header';
 
 @Component({
-  selector: 'super-abp-identity-users',
-  templateUrl: './user.component.html',
-  // standalone: true,
-  // imports: [
-  //   CoreModule,
-  //   NzCardModule,
-  //   STModule,
-  //   NzButtonModule,
-  //   NzMessageModule,
-  //   TreeSelectWidgetModule,
-  //   PageHeaderModule,
-  //   DelonFormModule,
-  // ],
+    selector: 'super-abp-identity-users',
+    templateUrl: './user.component.html',
+    standalone: false
 })
 export class IdentityUserComponent implements OnInit {
   private injector = inject(Injector);

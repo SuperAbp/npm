@@ -20,16 +20,15 @@ import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { finalize, tap } from 'rxjs';
 
 @Component({
-  selector: 'super-abp-region-province-edit',
-  templateUrl: './edit.component.html',
-  standalone: true,
-  imports: [
-    CoreModule,
-    NzFormModule,
-    NzInputModule,
-    NzSpinModule,
-    NzButtonModule,
-  ],
+    selector: 'super-abp-region-province-edit',
+    templateUrl: './edit.component.html',
+    imports: [
+        CoreModule,
+        NzFormModule,
+        NzInputModule,
+        NzSpinModule,
+        NzButtonModule,
+    ]
 })
 export class RegionProvinceEditComponent {
   @Input()

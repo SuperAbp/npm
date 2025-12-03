@@ -29,19 +29,9 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { TreeSelectWidgetModule } from '@delon/form/widgets/tree-select';
 import { PageHeaderModule } from '@delon/abc/page-header';
 @Component({
-  selector: 'super-abp-roles',
-  templateUrl: './role.component.html',
-  // standalone: true,
-  // imports: [
-  //   CoreModule,
-  //   NzCardModule,
-  //   STModule,
-  //   NzButtonModule,
-  //   NzMessageModule,
-  //   TreeSelectWidgetModule,
-  //   PageHeaderModule,
-  //   DelonFormModule,
-  // ],
+    selector: 'super-abp-roles',
+    templateUrl: './role.component.html',
+    standalone: false
 })
 export class IdentityRoleComponent implements OnInit {
   private modal = inject(ModalHelper);
