@@ -25,7 +25,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzInputNumberLegacyModule } from 'ng-zorro-antd/input-number-legacy';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
@@ -61,7 +61,7 @@ import { PermissionManagementModule } from '@super-abp/ng.permission-management'
     NzGridModule,
     NzButtonModule,
     NzInputModule,
-    NzInputNumberModule,
+    NzInputNumberLegacyModule,
     NzSelectModule,
     NzCardModule,
     NzMessageModule,

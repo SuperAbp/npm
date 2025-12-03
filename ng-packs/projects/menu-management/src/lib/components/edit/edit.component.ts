@@ -20,7 +20,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzInputNumberLegacyModule } from 'ng-zorro-antd/input-number-legacy';
 
 @Component({
     selector: 'super-abp-menu-management-edit',
@@ -40,7 +40,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
         NzButtonModule,
         NzCheckboxModule,
         NzInputModule,
-        NzInputNumberModule,
+        NzInputNumberLegacyModule,
         NzMessageModule,
     ]
 })
