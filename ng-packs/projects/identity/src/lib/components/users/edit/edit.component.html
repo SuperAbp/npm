@@ -51,21 +51,9 @@
                 [nzValidatingTip]="'AbpIdentity::Validating' | abpLocalization"
                 [nzErrorTip]="passwordErrorTpl"
               >
-                <nz-input-group [nzSuffix]="suffixTemplate">
-                  <input
-                    [type]="passwordVisible ? 'text' : 'password'"
-                    formControlName="password"
-                    nz-input
-                  />
-                </nz-input-group>
-                <ng-template #suffixTemplate>
-                  <span
-                    nz-icon
-                    class="ant-input-password-icon"
-                    [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
-                    (click)="passwordVisible = !passwordVisible"
-                  ></span>
-                </ng-template>
+                <nz-input-password>
+                  <input formControlName="password" nz-input />
+                </nz-input-password>
 
                 <ng-template #passwordErrorTpl let-control>
                   @if (control.hasError('required')) {
@@ -198,8 +186,11 @@
           </nz-form-control>
         </nz-form-item>
       </nz-tab>
-      <nz-tab nzTitle="{{ 'AbpIdentity::Roles' | abpLocalization }}">
-        <nz-checkbox-group formControlName="roleNames"></nz-checkbox-group>
+      <nz-tab [nzTitle]="'AbpIdentity::Roles' | abpLocalization">
+        <nz-checkbox-group
+          [nzOptions]="roleOptions"
+          formControlName="roleNames"
+        ></nz-checkbox-group>
       </nz-tab>
     </nz-tabs>
   </form>

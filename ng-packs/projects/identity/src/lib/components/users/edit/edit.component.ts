@@ -31,6 +31,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { log } from '@delon/util';
+import { NzCheckboxModule, NzCheckboxOption } from 'ng-zorro-antd/checkbox';
 
 @Component({
   selector: 'super-abp-identity-users-edit',
@@ -44,6 +46,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
     NzTabsModule,
     NzGridModule,
     NzInputModule,
+    NzCheckboxModule,
   ],
 })
 export class IdentityUserEditComponent implements OnInit {
@@ -58,13 +61,14 @@ export class IdentityUserEditComponent implements OnInit {
 
   user: IdentityUserDto;
   roles: IdentityRoleDto[];
-  selectedUserRoles: IdentityRoleDto[];
+  selectedUserRoles: IdentityRoleDto[] = [];
   rolesOption = [];
   loading = false;
   isConfirmLoading = false;
   passwordVisible = false;
   password?: string;
   form: FormGroup;
+  roleOptions: NzCheckboxOption[] = [];
   trackByFn: TrackByFunction<AbstractControl> = (index, item) =>
     Object.keys(item)[0] || index;
 
@@ -111,19 +115,13 @@ export class IdentityUserEditComponent implements OnInit {
         ],
         isActive: [this.user.isActive || true],
         password: ['', [Validators.maxLength(64)]],
-        roleNames: [
-          this.roles.map((role) => {
-            return {
-              label: role.name,
-              value: role.name,
-              checked: this.user.id
-                ? !!this.selectedUserRoles.find(
-                    (userRole) => userRole.id === role.id
-                  )
-                : role.isDefault,
-            };
-          }),
-        ],
+        roleNames: [this.selectedUserRoles.map((r) => r.name)],
+      });
+      this.roles.map((role) => {
+        this.roleOptions.push({
+          label: role.name,
+          value: role.name,
+        });
       });
       const passwordValidators = getPasswordValidators(this.injector);
       this.form
