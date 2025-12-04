@@ -8,7 +8,6 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzMessageModule } from 'ng-zorro-antd/message';
 import {
   TenantCreateOrUpdateDtoBase,
   TenantDto,
@@ -17,18 +16,17 @@ import {
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
-    selector: 'super-abp-tenants-edit',
-    templateUrl: './edit.component.html',
-    imports: [
-        CoreModule,
-        NzSpinModule,
-        NzFormModule,
-        NzButtonModule,
-        NzCheckboxModule,
-        NzInputModule,
-        NzMessageModule,
-        NzIconModule,
-    ]
+  selector: 'super-abp-tenants-edit',
+  templateUrl: './edit.component.html',
+  imports: [
+    CoreModule,
+    NzSpinModule,
+    NzFormModule,
+    NzButtonModule,
+    NzCheckboxModule,
+    NzInputModule,
+    NzIconModule,
+  ],
 })
 export class TenantManagementEditComponent implements OnInit {
   @Input()

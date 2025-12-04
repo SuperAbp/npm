@@ -1,22 +1,17 @@
+@if(form){
 <div class="modal-header">
-  <div class="modal-title" *ngIf="form && !userId">
-    {{ "AbpIdentity::NewUser" | abpLocalization }}
-  </div>
-  <div class="modal-title" *ngIf="form && userId">
+  @if(userId){
+  <div class="modal-title">
     {{ "AbpIdentity::Edit" | abpLocalization }} {{ user.name }}
   </div>
+  }@else {
+  <div class="modal-title">
+    {{ "AbpIdentity::NewUser" | abpLocalization }}
+  </div>
+  }
 </div>
 <div class="modal-body">
-  <ng-template #loaderRef>
-    <nz-spin class="modal-spin"></nz-spin>
-  </ng-template>
-  <form
-    *ngIf="form; else loaderRef"
-    nz-form
-    (ngSubmit)="save()"
-    [formGroup]="form"
-    nzLayout="vertical"
-  >
+  <form nz-form (ngSubmit)="save()" [formGroup]="form" nzLayout="vertical">
     <nz-tabs>
       <nz-tab [nzTitle]="'AbpIdentity::UserInformations' | abpLocalization">
         <nz-row>
@@ -221,3 +216,7 @@
     {{ "AbpIdentity::Submit" | abpLocalization }}
   </button>
 </div>
+
+}@else{
+<nz-spin class="modal-spin"></nz-spin>
+}

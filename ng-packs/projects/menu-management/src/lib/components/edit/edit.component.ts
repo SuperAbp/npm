@@ -1,7 +1,7 @@
 import { CoreModule, LocalizationService } from '@abp/ng.core';
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import {
   NzFormatEmitEvent,
@@ -20,29 +20,28 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzInputNumberLegacyModule } from 'ng-zorro-antd/input-number-legacy';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 @Component({
-    selector: 'super-abp-menu-management-edit',
-    templateUrl: './edit.component.html',
-    styles: [
-        `
+  selector: 'super-abp-menu-management-edit',
+  templateUrl: './edit.component.html',
+  styles: [
+    `
       nz-input-number {
         width: 100%;
       }
     `,
-    ],
-    imports: [
-        CoreModule,
-        NzSpinModule,
-        NzTreeSelectModule,
-        NzFormModule,
-        NzButtonModule,
-        NzCheckboxModule,
-        NzInputModule,
-        NzInputNumberLegacyModule,
-        NzMessageModule,
-    ]
+  ],
+  imports: [
+    CoreModule,
+    NzSpinModule,
+    NzTreeSelectModule,
+    NzFormModule,
+    NzButtonModule,
+    NzCheckboxModule,
+    NzInputModule,
+    NzInputNumberModule,
+  ],
 })
 export class MenuManagementEditComponent implements OnInit {
   @Input()

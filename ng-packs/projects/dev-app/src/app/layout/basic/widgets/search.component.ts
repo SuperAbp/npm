@@ -10,7 +10,7 @@ import {
   Input,
   OnDestroy,
   Output,
-  inject
+  inject,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { I18nPipe } from '@delon/theme';
@@ -20,15 +20,15 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, tap } from 'rxjs';
 
 @Component({
-    selector: 'header-search',
-    template: `
+  selector: 'header-search',
+  template: `
     <nz-input-group [nzPrefix]="iconTpl" [nzSuffix]="loadingTpl">
       <ng-template #iconTpl>
         <i nz-icon [nzType]="focus ? 'arrow-down' : 'search'"></i>
       </ng-template>
       <ng-template #loadingTpl>
         @if (loading) {
-          <i nz-icon nzType="loading"></i>
+        <i nz-icon nzType="loading"></i>
         }
       </ng-template>
       <input
@@ -45,15 +45,16 @@ import { BehaviorSubject, debounceTime, distinctUntilChanged, tap } from 'rxjs';
     </nz-input-group>
     <nz-autocomplete nzBackfill #auto>
       @for (i of options; track $index) {
-        <nz-auto-option [nzValue]="i">{{ i }}</nz-auto-option>
+      <nz-auto-option [nzValue]="i">{{ i }}</nz-auto-option>
       }
     </nz-autocomplete>
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [FormsModule, I18nPipe, NgTemplateOutlet, NzInputModule, NzIconModule, NzAutocompleteModule]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [FormsModule, NzInputModule, NzIconModule, NzAutocompleteModule],
 })
 export class HeaderSearchComponent implements AfterViewInit, OnDestroy {
-  private readonly el = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  private readonly el =
+    inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
   private readonly cdr = inject(ChangeDetectorRef);
   q = '';
   qIpt: HTMLInputElement | null = null;
@@ -88,11 +89,13 @@ export class HeaderSearchComponent implements AfterViewInit, OnDestroy {
         tap({
           complete: () => {
             this.loading = true;
-          }
+          },
         })
       )
-      .subscribe(value => {
-        this.options = value ? [value, value + value, value + value + value] : [];
+      .subscribe((value) => {
+        this.options = value
+          ? [value, value + value, value + value + value]
+          : [];
         this.loading = false;
         this.cdr.detectChanges();
       });

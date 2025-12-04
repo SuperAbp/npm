@@ -21,9 +21,9 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @Component({
-    selector: 'super-abp-permission-management',
-    templateUrl: './permission-management.component.html',
-    standalone: false
+  selector: 'super-abp-permission-management',
+  templateUrl: './permission-management.component.html',
+  standalone: false,
 })
 export class PermissionManagementComponent implements OnInit {
   @Input()
@@ -119,17 +119,18 @@ export class PermissionManagementComponent implements OnInit {
     return false;
   }
 
-  nzCheck(event: NzFormatEmitEvent): void {
-    if (event.eventName === 'check') {
+  nzCheck(event: any): void {
+    const nzEvent = event as NzFormatEmitEvent;
+    if (nzEvent.eventName === 'check') {
       if (
-        event.node.isLeaf &&
-        event.node.isChecked &&
-        !event.node.parentNode.isChecked
+        nzEvent.node.isLeaf &&
+        nzEvent.node.isChecked &&
+        !nzEvent.node.parentNode.isChecked
       ) {
-        event.node.parentNode.setChecked(true);
+        nzEvent.node.parentNode.setChecked(true);
       }
-      if (!event.node.isLeaf && !event.node.isChecked) {
-        event.node.children.forEach((n) => {
+      if (!nzEvent.node.isLeaf && !nzEvent.node.isChecked) {
+        nzEvent.node.children.forEach((n) => {
           n.setChecked(false);
         });
       }
@@ -138,7 +139,6 @@ export class PermissionManagementComponent implements OnInit {
 
   save() {
     this.isConfirmLoading = true;
-    debugger;
     const changedPermissions = this.unchangedPermissions
       .filter((unchanged) => {
         return this.nzTreeComponent.getTreeNodeByKey(unchanged.name)

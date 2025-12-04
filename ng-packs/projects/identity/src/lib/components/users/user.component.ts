@@ -24,14 +24,19 @@ import { ExtensionsService } from '../../services/extensions.service';
 import { eIdentityComponents } from '../../enums';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzMessageModule } from 'ng-zorro-antd/message';
-import { TreeSelectWidgetModule } from '@delon/form/widgets/tree-select';
 import { PageHeaderModule } from '@delon/abc/page-header';
 
 @Component({
-    selector: 'super-abp-identity-users',
-    templateUrl: './user.component.html',
-    standalone: false
+  selector: 'super-abp-identity-users',
+  templateUrl: './user.component.html',
+  imports: [
+    CoreModule,
+    NzCardModule,
+    STModule,
+    NzButtonModule,
+    PageHeaderModule,
+    DelonFormModule,
+  ],
 })
 export class IdentityUserComponent implements OnInit {
   private injector = inject(Injector);

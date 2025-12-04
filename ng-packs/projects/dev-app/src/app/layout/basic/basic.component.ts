@@ -1,7 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { I18nPipe, SettingsService, User } from '@delon/theme';
-import { LayoutDefaultModule, LayoutDefaultOptions } from '@delon/theme/layout-default';
+import { SettingsService, User } from '@delon/theme';
+import {
+  LayoutDefaultModule,
+  LayoutDefaultOptions,
+} from '@delon/theme/layout-default';
 import { SettingDrawerModule } from '@delon/theme/setting-drawer';
 import { ThemeBtnComponent } from '@delon/theme/theme-btn';
 import { environment } from '@env/environment';
@@ -16,8 +19,8 @@ import { HeaderSearchComponent } from './widgets/search.component';
 import { HeaderUserComponent } from './widgets/user.component';
 
 @Component({
-    selector: 'layout-basic',
-    template: `
+  selector: 'layout-basic',
+  template: `
     <layout-default [options]="options" [asideUser]="asideUserTpl" [content]="contentTpl" [customError]="null">
       <layout-default-header-item direction="left">
         <a layout-default-header-item-trigger href="//github.com/ng-alain/ng-alain" target="_blank">
@@ -79,28 +82,27 @@ import { HeaderUserComponent } from './widgets/user.component';
     }
     <theme-btn />
   `,
-    imports: [
-        RouterOutlet,
-        RouterLink,
-        I18nPipe,
-        LayoutDefaultModule,
-        SettingDrawerModule,
-        ThemeBtnComponent,
-        NzIconModule,
-        NzMenuModule,
-        NzDropDownModule,
-        NzAvatarModule,
-        HeaderSearchComponent,
-        HeaderClearStorageComponent,
-        HeaderFullScreenComponent,
-        HeaderUserComponent
-    ]
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    LayoutDefaultModule,
+    SettingDrawerModule,
+    ThemeBtnComponent,
+    NzIconModule,
+    NzMenuModule,
+    NzDropDownModule,
+    NzAvatarModule,
+    HeaderSearchComponent,
+    HeaderClearStorageComponent,
+    HeaderFullScreenComponent,
+    HeaderUserComponent,
+  ],
 })
 export class LayoutBasicComponent {
   private readonly settings = inject(SettingsService);
   options: LayoutDefaultOptions = {
     logoExpanded: `./assets/logo-full.svg`,
-    logoCollapsed: `./assets/logo.svg`
+    logoCollapsed: `./assets/logo.svg`,
   };
   searchToggleStatus = false;
   showSettingDrawer = !environment.production;

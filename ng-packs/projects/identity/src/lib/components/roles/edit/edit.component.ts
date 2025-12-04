@@ -6,18 +6,11 @@ import {
   IdentityRoleDto,
   IdentityRoleService,
 } from '@super-abp/ng.identity/proxy';
-import { CoreModule } from '@abp/ng.core';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzMessageModule } from 'ng-zorro-antd/message';
 
 @Component({
-    selector: 'super-abp-roles-edit',
-    templateUrl: './edit.component.html',
-    standalone: false
+  selector: 'super-abp-roles-edit',
+  templateUrl: './edit.component.html',
+  standalone: false,
 })
 export class IdentityRoleEditComponent implements OnInit {
   @Input()

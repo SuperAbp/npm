@@ -25,8 +25,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzInputNumberLegacyModule } from 'ng-zorro-antd/input-number-legacy';
-import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
@@ -40,13 +39,9 @@ import { IdentityExtensionsGuard } from './guards';
 import { PermissionManagementModule } from '@super-abp/ng.permission-management';
 
 @NgModule({
-  declarations: [
-    IdentityUserComponent,
-    IdentityUserEditComponent,
-    IdentityRoleComponent,
-    IdentityRoleEditComponent,
-  ],
+  declarations: [IdentityRoleComponent, IdentityRoleEditComponent],
   imports: [
+    IdentityUserComponent,
     CoreModule,
     IdentityRoutingModule,
     CommonModule,
@@ -61,10 +56,9 @@ import { PermissionManagementModule } from '@super-abp/ng.permission-management'
     NzGridModule,
     NzButtonModule,
     NzInputModule,
-    NzInputNumberLegacyModule,
+    NzInputNumberModule,
     NzSelectModule,
     NzCardModule,
-    NzMessageModule,
     NzSpinModule,
     NzPopconfirmModule,
     NzModalModule,
@@ -76,12 +70,7 @@ import { PermissionManagementModule } from '@super-abp/ng.permission-management'
     NzCheckboxModule,
     TrackCapsLockDirective,
   ],
-  exports: [
-    IdentityUserComponent,
-    IdentityUserEditComponent,
-    IdentityRoleComponent,
-    IdentityRoleEditComponent,
-  ],
+  exports: [IdentityRoleComponent, IdentityRoleEditComponent],
 })
 export class IdentityModule {
   static forChild(

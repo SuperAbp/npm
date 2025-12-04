@@ -10,7 +10,6 @@ import {
   AbstractControl,
   FormArray,
   FormBuilder,
-  FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
@@ -23,20 +22,29 @@ import {
   IdentityUserDto,
   IdentityUserService,
 } from '@super-abp/ng.identity/proxy';
-import { CoreModule } from '@abp/ng.core';
-import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzMessageModule } from 'ng-zorro-antd/message';
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { getPasswordValidators } from '../../../utils/validation-utils';
+import { CoreModule } from '@abp/ng.core';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 @Component({
-    selector: 'super-abp-identity-users-edit',
-    templateUrl: './edit.component.html',
-    standalone: false
+  selector: 'super-abp-identity-users-edit',
+  templateUrl: './edit.component.html',
+  imports: [
+    CoreModule,
+    NzIconModule,
+    NzButtonModule,
+    NzSpinModule,
+    NzFormModule,
+    NzTabsModule,
+    NzGridModule,
+    NzInputModule,
+  ],
 })
 export class IdentityUserEditComponent implements OnInit {
   @Input()

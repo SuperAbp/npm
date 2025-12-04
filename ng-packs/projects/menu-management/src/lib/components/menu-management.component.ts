@@ -14,7 +14,7 @@ import {
 } from '@delon/abc/st';
 import { DelonFormModule, SFSchema, SFSchemaEnumType } from '@delon/form';
 import { ModalHelper } from '@delon/theme';
-import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { finalize, map } from 'rxjs/operators';
 import { MenuManagementEditComponent } from './edit/edit.component';
 import { NzFormatEmitEvent, NzTreeNodeOptions } from 'ng-zorro-antd/tree';
@@ -33,18 +33,17 @@ import { PageHeaderModule } from '@delon/abc/page-header';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @Component({
-    selector: 'super-abp-menu-management',
-    templateUrl: './menu-management.component.html',
-    imports: [
-        CoreModule,
-        NzCardModule,
-        STModule,
-        NzButtonModule,
-        NzMessageModule,
-        TreeSelectWidgetModule,
-        PageHeaderModule,
-        DelonFormModule,
-    ]
+  selector: 'super-abp-menu-management',
+  templateUrl: './menu-management.component.html',
+  imports: [
+    CoreModule,
+    NzCardModule,
+    STModule,
+    NzButtonModule,
+    TreeSelectWidgetModule,
+    PageHeaderModule,
+    DelonFormModule,
+  ],
 })
 export class MenuManagementComponent implements OnInit {
   private modal = inject(ModalHelper);

@@ -13,7 +13,7 @@ import {
 } from '@delon/abc/st';
 import { DelonFormModule, SFSchema } from '@delon/form';
 import { ModalHelper } from '@delon/theme';
-import { NzMessageModule, NzMessageService } from 'ng-zorro-antd/message';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { finalize } from 'rxjs/operators';
 import { TenantManagementEditComponent } from './edit/edit.component';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -26,17 +26,16 @@ import {
 } from '@super-abp/ng.tenant-management/proxy';
 
 @Component({
-    selector: 'super-abp-tenant-management',
-    templateUrl: './tenant-management.component.html',
-    imports: [
-        CoreModule,
-        NzCardModule,
-        STModule,
-        NzButtonModule,
-        NzMessageModule,
-        PageHeaderModule,
-        DelonFormModule,
-    ]
+  selector: 'super-abp-tenant-management',
+  templateUrl: './tenant-management.component.html',
+  imports: [
+    CoreModule,
+    NzCardModule,
+    STModule,
+    NzButtonModule,
+    PageHeaderModule,
+    DelonFormModule,
+  ],
 })
 export class TenantManagementComponent implements OnInit {
   private modal = inject(ModalHelper);

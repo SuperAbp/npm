@@ -10,7 +10,7 @@
   <nz-tree
     *ngIf="permissions; else loaderRef"
     nzCheckStrictly
-    (nzCheckBoxChange)="nzCheck($event)"
+    (nzOnCheck)="nzCheck($event)"
     #nzTreeComponent
     [nzData]="permissions"
     [nzCheckedKeys]="defaultCheckedKeys"

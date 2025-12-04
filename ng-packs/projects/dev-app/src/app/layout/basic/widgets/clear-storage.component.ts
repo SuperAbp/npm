@@ -1,20 +1,24 @@
-import { ChangeDetectionStrategy, Component, HostListener, inject } from '@angular/core';
-import { I18nPipe } from '@delon/theme';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  inject,
+} from '@angular/core';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
-    selector: 'header-clear-storage',
-    template: `
+  selector: 'header-clear-storage',
+  template: `
     <i nz-icon nzType="tool"></i>
     清理本地缓存
   `,
-    host: {
-        '[class.flex-1]': 'true'
-    },
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NzIconModule, I18nPipe]
+  host: {
+    '[class.flex-1]': 'true',
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NzIconModule],
 })
 export class HeaderClearStorageComponent {
   private readonly modalSrv = inject(NzModalService);
@@ -27,7 +31,7 @@ export class HeaderClearStorageComponent {
       nzOnOk: () => {
         localStorage.clear();
         this.messageSrv.success('Clear Finished!');
-      }
+      },
     });
   }
 }

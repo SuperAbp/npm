@@ -2,17 +2,10 @@ import {
   PagedAndSortedResultRequestDto,
   LocalizationService,
   PermissionService,
-  CoreModule,
 } from '@abp/ng.core';
 import { Component, Injector, OnInit, ViewChild, inject } from '@angular/core';
-import {
-  STChange,
-  STColumn,
-  STComponent,
-  STModule,
-  STPage,
-} from '@delon/abc/st';
-import { DelonFormModule, SFSchema } from '@delon/form';
+import { STChange, STColumn, STComponent, STPage } from '@delon/abc/st';
+import { SFSchema } from '@delon/form';
 import { ModalHelper, _HttpClient } from '@delon/theme';
 import { tap } from 'rxjs/operators';
 import {
@@ -23,15 +16,10 @@ import { PermissionManagementComponent } from '@super-abp/ng.permission-manageme
 import { ExtensionsService } from '../../services/extensions.service';
 import { eIdentityComponents } from '../../enums';
 import { IdentityRoleEditComponent } from './edit/edit.component';
-import { NzCardModule } from 'ng-zorro-antd/card';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzMessageModule } from 'ng-zorro-antd/message';
-import { TreeSelectWidgetModule } from '@delon/form/widgets/tree-select';
-import { PageHeaderModule } from '@delon/abc/page-header';
 @Component({
-    selector: 'super-abp-roles',
-    templateUrl: './role.component.html',
-    standalone: false
+  selector: 'super-abp-roles',
+  templateUrl: './role.component.html',
+  standalone: false,
 })
 export class IdentityRoleComponent implements OnInit {
   private modal = inject(ModalHelper);

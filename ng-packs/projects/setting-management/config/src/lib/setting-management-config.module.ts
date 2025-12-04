@@ -11,7 +11,6 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { SETTING_MANAGEMENT_FEATURES_PROVIDERS } from './providers/features.token';
@@ -25,7 +24,6 @@ import { SETTING_MANAGEMENT_FEATURES_PROVIDERS } from './providers/features.toke
     NzButtonModule,
     NzInputModule,
     NzCheckboxModule,
-    NzMessageModule,
     NzIconModule,
     NzSpinModule,
   ],

@@ -3,21 +3,20 @@ import {
   Component,
   HostListener,
 } from '@angular/core';
-import { I18nPipe } from '@delon/theme';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import screenfull from 'screenfull';
 
 @Component({
-    selector: 'header-fullscreen',
-    template: `
+  selector: 'header-fullscreen',
+  template: `
     <i nz-icon [nzType]="status ? 'fullscreen-exit' : 'fullscreen'"></i>
     {{ status ? '退出全屏' : '全屏' }}
   `,
-    host: {
-        '[class.flex-1]': 'true',
-    },
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NzIconModule, I18nPipe]
+  host: {
+    '[class.flex-1]': 'true',
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [NzIconModule],
 })
 export class HeaderFullScreenComponent {
   status = false;

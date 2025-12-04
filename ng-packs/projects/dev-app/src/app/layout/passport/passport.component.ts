@@ -5,10 +5,9 @@ import { DA_SERVICE_TOKEN } from '@delon/auth';
 import { ThemeBtnComponent } from '@delon/theme/theme-btn';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-
 @Component({
-    selector: 'layout-passport',
-    template: `
+  selector: 'layout-passport',
+  template: `
     <div class="container">
       <div class="wrap">
         <div class="top">
@@ -27,8 +26,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
       </div>
     </div>
   `,
-    styleUrls: ['./passport.component.less'],
-    imports: [RouterOutlet, GlobalFooterModule, NzIconModule, ThemeBtnComponent]
+  styleUrls: ['./passport.component.less'],
+  imports: [RouterOutlet, GlobalFooterModule, NzIconModule],
 })
 export class LayoutPassportComponent implements OnInit {
   private tokenService = inject(DA_SERVICE_TOKEN);
@@ -36,16 +35,16 @@ export class LayoutPassportComponent implements OnInit {
   links = [
     {
       title: '帮助',
-      href: ''
+      href: '',
     },
     {
       title: '隐私',
-      href: ''
+      href: '',
     },
     {
       title: '条款',
-      href: ''
-    }
+      href: '',
+    },
   ];
 
   ngOnInit(): void {

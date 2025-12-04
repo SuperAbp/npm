@@ -1,10 +1,10 @@
 import { AuthService } from '@abp/ng.core';
 import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { StartupService } from '@core';
 import { DA_SERVICE_TOKEN, ITokenService, SocialService } from '@delon/auth';
-import { I18nPipe, _HttpClient } from '@delon/theme';
+import { _HttpClient } from '@delon/theme';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
@@ -16,24 +16,22 @@ import { NzTooltipModule } from 'ng-zorro-antd/tooltip';
 import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
-    selector: 'passport-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.less'],
-    providers: [SocialService],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [
-        RouterLink,
-        ReactiveFormsModule,
-        I18nPipe,
-        NzCheckboxModule,
-        NzTabsModule,
-        NzAlertModule,
-        NzFormModule,
-        NzInputModule,
-        NzButtonModule,
-        NzTooltipModule,
-        NzIconModule,
-    ]
+  selector: 'passport-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.less'],
+  providers: [SocialService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    ReactiveFormsModule,
+    NzCheckboxModule,
+    NzTabsModule,
+    NzAlertModule,
+    NzFormModule,
+    NzInputModule,
+    NzButtonModule,
+    NzTooltipModule,
+    NzIconModule,
+  ],
 })
 export class UserLoginComponent {
   constructor(

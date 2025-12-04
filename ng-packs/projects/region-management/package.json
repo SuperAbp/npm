@@ -1,22 +1,22 @@
 {
   "name": "@super-abp/ng.region-management",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "homepage": "https://SuperAbp.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/SuperAbp/npm.git"
   },
   "peerDependencies": {
-    "@abp/ng.core": "~9.0.0",
-    "@angular/common": "^18.2.12",
-    "@angular/core": "^18.2.12",
-    "ng-zorro-antd": "^18.2.1",
-    "@delon/abc": "^18.3.0",
-    "@delon/acl": "^18.3.0",
-    "@delon/auth": "^18.3.0",
-    "@delon/form": "^18.3.0",
-    "@delon/theme": "^18.3.0",
-    "@delon/util": "^18.3.0"
+    "@abp/ng.core": "~10.0.0",
+    "@angular/common": "^20.3.15",
+    "@angular/core": "^20.3.15",
+    "ng-zorro-antd": "^20.4.3",
+    "@delon/abc": "^20.1.0",
+    "@delon/acl": "^20.1.0",
+    "@delon/auth": "^20.1.0",
+    "@delon/form": "^20.1.0",
+    "@delon/theme": "^20.1.0",
+    "@delon/util": "^20.1.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

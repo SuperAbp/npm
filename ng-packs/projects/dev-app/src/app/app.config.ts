@@ -34,13 +34,14 @@ import { CELL_WIDGETS, ST_WIDGETS, SF_WIDGETS } from '@shared';
 import { zhCN as dateLang } from 'date-fns/locale';
 import { NzConfig, provideNzConfig } from 'ng-zorro-antd/core/config';
 import { zh_CN as zorroLang } from 'ng-zorro-antd/i18n';
+import { NgxValidateCoreModule } from '@ngx-validate/core';
 
 import { provideBindAuthRefresh } from './core/net';
 import { routes } from './routes/routes';
 import { ICONS } from '../style-icons';
 import { ICONS_AUTO } from '../style-icons-auto';
-import { AbpOAuthModule } from '@abp/ng.oauth';
-import { CoreModule } from '@abp/ng.core';
+import { AbpOAuthModule, provideAbpOAuth } from '@abp/ng.oauth';
+import { CoreModule, provideAbpCore, withOptions } from '@abp/ng.core';
 import { registerLocale } from '@abp/ng.core/locale';
 
 const defaultLang: AlainProvideLang = {
@@ -96,13 +97,14 @@ const providers: Array<Provider | EnvironmentProviders> = [
     widgets: [...SF_WIDGETS],
   }),
   provideStartup(),
-  importProvidersFrom([
-    CoreModule.forRoot({
+  provideAbpCore(
+    withOptions({
       environment,
       registerLocaleFn: registerLocale(),
-    }),
-    AbpOAuthModule.forRoot(),
-  ]),
+    })
+  ),
+  provideAbpOAuth(),
+  importProvidersFrom([NgxValidateCoreModule.forRoot()]),
   ...(environment.providers || []),
 ];
 
