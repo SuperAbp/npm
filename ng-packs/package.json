@@ -87,6 +87,6 @@
     "@vitest/coverage-v8": "^4.0.16",
     "vitest": "^4.0.16",
     "jsdom": "^27.4.0",
-    "stylelint-order": "@DEP-21.0.5"
+    "stylelint-order": "^7.0.1"
   }
 }
