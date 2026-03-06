@@ -3,7 +3,14 @@ import {
   LocalizationService,
   PermissionService,
 } from '@abp/ng.core';
-import { Component, Injector, OnInit, ViewChild, inject } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Injector,
+  OnInit,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { STChange, STColumn, STComponent, STPage } from '@delon/abc/st';
 import { SFSchema } from '@delon/form';
 import { ModalHelper, _HttpClient } from '@delon/theme';
@@ -28,8 +35,9 @@ export class IdentityRoleComponent implements OnInit {
   private roleService = inject(IdentityRoleService);
   private permissionService = inject(PermissionService);
   private extensionsService = inject(ExtensionsService);
+  private cdr = inject(ChangeDetectorRef);
 
-  roles: IdentityRoleDto[];
+  roles: IdentityRoleDto[] = [];
   total: number;
   loading = false;
   params: PagedAndSortedResultRequestDto = this.resetParameters();
@@ -43,7 +51,7 @@ export class IdentityRoleComponent implements OnInit {
     properties: {},
   };
   @ViewChild('st', { static: false }) st: STComponent;
-  columns: STColumn[];
+  columns: STColumn[] = [];
 
   ngOnInit() {
     const propList = this.extensionsService.entityProps
@@ -65,7 +73,7 @@ export class IdentityRoleComponent implements OnInit {
           },
           iif: () => {
             return this.permissionService.getGrantedPolicy(
-              'AbpIdentity.Roles.Update'
+              'AbpIdentity.Roles.Update',
             );
           },
           click: 'reload',
@@ -83,7 +91,7 @@ export class IdentityRoleComponent implements OnInit {
           },
           iif: () => {
             return this.permissionService.getGrantedPolicy(
-              'AbpIdentity.Roles.ManagePermissions'
+              'AbpIdentity.Roles.ManagePermissions',
             );
           },
           click: 'reload',
@@ -98,11 +106,11 @@ export class IdentityRoleComponent implements OnInit {
     this.roleService
       .getList(this.params)
       .pipe(tap(() => (this.loading = false)))
-      .subscribe(
-        (response) => (
-          (this.roles = response.items), (this.total = response.totalCount)
-        )
-      );
+      .subscribe((response) => {
+        this.roles = response.items || [];
+        this.total = response.totalCount;
+        this.cdr.markForCheck();
+      });
   }
   resetParameters(): PagedAndSortedResultRequestDto {
     return {

@@ -1,213 +1,238 @@
-@if(form){
-<div class="modal-header">
-  @if(userId){
-  <div class="modal-title">
-    {{ "AbpIdentity::Edit" | abpLocalization }} {{ user.name }}
+@if (form) {
+  <div class="modal-header">
+    @if (userId) {
+      <div class="modal-title">
+        {{ "AbpIdentity::Edit" | abpLocalization }} {{ user.name }}
+      </div>
+    } @else {
+      <div class="modal-title">
+        {{ "AbpIdentity::NewUser" | abpLocalization }}
+      </div>
+    }
   </div>
-  }@else {
-  <div class="modal-title">
-    {{ "AbpIdentity::NewUser" | abpLocalization }}
+  <div class="modal-body">
+    <form
+      nz-form
+      (ngSubmit)="save()"
+      [formGroup]="form"
+      nzLayout="vertical"
+      [skipValidation]="true"
+    >
+      <nz-tabs>
+        <nz-tab [nzTitle]="'AbpIdentity::UserInformations' | abpLocalization">
+          <nz-row>
+            <nz-col nzLg="6" nzMd="12" nzSm="24">
+              <nz-form-item>
+                <nz-form-label nzRequired>{{
+                  "AbpIdentity::DisplayName:UserName" | abpLocalization
+                }}</nz-form-label>
+                <nz-form-control
+                  nzHasFeedback
+                  [nzValidatingTip]="
+                    'AbpIdentity::Validating' | abpLocalization
+                  "
+                  [nzErrorTip]="userNameErrorTpl"
+                >
+                  <input formControlName="userName" nz-input />
+                  <ng-template #userNameErrorTpl let-control>
+                    @if (control.hasError("required")) {
+                      <div>
+                        {{
+                          "AbpIdentity::ThisFieldIsRequired" | abpLocalization
+                        }}
+                      </div>
+                    }
+                  </ng-template>
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+            <nz-col
+              [nzXl]="{ span: 6, offset: 2 }"
+              [nzLg]="{ span: 8 }"
+              [nzMd]="{ span: 12 }"
+              nzSm="24"
+            >
+              <nz-form-item>
+                <nz-form-label nzRequired>{{
+                  "AbpIdentity::DisplayName:Password" | abpLocalization
+                }}</nz-form-label>
+                <nz-form-control
+                  nzHasFeedback
+                  [nzValidatingTip]="
+                    'AbpIdentity::Validating' | abpLocalization
+                  "
+                  [nzErrorTip]="passwordErrorTpl"
+                >
+                  <nz-input-password>
+                    <input formControlName="password" nz-input />
+                  </nz-input-password>
+
+                  <ng-template #passwordErrorTpl let-control>
+                    @if (control.hasError("required")) {
+                      <div>
+                        {{
+                          "AbpIdentity::ThisFieldIsRequired" | abpLocalization
+                        }}
+                      </div>
+                    }
+                    @if (control.hasError("minlength")) {
+                      <div>
+                        {{
+                          "AbpValidation::ThisFieldMustBeAStringOrArrayTypeWithAMinimumLengthOf{0}"
+                            | abpLocalization
+                              : control.errors.minlength.requiredLength
+                        }}
+                      </div>
+                    }
+                    @if (control.hasError("maxlength")) {
+                      <div>
+                        {{
+                          "AbpValidation::ThisFieldMustBeAStringOrArrayTypeWithAMaximumLengthOf{0}"
+                            | abpLocalization
+                              : control.errors.maxlength.requiredLength
+                        }}
+                      </div>
+                    }
+                    @if (control.hasError("passwordRequiresLower")) {
+                      <div>
+                        {{
+                          "AbpIdentity::Volo.Abp.Identity:PasswordRequiresLower"
+                            | abpLocalization
+                        }}
+                      </div>
+                    }
+                    @if (control.hasError("passwordRequiresUpper")) {
+                      <div>
+                        {{
+                          "AbpIdentity::Volo.Abp.Identity:PasswordRequiresUpper"
+                            | abpLocalization
+                        }}
+                      </div>
+                    }
+                    @if (control.hasError("passwordRequiresDigit")) {
+                      <div>
+                        {{
+                          "AbpIdentity::Volo.Abp.Identity:PasswordRequiresDigit"
+                            | abpLocalization
+                        }}
+                      </div>
+                    }
+                    @if (control.hasError("passwordRequiresNonAlphanumeric")) {
+                      <div>
+                        {{
+                          "AbpIdentity::Volo.Abp.Identity:PasswordRequiresNonAlphanumeric"
+                            | abpLocalization
+                        }}
+                      </div>
+                    }
+                  </ng-template>
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+            <nz-col
+              [nzXl]="{ span: 8, offset: 2 }"
+              [nzLg]="{ span: 10 }"
+              [nzMd]="{ span: 24 }"
+              nzSm="24"
+            >
+              <nz-form-item>
+                <nz-form-label>{{
+                  "AbpIdentity::DisplayName:PhoneNumber" | abpLocalization
+                }}</nz-form-label>
+                <nz-form-control>
+                  <input formControlName="phoneNumber" nz-input />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+          </nz-row>
+          <nz-row>
+            <nz-col nzLg="6" nzMd="12" nzSm="24">
+              <nz-form-item>
+                <nz-form-label>{{
+                  "AbpIdentity::DisplayName:Name" | abpLocalization
+                }}</nz-form-label>
+                <nz-form-control>
+                  <input formControlName="name" nz-input />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+            <nz-col
+              [nzXl]="{ span: 6, offset: 2 }"
+              [nzLg]="{ span: 8 }"
+              [nzMd]="{ span: 12 }"
+              nzSm="24"
+            >
+              <nz-form-item>
+                <nz-form-label>{{
+                  "AbpIdentity::DisplayName:Surname" | abpLocalization
+                }}</nz-form-label>
+                <nz-form-control>
+                  <input formControlName="surname" nz-input />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+            <nz-col
+              [nzXl]="{ span: 8, offset: 2 }"
+              [nzLg]="{ span: 10 }"
+              [nzMd]="{ span: 24 }"
+              nzSm="24"
+            >
+              <nz-form-item>
+                <nz-form-label nzRequired>{{
+                  "AbpIdentity::DisplayName:Email" | abpLocalization
+                }}</nz-form-label>
+                <nz-form-control
+                  nzHasFeedback
+                  [nzValidatingTip]="
+                    'AbpIdentity::Validating' | abpLocalization
+                  "
+                  [nzErrorTip]="emailErrorTpl"
+                >
+                  <input formControlName="email" nz-input />
+                  <ng-template #emailErrorTpl let-control>
+                    @if (control.hasError("required")) {
+                      <div>
+                        {{
+                          "AbpIdentity::ThisFieldIsRequired" | abpLocalization
+                        }}
+                      </div>
+                    }
+                  </ng-template>
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+          </nz-row>
+          <nz-form-item>
+            <nz-form-control>
+              <label nz-checkbox formControlName="lockoutEnabled">
+                {{
+                  "AbpIdentity::DisplayName:LockoutEnabled" | abpLocalization
+                }}
+              </label>
+            </nz-form-control>
+          </nz-form-item>
+        </nz-tab>
+        <nz-tab [nzTitle]="'AbpIdentity::Roles' | abpLocalization">
+          <nz-checkbox-group
+            [nzOptions]="roleOptions"
+            formControlName="roleNames"
+          ></nz-checkbox-group>
+        </nz-tab>
+      </nz-tabs>
+    </form>
   </div>
-  }
-</div>
-<div class="modal-body">
-  <form nz-form (ngSubmit)="save()" [formGroup]="form" nzLayout="vertical">
-    <nz-tabs>
-      <nz-tab [nzTitle]="'AbpIdentity::UserInformations' | abpLocalization">
-        <nz-row>
-          <nz-col nzLg="6" nzMd="12" nzSm="24">
-            <nz-form-item>
-              <nz-form-label nzRequired>{{
-                "AbpIdentity::DisplayName:UserName" | abpLocalization
-              }}</nz-form-label>
-              <nz-form-control
-                nzHasFeedback
-                [nzValidatingTip]="'AbpIdentity::Validating' | abpLocalization"
-                [nzErrorTip]="userNameErrorTpl"
-              >
-                <input formControlName="userName" nz-input />
-                <ng-template #userNameErrorTpl let-control>
-                  @if (control.hasError('required')) {
-                  <div>
-                    {{ "AbpIdentity::ThisFieldIsRequired" | abpLocalization }}
-                  </div>
-                  }
-                </ng-template>
-              </nz-form-control>
-            </nz-form-item>
-          </nz-col>
-          <nz-col
-            [nzXl]="{ span: 6, offset: 2 }"
-            [nzLg]="{ span: 8 }"
-            [nzMd]="{ span: 12 }"
-            nzSm="24"
-          >
-            <nz-form-item>
-              <nz-form-label nzRequired>{{
-                "AbpIdentity::DisplayName:Password" | abpLocalization
-              }}</nz-form-label>
-              <nz-form-control
-                nzHasFeedback
-                [nzValidatingTip]="'AbpIdentity::Validating' | abpLocalization"
-                [nzErrorTip]="passwordErrorTpl"
-              >
-                <nz-input-password>
-                  <input formControlName="password" nz-input />
-                </nz-input-password>
-
-                <ng-template #passwordErrorTpl let-control>
-                  @if (control.hasError('required')) {
-                  <div>
-                    {{ "AbpIdentity::ThisFieldIsRequired" | abpLocalization }}
-                  </div>
-                  } @if (control.hasError('minlength')) {
-                  <div>
-                    {{
-                      "AbpValidation::ThisFieldMustBeAStringOrArrayTypeWithAMinimumLengthOf{0}"
-                        | abpLocalization
-                          : control.errors.minlength.requiredLength
-                    }}
-                  </div>
-                  } @if (control.hasError('maxlength')) {
-                  <div>
-                    {{
-                      "AbpValidation::ThisFieldMustBeAStringOrArrayTypeWithAMaximumLengthOf{0}"
-                        | abpLocalization
-                          : control.errors.maxlength.requiredLength
-                    }}
-                  </div>
-                  } @if (control.hasError('passwordRequiresLower')) {
-                  <div>
-                    {{
-                      "AbpIdentity::Volo.Abp.Identity:PasswordRequiresLower"
-                        | abpLocalization
-                    }}
-                  </div>
-                  } @if (control.hasError('passwordRequiresUpper')) {
-                  <div>
-                    {{
-                      "AbpIdentity::Volo.Abp.Identity:PasswordRequiresUpper"
-                        | abpLocalization
-                    }}
-                  </div>
-                  } @if (control.hasError('passwordRequiresDigit')) {
-                  <div>
-                    {{
-                      "AbpIdentity::Volo.Abp.Identity:PasswordRequiresDigit"
-                        | abpLocalization
-                    }}
-                  </div>
-                  } @if (control.hasError('passwordRequiresNonAlphanumeric')) {
-                  <div>
-                    {{
-                      "AbpIdentity::Volo.Abp.Identity:PasswordRequiresNonAlphanumeric"
-                        | abpLocalization
-                    }}
-                  </div>
-                  }
-                </ng-template>
-              </nz-form-control>
-            </nz-form-item>
-          </nz-col>
-          <nz-col
-            [nzXl]="{ span: 8, offset: 2 }"
-            [nzLg]="{ span: 10 }"
-            [nzMd]="{ span: 24 }"
-            nzSm="24"
-          >
-            <nz-form-item>
-              <nz-form-label>{{
-                "AbpIdentity::DisplayName:PhoneNumber" | abpLocalization
-              }}</nz-form-label>
-              <nz-form-control>
-                <input formControlName="phoneNumber" nz-input />
-              </nz-form-control>
-            </nz-form-item>
-          </nz-col>
-        </nz-row>
-        <nz-row>
-          <nz-col nzLg="6" nzMd="12" nzSm="24">
-            <nz-form-item>
-              <nz-form-label>{{
-                "AbpIdentity::DisplayName:Name" | abpLocalization
-              }}</nz-form-label>
-              <nz-form-control>
-                <input formControlName="name" nz-input />
-              </nz-form-control>
-            </nz-form-item>
-          </nz-col>
-          <nz-col
-            [nzXl]="{ span: 6, offset: 2 }"
-            [nzLg]="{ span: 8 }"
-            [nzMd]="{ span: 12 }"
-            nzSm="24"
-          >
-            <nz-form-item>
-              <nz-form-label>{{
-                "AbpIdentity::DisplayName:Surname" | abpLocalization
-              }}</nz-form-label>
-              <nz-form-control>
-                <input formControlName="surname" nz-input />
-              </nz-form-control>
-            </nz-form-item>
-          </nz-col>
-          <nz-col
-            [nzXl]="{ span: 8, offset: 2 }"
-            [nzLg]="{ span: 10 }"
-            [nzMd]="{ span: 24 }"
-            nzSm="24"
-          >
-            <nz-form-item>
-              <nz-form-label nzRequired>{{
-                "AbpIdentity::DisplayName:Email" | abpLocalization
-              }}</nz-form-label>
-              <nz-form-control
-                nzHasFeedback
-                [nzValidatingTip]="'AbpIdentity::Validating' | abpLocalization"
-                [nzErrorTip]="emailErrorTpl"
-              >
-                <input formControlName="email" nz-input />
-                <ng-template #emailErrorTpl let-control>
-                  @if (control.hasError('required')) {
-                  <div>
-                    {{ "AbpIdentity::ThisFieldIsRequired" | abpLocalization }}
-                  </div>
-                  }
-                </ng-template>
-              </nz-form-control>
-            </nz-form-item>
-          </nz-col>
-        </nz-row>
-        <nz-form-item>
-          <nz-form-control>
-            <label nz-checkbox formControlName="lockoutEnabled">
-              {{ "AbpIdentity::DisplayName:LockoutEnabled" | abpLocalization }}
-            </label>
-          </nz-form-control>
-        </nz-form-item>
-      </nz-tab>
-      <nz-tab [nzTitle]="'AbpIdentity::Roles' | abpLocalization">
-        <nz-checkbox-group
-          [nzOptions]="roleOptions"
-          formControlName="roleNames"
-        ></nz-checkbox-group>
-      </nz-tab>
-    </nz-tabs>
-  </form>
-</div>
-<div class="modal-footer">
-  <button
-    nz-button
-    nzType="primary"
-    *ngIf="form"
-    [disabled]="!form.valid"
-    [nzLoading]="isConfirmLoading"
-    (click)="save()"
-  >
-    {{ "AbpIdentity::Submit" | abpLocalization }}
-  </button>
-</div>
-
-}@else{
-<nz-spin class="modal-spin"></nz-spin>
+  <div class="modal-footer">
+    <button
+      nz-button
+      nzType="primary"
+      *ngIf="form"
+      [disabled]="!form.valid"
+      [nzLoading]="isConfirmLoading"
+      (click)="save()"
+    >
+      {{ "AbpIdentity::Submit" | abpLocalization }}
+    </button>
+  </div>
+} @else {
+  <nz-spin class="modal-spin"></nz-spin>
 }

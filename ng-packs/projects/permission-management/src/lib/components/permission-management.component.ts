@@ -52,7 +52,7 @@ export class PermissionManagementComponent implements OnInit {
    */
   constructor(
     private readonly permissionsService: PermissionsService,
-    private modal: NzModalRef
+    private modal: NzModalRef,
   ) {}
   ngOnInit(): void {
     this.permissionsService
@@ -62,7 +62,7 @@ export class PermissionManagementComponent implements OnInit {
           const treeArr = [];
           response.groups.forEach((g) => {
             this.unchangedPermissions = this.unchangedPermissions.concat(
-              g.permissions
+              g.permissions,
             );
             const treeNode: any = {};
             treeNode.title = g.displayName;
@@ -71,23 +71,23 @@ export class PermissionManagementComponent implements OnInit {
             treeNode.disabled = true;
             treeNode.children = this.createPermissionsTreeNodel(
               g.permissions,
-              null
+              null,
             );
             treeArr.push(treeNode);
           });
           console.log(treeArr);
           this.permissions = treeArr;
-        })
+        }),
       )
       .subscribe();
   }
   createPermissionsTreeNodel(
     permissions: PermissionGrantInfoDto[],
-    parentName
+    parentName,
   ): any {
     const nodeArr: any[] = [];
     let tempPermissions = permissions.filter(
-      (p) => p.parentName === parentName
+      (p) => p.parentName === parentName,
     );
     if (tempPermissions.length == 0) {
       return [];
@@ -112,7 +112,7 @@ export class PermissionManagementComponent implements OnInit {
     if (grantedProviders.length) {
       return (
         grantedProviders.findIndex(
-          (p) => p.providerName !== this.providerName
+          (p) => p.providerName !== this.providerName,
         ) > -1
       );
     }
@@ -148,9 +148,9 @@ export class PermissionManagementComponent implements OnInit {
             ? false
             : true
           : this.nzTreeComponent.getTreeNodeByKey(unchanged.name).isChecked ===
-            unchanged.isGranted
-          ? false
-          : true;
+              unchanged.isGranted
+            ? false
+            : true;
       })
       .map(({ name, isGranted }) => ({ name, isGranted: !isGranted }));
 

@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  inject,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { finalize, tap } from 'rxjs/operators';
@@ -19,6 +25,7 @@ export class IdentityRoleEditComponent implements OnInit {
   private modal = inject(NzModalRef);
   private fb = inject(FormBuilder);
   private roleService = inject(IdentityRoleService);
+  private cdr = inject(ChangeDetectorRef);
 
   role: IdentityRoleDto;
 
@@ -37,13 +44,15 @@ export class IdentityRoleEditComponent implements OnInit {
             this.role = response;
             this.buildForm();
             this.loading = false;
-          })
+            this.cdr.detectChanges();
+          }),
         )
         .subscribe();
     } else {
       this.role = {} as IdentityRoleDto;
       this.buildForm();
       this.loading = false;
+      this.cdr.detectChanges();
     }
   }
 
@@ -74,17 +83,13 @@ export class IdentityRoleEditComponent implements OnInit {
           ...this.role,
           ...this.form.value,
         })
-        .pipe(finalize(() => (this.isConfirmLoading = false)))
         .subscribe(() => {
           this.modal.close(true);
         });
     } else {
-      this.roleService
-        .create({ ...this.form.value })
-        .pipe(finalize(() => (this.isConfirmLoading = false)))
-        .subscribe(() => {
-          this.modal.close(true);
-        });
+      this.roleService.create({ ...this.form.value }).subscribe(() => {
+        this.modal.close(true);
+      });
     }
   }
 

@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  inject,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { finalize, tap } from 'rxjs/operators';
@@ -35,6 +41,7 @@ export class TenantManagementEditComponent implements OnInit {
   private modal = inject(NzModalRef);
   private fb = inject(FormBuilder);
   private tenantService = inject(TenantService);
+  private cdr = inject(ChangeDetectorRef);
 
   tenant: TenantDto;
 
@@ -54,13 +61,15 @@ export class TenantManagementEditComponent implements OnInit {
             this.tenant = response;
             this.buildForm();
             this.loading = false;
-          })
+            this.cdr.detectChanges();
+          }),
         )
         .subscribe();
     } else {
       this.tenant = {} as TenantCreateOrUpdateDtoBase;
       this.buildForm();
       this.loading = false;
+      this.cdr.detectChanges();
     }
   }
 
@@ -91,13 +100,13 @@ export class TenantManagementEditComponent implements OnInit {
       return;
     }
     this.isConfirmLoading = true;
+    this.cdr.detectChanges();
     if (this.tenantId) {
       this.tenantService
         .update(this.tenantId, {
           name: this.form.get('name').value,
           concurrencyStamp: this.form.get('concurrencyStamp').value,
         })
-        .pipe(finalize(() => (this.isConfirmLoading = false)))
         .subscribe(() => {
           this.modal.close(true);
         });
@@ -108,7 +117,6 @@ export class TenantManagementEditComponent implements OnInit {
           adminEmailAddress: this.form.get('adminEmailAddress').value,
           adminPassword: this.form.get('adminPassword').value,
         })
-        .pipe(finalize(() => (this.isConfirmLoading = false)))
         .subscribe(() => {
           this.modal.close(true);
         });

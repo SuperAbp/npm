@@ -5,6 +5,7 @@ import {
   OnInit,
   TrackByFunction,
   inject,
+  ChangeDetectorRef,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -58,6 +59,7 @@ export class IdentityUserEditComponent implements OnInit {
   private fb = inject(FormBuilder);
   private roleService = inject(IdentityRoleService);
   private userService = inject(IdentityUserService);
+  private cdr = inject(ChangeDetectorRef);
 
   user: IdentityUserDto;
   roles: IdentityRoleDto[];
@@ -85,13 +87,11 @@ export class IdentityUserEditComponent implements OnInit {
         this.userService.getRoles(this.userId).subscribe((result) => {
           this.selectedUserRoles = result.items;
           this.buildForm();
-          this.loading = false;
         });
       });
     } else {
       this.user = {} as IdentityUserDto;
       this.buildForm();
-      this.loading = false;
     }
   }
 
@@ -128,6 +128,10 @@ export class IdentityUserEditComponent implements OnInit {
         .get('password')
         .setValidators([...passwordValidators, Validators.required]);
       this.form.get('password').updateValueAndValidity();
+
+      // 在表单完全初始化后再停止加载状态
+      this.loading = false;
+      this.cdr.markForCheck();
     });
   }
 
@@ -150,9 +154,6 @@ export class IdentityUserEditComponent implements OnInit {
           tap(() => {
             this.modal.close(true);
           }),
-          finalize(() => {
-            this.isConfirmLoading = false;
-          })
         )
         .subscribe();
     } else {
@@ -165,9 +166,6 @@ export class IdentityUserEditComponent implements OnInit {
           tap(() => {
             this.modal.close(true);
           }),
-          finalize(() => {
-            this.isConfirmLoading = false;
-          })
         )
         .subscribe();
     }

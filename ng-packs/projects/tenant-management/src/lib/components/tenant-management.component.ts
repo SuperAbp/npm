@@ -3,7 +3,13 @@ import {
   LocalizationService,
   PermissionService,
 } from '@abp/ng.core';
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import {
   STChange,
   STColumn,
@@ -43,6 +49,7 @@ export class TenantManagementComponent implements OnInit {
   private messageService = inject(NzMessageService);
   private permissionService = inject(PermissionService);
   private tenantService = inject(TenantService);
+  private cdr = inject(ChangeDetectorRef);
 
   tenants: TenantDto[];
   total: number;
@@ -62,7 +69,7 @@ export class TenantManagementComponent implements OnInit {
         ui: {
           placeholder: this.localizationService.instant(
             'AbpTenantManagement::Placeholder',
-            this.localizationService.instant('AbpTenantManagement::TenantName')
+            this.localizationService.instant('AbpTenantManagement::TenantName'),
           ),
         },
       },
@@ -72,7 +79,7 @@ export class TenantManagementComponent implements OnInit {
   columns: STColumn[] = [
     {
       title: this.localizationService.instant(
-        'AbpTenantManagement::TenantName'
+        'AbpTenantManagement::TenantName',
       ),
       index: 'name',
     },
@@ -83,11 +90,11 @@ export class TenantManagementComponent implements OnInit {
           icon: 'edit',
           type: 'modal',
           tooltip: this.localizationService.instant(
-            'AbpTenantManagement::Edit'
+            'AbpTenantManagement::Edit',
           ),
           iif: () => {
             return this.permissionService.getGrantedPolicy(
-              'AbpTenantManagement.Tenants.Update'
+              'AbpTenantManagement.Tenants.Update',
             );
           },
           modal: {
@@ -102,18 +109,18 @@ export class TenantManagementComponent implements OnInit {
           icon: 'delete',
           type: 'del',
           tooltip: this.localizationService.instant(
-            'AbpTenantManagement::Delete'
+            'AbpTenantManagement::Delete',
           ),
           pop: {
             title: this.localizationService.instant(
-              'AbpTenantManagement::AreYouSure'
+              'AbpTenantManagement::AreYouSure',
             ),
             okType: 'danger',
             icon: 'star',
           },
           iif: () => {
             return this.permissionService.getGrantedPolicy(
-              'AbpTenantManagement.Tenants.Delete'
+              'AbpTenantManagement.Tenants.Delete',
             );
           },
           click: (record, _modal, component) => {
@@ -121,8 +128,8 @@ export class TenantManagementComponent implements OnInit {
               this.messageService.success(
                 this.localizationService.instant(
                   'AbpTenantManagement::Deleted',
-                  record.name
-                )
+                  record.name,
+                ),
               );
               component!.removeRow(record);
             });
@@ -139,7 +146,12 @@ export class TenantManagementComponent implements OnInit {
     this.loading = true;
     this.tenantService
       .getList(this.params)
-      .pipe(finalize(() => (this.loading = false)))
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+          this.cdr.detectChanges();
+        }),
+      )
       .subscribe((response) => {
         this.tenants = response.items;
         this.total = response.totalCount;

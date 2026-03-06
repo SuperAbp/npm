@@ -23,6 +23,7 @@
     nz-form
     (ngSubmit)="save()"
     [formGroup]="form"
+    [skipValidation]="true"
   >
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>{{

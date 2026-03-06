@@ -17,6 +17,7 @@
     (ngSubmit)="save()"
     [formGroup]="form"
     nzLayout="vertical"
+    [skipValidation]="true"
   >
     <nz-form-item>
       <nz-form-label nzRequired>{{
@@ -35,55 +36,59 @@
         </ng-template>
       </nz-form-control>
     </nz-form-item>
-    @if(!this.tenantId){
-    <nz-form-item>
-      <nz-form-label nzRequired>{{
-        "AbpTenantManagement::DisplayName:AdminEmailAddress" | abpLocalization
-      }}</nz-form-label>
-      <nz-form-control
-        nzHasFeedback
-        [nzValidatingTip]="'AbpTenantManagement::Validating' | abpLocalization"
-        [nzErrorTip]="nameErrorTpl"
-      >
-        <input formControlName="adminEmailAddress" nz-input />
-        <ng-template #nameErrorTpl let-control>
-          <ng-container *ngIf="control.hasError('required')">
-            {{ "AbpTenantManagement::ThisFieldIsRequired" | abpLocalization }}
-          </ng-container>
-        </ng-template>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label nzRequired>{{
-        "AbpTenantManagement::DisplayName:AdminPassword" | abpLocalization
-      }}</nz-form-label>
-      <nz-form-control
-        nzHasFeedback
-        [nzValidatingTip]="'AbpTenantManagement::Validating' | abpLocalization"
-        [nzErrorTip]="nameErrorTpl"
-      >
-        <nz-input-group [nzSuffix]="suffixTemplate">
-          <input
-            formControlName="adminPassword"
-            nz-input
-            [type]="passwordVisible ? 'text' : 'password'"
-          />
-        </nz-input-group>
-        <ng-template #suffixTemplate>
-          <span
-            nz-icon
-            class="ant-input-password-icon"
-            [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
-            (click)="passwordVisible = !passwordVisible"
-          ></span>
-        </ng-template>
-        <ng-template #nameErrorTpl let-control>
-          <ng-container *ngIf="control.hasError('required')">
-            {{ "AbpTenantManagement::ThisFieldIsRequired" | abpLocalization }}
-          </ng-container>
-        </ng-template>
-      </nz-form-control>
-    </nz-form-item>
+    @if (!this.tenantId) {
+      <nz-form-item>
+        <nz-form-label nzRequired>{{
+          "AbpTenantManagement::DisplayName:AdminEmailAddress" | abpLocalization
+        }}</nz-form-label>
+        <nz-form-control
+          nzHasFeedback
+          [nzValidatingTip]="
+            'AbpTenantManagement::Validating' | abpLocalization
+          "
+          [nzErrorTip]="nameErrorTpl"
+        >
+          <input formControlName="adminEmailAddress" nz-input />
+          <ng-template #nameErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              {{ "AbpTenantManagement::ThisFieldIsRequired" | abpLocalization }}
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label nzRequired>{{
+          "AbpTenantManagement::DisplayName:AdminPassword" | abpLocalization
+        }}</nz-form-label>
+        <nz-form-control
+          nzHasFeedback
+          [nzValidatingTip]="
+            'AbpTenantManagement::Validating' | abpLocalization
+          "
+          [nzErrorTip]="nameErrorTpl"
+        >
+          <nz-input-group [nzSuffix]="suffixTemplate">
+            <input
+              formControlName="adminPassword"
+              nz-input
+              [type]="passwordVisible ? 'text' : 'password'"
+            />
+          </nz-input-group>
+          <ng-template #suffixTemplate>
+            <span
+              nz-icon
+              class="ant-input-password-icon"
+              [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+              (click)="passwordVisible = !passwordVisible"
+            ></span>
+          </ng-template>
+          <ng-template #nameErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">
+              {{ "AbpTenantManagement::ThisFieldIsRequired" | abpLocalization }}
+            </ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
     }
   </form>
 </div>

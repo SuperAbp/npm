@@ -3,7 +3,14 @@ import {
   LocalizationService,
   PermissionService,
 } from '@abp/ng.core';
-import { Component, Injector, OnInit, ViewChild, inject } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Injector,
+  OnInit,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import {
   STChange,
   STColumn,
@@ -45,8 +52,9 @@ export class IdentityUserComponent implements OnInit {
   private userService = inject(IdentityUserService);
   private permissionService = inject(PermissionService);
   private extensionsService = inject(ExtensionsService);
+  private cdr = inject(ChangeDetectorRef);
 
-  users: IdentityUserDto[];
+  users: IdentityUserDto[] = [];
   total: number;
   loading = false;
   params: GetIdentityUsersInput = this.resetParameters();
@@ -64,14 +72,14 @@ export class IdentityUserComponent implements OnInit {
         ui: {
           placeholder: this.localizationService.instant(
             'AbpIdentity::PlaceHolder',
-            this.localizationService.instant('AbpIdentity::Filter')
+            this.localizationService.instant('AbpIdentity::Filter'),
           ),
         },
       },
     },
   };
   @ViewChild('st', { static: false }) st: STComponent;
-  columns: STColumn[];
+  columns: STColumn[] = [];
 
   ngOnInit() {
     const propList = this.extensionsService.entityProps
@@ -93,7 +101,7 @@ export class IdentityUserComponent implements OnInit {
           },
           iif: () => {
             return this.permissionService.getGrantedPolicy(
-              'AbpIdentity.Users.Update'
+              'AbpIdentity.Users.Update',
             );
           },
           click: 'reload',
@@ -108,11 +116,11 @@ export class IdentityUserComponent implements OnInit {
     this.userService
       .getList(this.params)
       .pipe(tap(() => (this.loading = false)))
-      .subscribe(
-        (response) => (
-          (this.users = response.items), (this.total = response.totalCount)
-        )
-      );
+      .subscribe((response) => {
+        this.users = response.items || [];
+        this.total = response.totalCount;
+        this.cdr.detectChanges();
+      });
   }
 
   change(e: STChange) {

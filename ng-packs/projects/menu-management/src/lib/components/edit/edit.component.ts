@@ -1,5 +1,11 @@
 import { CoreModule, LocalizationService } from '@abp/ng.core';
-import { Component, Input, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -52,6 +58,7 @@ export class MenuManagementEditComponent implements OnInit {
   private localizationService = inject(LocalizationService);
   private fb = inject(FormBuilder);
   private menuService = inject(MenuService);
+  private cdr = inject(ChangeDetectorRef);
 
   menu: GetMenuForEditorOutput;
   menus: NzTreeNodeOptions[] = [];
@@ -64,20 +71,17 @@ export class MenuManagementEditComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     if (this.menuId) {
-      this.menuService
-        .getEditor(this.menuId)
-        .pipe(
-          tap((response) => {
-            this.menu = response;
-            this.buildForm();
-            this.loading = false;
-          })
-        )
-        .subscribe();
+      this.menuService.getEditor(this.menuId).subscribe((response) => {
+        this.menu = response;
+        this.buildForm();
+        this.loading = false;
+        this.cdr.markForCheck();
+      });
     } else {
       this.menu = {} as GetMenuForEditorOutput;
       this.buildForm();
       this.loading = false;
+      this.cdr.markForCheck();
     }
   }
 
@@ -85,22 +89,18 @@ export class MenuManagementEditComponent implements OnInit {
     this.menuService
       .getAllList()
       .pipe(map((res: any) => res.items))
-      .pipe(
-        map((list: MenuListDto[]) => {
-          list
-            .filter((l) => l.parentId === null)
-            .forEach((menu: MenuListDto) => {
-              const children = this.getChildren(list, menu.id);
-              this.menus.push({
-                title: menu.name,
-                key: menu.id.toString(),
-                children,
-                isLeaf: children.length === 0,
-              });
+      .subscribe((list: MenuListDto[]) => {
+        list
+          .filter((l) => l.parentId === null)
+          .forEach((menu: MenuListDto) => {
+            const children = this.getChildren(list, menu.id);
+            this.menus.push({
+              title: menu.name,
+              key: menu.id.toString(),
+              children,
+              isLeaf: children.length === 0,
             });
-        })
-      )
-      .subscribe(() => {
+          });
         this.form = this.fb.group({
           name: [this.menu.name || '', [Validators.required]],
           permission: [this.menu.permission || ''],
@@ -116,6 +116,7 @@ export class MenuManagementEditComponent implements OnInit {
               : this.menu.parentId.toString() || null,
           ],
         });
+        this.cdr.markForCheck();
       });
   }
   getChildren(list: MenuListDto[], parentId?: string): NzTreeNodeOptions[] {
@@ -145,21 +146,19 @@ export class MenuManagementEditComponent implements OnInit {
           maxResultCount: 100,
         })
         .pipe(map((res: any) => res.items))
-        .pipe(
-          map((list: any) => {
-            const nodes: NzTreeNode[] = [];
-            list.map((region: MenuListDto) =>
-              nodes.push(
-                new NzTreeNode({
-                  title: region.name,
-                  key: region.id.toString(),
-                })
-              )
-            );
-            node.addChildren(nodes);
-          })
-        )
-        .subscribe();
+        .subscribe((list: any) => {
+          const nodes: NzTreeNode[] = [];
+          list.map((region: MenuListDto) =>
+            nodes.push(
+              new NzTreeNode({
+                title: region.name,
+                key: region.id.toString(),
+              }),
+            ),
+          );
+          node.addChildren(nodes);
+          this.cdr.detectChanges();
+        });
     }
   }
 
@@ -178,31 +177,23 @@ export class MenuManagementEditComponent implements OnInit {
           ...this.menu,
           ...this.form.value,
         })
-        .pipe(
-          tap((response) => {
-            this.messageService.success(
-              this.localizationService.instant('SuperAbpMenuManagement::Saved')
-            );
-            this.modal.close(true);
-          }),
-          finalize(() => (this.isConfirmLoading = false))
-        )
-        .subscribe();
+        .subscribe((response) => {
+          this.messageService.success(
+            this.localizationService.instant('SuperAbpMenuManagement::Saved'),
+          );
+          this.modal.close(true);
+        });
     } else {
       this.menuService
         .create({
           ...this.form.value,
         })
-        .pipe(
-          tap((response) => {
-            this.messageService.success(
-              this.localizationService.instant('SuperAbpMenuManagement::Saved')
-            );
-            this.modal.close(true);
-          }),
-          finalize(() => (this.isConfirmLoading = false))
-        )
-        .subscribe();
+        .subscribe((response) => {
+          this.messageService.success(
+            this.localizationService.instant('SuperAbpMenuManagement::Saved'),
+          );
+          this.modal.close(true);
+        });
     }
   }
 

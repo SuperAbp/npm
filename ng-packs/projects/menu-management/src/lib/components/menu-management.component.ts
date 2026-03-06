@@ -4,7 +4,13 @@ import {
   LocalizationService,
   PermissionService,
 } from '@abp/ng.core';
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import {
   STChange,
   STColumn,
@@ -51,6 +57,7 @@ export class MenuManagementComponent implements OnInit {
   private messageService = inject(NzMessageService);
   private permissionService = inject(PermissionService);
   private menuService = inject(MenuService);
+  private cdr = inject(ChangeDetectorRef);
 
   menus: MenuListDto[];
   parents: NzTreeNodeOptions[] = [];
@@ -72,7 +79,7 @@ export class MenuManagementComponent implements OnInit {
         ui: {
           placeholder: this.localizationService.instant(
             'SuperAbpMenuManagement::Placeholder',
-            this.localizationService.instant('SuperAbpMenuManagement::Name')
+            this.localizationService.instant('SuperAbpMenuManagement::Name'),
           ),
         },
       },
@@ -83,7 +90,7 @@ export class MenuManagementComponent implements OnInit {
           widget: 'tree-select',
           placeholder: this.localizationService.instant(
             'SuperAbpMenuManagement::ChoosePlaceholder',
-            this.localizationService.instant('SuperAbpMenuManagement::Parent')
+            this.localizationService.instant('SuperAbpMenuManagement::Parent'),
           ),
           dropdownMatchSelectWidth: false,
           dropdownStyle: { 'max-height': '300px' },
@@ -98,7 +105,7 @@ export class MenuManagementComponent implements OnInit {
                     key: menu.id.toString(),
                     isLeaf: menu.isLeaf,
                   }));
-                })
+                }),
               ),
           // expandChange: (e: NzFormatEmitEvent) =>
           //   this.menuService
@@ -138,7 +145,7 @@ export class MenuManagementComponent implements OnInit {
     },
     {
       title: this.localizationService.instant(
-        'SuperAbpMenuManagement::Permission'
+        'SuperAbpMenuManagement::Permission',
       ),
       index: 'permission',
     },
@@ -149,31 +156,31 @@ export class MenuManagementComponent implements OnInit {
     },
     {
       title: this.localizationService.instant(
-        'SuperAbpMenuManagement::HideInBreadcrumb'
+        'SuperAbpMenuManagement::HideInBreadcrumb',
       ),
       index: 'hideInBreadcrumb',
       type: 'yn',
     },
     {
       title: this.localizationService.instant(
-        'SuperAbpMenuManagement::ParentName'
+        'SuperAbpMenuManagement::ParentName',
       ),
       index: 'parentName',
     },
     {
       title: this.localizationService.instant(
-        'SuperAbpMenuManagement::Actions'
+        'SuperAbpMenuManagement::Actions',
       ),
       buttons: [
         {
           icon: 'edit',
           type: 'modal',
           tooltip: this.localizationService.instant(
-            'SuperAbpMenuManagement::Edit'
+            'SuperAbpMenuManagement::Edit',
           ),
           iif: () => {
             return this.permissionService.getGrantedPolicy(
-              'SuperAbpMenuManagement.Menu.Update'
+              'SuperAbpMenuManagement.Menu.Update',
             );
           },
           modal: {
@@ -188,18 +195,18 @@ export class MenuManagementComponent implements OnInit {
           icon: 'delete',
           type: 'del',
           tooltip: this.localizationService.instant(
-            'SuperAbpMenuManagement::Delete'
+            'SuperAbpMenuManagement::Delete',
           ),
           pop: {
             title: this.localizationService.instant(
-              'SuperAbpMenuManagement::AreYouSure'
+              'SuperAbpMenuManagement::AreYouSure',
             ),
             okType: 'danger',
             icon: 'star',
           },
           iif: () => {
             return this.permissionService.getGrantedPolicy(
-              'SuperAbpMenuManagement.Menu.Delete'
+              'SuperAbpMenuManagement.Menu.Delete',
             );
           },
           click: (record, _modal, component) => {
@@ -207,8 +214,8 @@ export class MenuManagementComponent implements OnInit {
               this.messageService.success(
                 this.localizationService.instant(
                   'SuperAbpMenuManagement::Deleted',
-                  record.name
-                )
+                  record.name,
+                ),
               );
               component!.removeRow(record);
             });
@@ -222,19 +229,17 @@ export class MenuManagementComponent implements OnInit {
     this.menuService
       .getRoot()
       .pipe(map((res: ListResultDto<MenuTreeNodeDto>) => res.items))
-      .pipe(
-        map((list: MenuTreeNodeDto[]) => {
-          this.parents = list.map(
-            (menu: MenuTreeNodeDto) =>
-              ({
-                title: menu.name,
-                key: menu.id.toString(),
-                isLeaf: menu.isLeaf,
-              } as NzTreeNodeOptions)
-          );
-        })
-      )
-      .subscribe();
+      .subscribe((list: MenuTreeNodeDto[]) => {
+        this.parents = list.map(
+          (menu: MenuTreeNodeDto) =>
+            ({
+              title: menu.name,
+              key: menu.id.toString(),
+              isLeaf: menu.isLeaf,
+            }) as NzTreeNodeOptions,
+        );
+        this.cdr.markForCheck();
+      });
     this.getList();
   }
   getList() {
@@ -245,6 +250,7 @@ export class MenuManagementComponent implements OnInit {
       .subscribe((response) => {
         this.menus = response.items;
         this.total = response.totalCount;
+        this.cdr.markForCheck();
       });
   }
 
@@ -254,18 +260,16 @@ export class MenuManagementComponent implements OnInit {
       this.menuService
         .getChildren(e.node.key)
         .pipe(map((res: ListResultDto<MenuTreeNodeDto>) => res.items))
-        .pipe(
-          map((list: MenuTreeNodeDto[]) => {
-            node.addChildren(
-              list.map((menu: MenuTreeNodeDto) => ({
-                title: menu.name,
-                key: menu.id.toString(),
-                isLeaf: menu.isLeaf,
-              }))
-            );
-          })
-        )
-        .subscribe();
+        .subscribe((list: MenuTreeNodeDto[]) => {
+          node.addChildren(
+            list.map((menu: MenuTreeNodeDto) => ({
+              title: menu.name,
+              key: menu.id.toString(),
+              isLeaf: menu.isLeaf,
+            })),
+          );
+          this.cdr.markForCheck();
+        });
     }
   }
 

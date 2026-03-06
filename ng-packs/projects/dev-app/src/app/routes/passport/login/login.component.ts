@@ -13,7 +13,6 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzTooltipModule } from 'ng-zorro-antd/tooltip';
-import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'passport-login',
@@ -38,13 +37,12 @@ export class UserLoginComponent {
     private router: Router,
     @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
     private startupSrv: StartupService,
-    private oAuthService: OAuthService,
-    private authService: AuthService
+    private authService: AuthService,
   ) {
-    if (this.hasLoggedIn) {
+    if (this.authService.isAuthenticated) {
       this.tokenService.set({
-        token: oAuthService.getAccessToken(),
-        expired: this.oAuthService.getAccessTokenExpiration(),
+        token: this.authService.getAccessToken(),
+        expired: this.authService.getAccessTokenExpiration(),
       });
       this.startupSrv.load().subscribe(() => {
         let url = this.tokenService.referrer?.url || '/';
@@ -56,10 +54,5 @@ export class UserLoginComponent {
     } else {
       this.authService.navigateToLogin();
     }
-  }
-
-  // #region fields
-  get hasLoggedIn(): boolean {
-    return this.oAuthService.hasValidAccessToken();
   }
 }
