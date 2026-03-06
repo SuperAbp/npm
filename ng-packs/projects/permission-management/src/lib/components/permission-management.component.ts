@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NzModalModule, NzModalRef } from 'ng-zorro-antd/modal';
 import {
   NzFormatEmitEvent,
@@ -53,6 +59,7 @@ export class PermissionManagementComponent implements OnInit {
   constructor(
     private readonly permissionsService: PermissionsService,
     private modal: NzModalRef,
+    private cdr: ChangeDetectorRef,
   ) {}
   ngOnInit(): void {
     this.permissionsService
@@ -75,8 +82,8 @@ export class PermissionManagementComponent implements OnInit {
             );
             treeArr.push(treeNode);
           });
-          console.log(treeArr);
           this.permissions = treeArr;
+          this.cdr.detectChanges();
         }),
       )
       .subscribe();
